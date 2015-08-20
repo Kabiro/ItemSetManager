@@ -1,6 +1,7 @@
 package fr.kabiro.lol.ism.core.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Build {
@@ -11,7 +12,7 @@ public class Build {
 
     private String json;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Summoner summoner;
 
     public Build(){}
@@ -20,6 +21,43 @@ public class Build {
         this.id = builder.id;
         this.json = builder.json;
         this.summoner = builder.summoner;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getJson() {
+        return json;
+    }
+
+    public void setJson(String json) {
+        this.json = json;
+    }
+
+    public Summoner getSummoner() {
+        return summoner;
+    }
+
+    public void setSummoner(Summoner summoner) {
+        this.summoner = summoner;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Build build = (Build) o;
+        return Objects.equals(id, build.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     public static Builder builder() {
