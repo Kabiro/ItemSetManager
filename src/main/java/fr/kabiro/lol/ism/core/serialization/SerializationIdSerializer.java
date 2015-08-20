@@ -1,4 +1,4 @@
-package fr.kabiro.lol.ism.serialization;
+package fr.kabiro.lol.ism.core.serialization;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;

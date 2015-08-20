@@ -1,4 +1,4 @@
-package fr.kabiro.lol.ism.dto.file;
+package fr.kabiro.lol.ism.core.dto.file;
 
 import java.util.ArrayList;
 import java.util.List;

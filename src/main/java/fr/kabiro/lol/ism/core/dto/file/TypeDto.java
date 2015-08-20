@@ -1,9 +1,9 @@
-package fr.kabiro.lol.ism.dto.file;
+package fr.kabiro.lol.ism.core.dto.file;
 
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import fr.kabiro.lol.ism.serialization.SerializationIdSerializer;
-import fr.kabiro.lol.ism.serialization.WithSerializationId;
+import fr.kabiro.lol.ism.core.serialization.SerializationIdSerializer;
+import fr.kabiro.lol.ism.core.serialization.WithSerializationId;
 
 @JsonSerialize(using = SerializationIdSerializer.class)
 public enum TypeDto implements WithSerializationId {
