@@ -2,3 +2,6 @@
 .gradle
 build
 *.iml
+src/main/ui/app/bower_components
+src/main/ui/node_modules
+src/main/resources/public

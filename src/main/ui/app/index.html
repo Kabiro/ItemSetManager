@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ItemSetManager</title>
+    <!-- build:css css/vendors.min.css -->
+    <link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.css'>
+    <!-- endbuild -->
+    <!-- build:css css/combined.min.css -->
+    <link rel="stylesheet" media="screen" href="styles/main.css">
+    <!-- endbuild -->
+</head>
+<body ng-app="ItemSetManager">
+
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a ui-sref="home" class="navbar-brand">ItemSetManager</a>
+        </div>
+
+    </div>
+
+</nav>
+
+<div ui-view class="container-fluid"></div>
+
+<!-- VENDORS -->
+<!-- build:js js/vendors.min.js -->
+<!--<script src="bower_components/jquery/dist/jquery.js"></script>-->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<!-- endbuild -->
+
+<!-- CUSTOM -->
+<!-- build:js js/combined.min.js -->
+<script src="scripts/app.js"></script>
+
+<script src="scripts/ctrl/homeCtrl.js"></script>
+
+<!-- endbuild -->
+
+</body>
+</html>
