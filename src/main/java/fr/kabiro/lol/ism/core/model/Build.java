@@ -1,7 +1,9 @@
 package fr.kabiro.lol.ism.core.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Build {
@@ -15,12 +17,16 @@ public class Build {
     @ManyToOne(fetch = FetchType.LAZY)
     private Summoner summoner;
 
+    @ManyToMany
+    private Set<Champion> champions = new HashSet<>();
+
     public Build(){}
 
     private Build(Builder builder){
         this.id = builder.id;
         this.json = builder.json;
         this.summoner = builder.summoner;
+        this.champions = builder.champions;
     }
 
     public Long getId() {
@@ -47,6 +53,14 @@ public class Build {
         this.summoner = summoner;
     }
 
+    public Set<Champion> getChampions() {
+        return champions;
+    }
+
+    public void setChampions(Set<Champion> champions) {
+        this.champions = champions;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,6 +82,7 @@ public class Build {
         private Long id;
         private String json;
         private Summoner summoner;
+        private Set<Champion> champions = new HashSet<>();
 
         public Builder id(Long id){
             this.id = id;
@@ -81,6 +96,13 @@ public class Build {
 
         public Builder summoner(Summoner summoner){
             this.summoner = summoner;
+            return this;
+        }
+
+        public Builder champions(Set<Champion> champions) {
+            if (champions != null) {
+                this.champions = champions;
+            }
             return this;
         }
 
