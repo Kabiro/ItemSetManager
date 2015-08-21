@@ -12,6 +12,7 @@ public class Build {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(columnDefinition = "TEXT")
     private String json;
 
     @ManyToOne(fetch = FetchType.LAZY)

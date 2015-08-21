@@ -8,12 +8,14 @@ import fr.kabiro.lol.ism.core.model.Build;
 import fr.kabiro.lol.ism.core.model.Champion;
 import fr.kabiro.lol.ism.core.model.Region;
 import fr.kabiro.lol.ism.core.model.Summoner;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -40,9 +42,13 @@ public class TestDataConfig {
 
             Summoner kabiro = Summoner.builder().name("Kabiro").riotId(149869L).region(Region.EUW).build();
 
-            Build b1 = Build.builder().json("{title:'build1'}").summoner(kabiro).champions(new HashSet<>(Arrays.asList(champions))).build();
-            Build b2 = Build.builder().json("{title:'build2'}").summoner(kabiro).champions(new HashSet<>(Arrays.asList(champions))).build();
-            Build b3 = Build.builder().json("{title:'build3'}").summoner(kabiro).build();
+            InputStream itemSetIS = new ClassPathResource("itemSet.json").getInputStream();
+            String itemSet = IOUtils.toString(itemSetIS);
+            IOUtils.closeQuietly(itemSetIS);
+
+            Build b1 = Build.builder().json(itemSet).summoner(kabiro).champions(new HashSet<>(Arrays.asList(champions))).build();
+            Build b2 = Build.builder().json(itemSet).summoner(kabiro).champions(new HashSet<>(Arrays.asList(champions))).build();
+            Build b3 = Build.builder().json(itemSet).summoner(kabiro).build();
 
             summonerDao.save(kabiro);
             buildDao.save(Arrays.asList(b1, b2, b3));
