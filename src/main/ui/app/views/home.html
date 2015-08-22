@@ -1,4 +1,25 @@
-<h3>{{::summoner.name}} ({{::summoner.region}})</h3>
-<ul>
-    <li ng-repeat="itemSet in itemsSets">{{::itemSet}}</li>
-</ul>
+<div class="row">
+    <h3>{{::summoner.name}} ({{::summoner.region}})</h3>
+
+    <div class="col-xs-6">
+        <h4>Items sets</h4>
+        <ul>
+            <li ng-repeat="itemSet in itemsSets">{{::itemSet}}</li>
+        </ul>
+        <h4>Recent games</h4>
+        <ul>
+            <li ng-repeat="game in recentGames">
+                <lol-image type="'championSquare'" id="game.championId"
+                           ng-click="itemsSetByGame(game.gameId)"></lol-image>
+                <span>{{::game}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-xs-6">
+        <ul>
+            <li ng-repeat="itemSet in itemsSetsFromGame">
+                {{itemSet}}
+            </li>
+        </ul>
+    </div>
+</div>

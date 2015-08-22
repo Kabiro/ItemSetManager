@@ -9,7 +9,7 @@ public class MatchDetailDTO {
     private Integer mapId;
     private Long matchCreation;
     private Long matchDuration;
-    private Integer matchId;
+    private Long matchId;
     private MatchModeDTO matchMode;
     private MatchTypeDTO matchType;
     private String matchVersion;
@@ -46,11 +46,11 @@ public class MatchDetailDTO {
         this.matchDuration = matchDuration;
     }
 
-    public Integer getMatchId() {
+    public Long getMatchId() {
         return matchId;
     }
 
-    public void setMatchId(Integer matchId) {
+    public void setMatchId(Long matchId) {
         this.matchId = matchId;
     }
 

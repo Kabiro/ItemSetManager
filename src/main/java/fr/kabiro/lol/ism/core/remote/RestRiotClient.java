@@ -14,7 +14,6 @@ import java.util.Map;
 
 @Component
 public abstract class RestRiotClient {
-    private final static String PATH_PREFIX = "/api/lol/";
     private String version;
 
     @Autowired
@@ -26,7 +25,7 @@ public abstract class RestRiotClient {
     private String baseUrl;
 
     @Autowired
-    private RestOperations restOperations;
+    protected RestOperations restOperations;
 
 
     public RestRiotClient(String version) {
@@ -35,20 +34,20 @@ public abstract class RestRiotClient {
 
 
     protected <T> T doGet(String suffixe, Region region, Map<String, Object> params, Class<T> t) {
-        UriComponentsBuilder uriBuilder = this.buildUri(suffixe, region, params);
+        UriComponentsBuilder uriBuilder = this.buildUri(baseUrl, suffixe, region, params);
 
         return restOperations.getForObject(uriBuilder.build().toString(), t);
     }
 
     protected <T> T doGet(String suffixe, Region region, Map<String, Object> params, ParameterizedTypeReference<T> parameterizedTypeReference) {
-        UriComponentsBuilder uriBuilder = this.buildUri(suffixe, region, params);
+        UriComponentsBuilder uriBuilder = this.buildUri(baseUrl, suffixe, region, params);
 
         return restOperations.exchange(uriBuilder.build().toString(), HttpMethod.GET, null, parameterizedTypeReference).getBody();
     }
 
-    private UriComponentsBuilder buildUri(String suffixe, Region region, Map<String, Object> params) {
+    protected UriComponentsBuilder buildUri(String baseUrl, String suffixe, Region region, Map<String, Object> params) {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(baseUrl)
-                .path(PATH_PREFIX + region.toString().toLowerCase() + "/" + version + suffixe)
+                .path(region.toString().toLowerCase() + "/" + version + suffixe)
                 .queryParam("api_key", apiKey);
 
         for (Map.Entry<String, Object> param : Utils.safe(params).entrySet()) {

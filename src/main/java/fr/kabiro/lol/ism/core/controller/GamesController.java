@@ -16,7 +16,7 @@ public class GamesController {
     @Autowired
     private GameService gameService;
 
-    @RequestMapping("/api/games/v1/{name}/{region}/recents/")
+    @RequestMapping("/api/games/v1/{name}/{region}/recents")
     public Set<GameDTO> recentGamesBySummoner(@PathVariable("name") String name, @PathVariable("region") Region region) {
         return gameService.recentGamesBySummoner(name, region);
     }

@@ -21,12 +21,12 @@ public class ItemSetController {
     @Autowired
     private ItemSetService itemSetService;
 
-    @RequestMapping("/api/sets/v1/{name}/{region}/")
+    @RequestMapping("/api/sets/v1/{region}/{name}")
     public List<ItemSetDto> itemsSetByUser(@PathVariable("name") String name, @PathVariable("region") Region region) {
         return itemSetService.findItemsSetByUser(name, region);
     }
 
-    @RequestMapping("/api/sets/v1/{name}/{region}/zip")
+    @RequestMapping("/api/sets/v1/{region}/{name}/zip")
     public void zip(HttpServletResponse response, @PathVariable("name") String name, @PathVariable("region") Region region) {
         try {
             response.setHeader("Content-Disposition", "attachment; filename=Config.zip");
