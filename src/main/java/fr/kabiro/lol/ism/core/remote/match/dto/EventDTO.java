@@ -24,6 +24,9 @@ public class EventDTO {
     private Integer skillSlot;
     private Integer teamId;
     private Long timestamp;
+    private TowerTypeDTO towerType;
+    private Integer victimId;
+    private WardTypeDTO wardType;
 
     public AscendedTypeDTO getAscendedType() {
         return ascendedType;
@@ -193,7 +196,4 @@ public class EventDTO {
         this.wardType = wardType;
     }
 
-    private TowerTypeDTO towerType;
-    private Integer victimId;
-    private WardTypeDTO wardType;
 }

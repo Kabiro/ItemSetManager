@@ -10,4 +10,6 @@ public interface ItemSetService {
     List<ItemSetDto> findItemsSetByUser(String name, Region region);
 
     List<ZipFile> findZippedItemsSetByUser(String name, Region region);
+
+    List<ItemSetDto> itemsSetFromGame(Long gameId, Region region);
 }

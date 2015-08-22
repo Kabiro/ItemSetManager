@@ -16,7 +16,7 @@ public class RestMatchClient extends RestRiotClient {
         super(VERSION);
     }
 
-    public MatchDetailDTO getMatchDetails(Integer matchId, Region region, boolean includeTimeline) {
+    public MatchDetailDTO getMatchDetails(Long matchId, Region region, boolean includeTimeline) {
         Map<String, Object> params = new HashMap<>();
         params.put("includeTimeline", Boolean.toString(includeTimeline));
         return doGet("/match/" + matchId, region, params, MatchDetailDTO.class);
