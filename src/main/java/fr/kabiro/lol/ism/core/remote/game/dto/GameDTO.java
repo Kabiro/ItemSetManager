@@ -10,13 +10,13 @@ public class GameDTO implements Serializable {
     private int championId;
     private long createDate;
     private List<PlayerDTO> fellowPlayers;
-    private long gameID;
+    private long gameId;
     private String gameMode;
     private String gameType;
     private int level;
     private int mapId;
     private int spell1;// summoner spell number one.
-    private int spell2s;// summoner spell number two.
+    private int spell2;// summoner spell number two.
     private RawStatsDTO stats;
     private String subType;
     private int teamId; // team color: blue id = 100, purple(red) id = 200.
@@ -45,12 +45,12 @@ public class GameDTO implements Serializable {
         this.fellowPlayers = fellowPlayers;
     }
 
-    public long getGameID() {
-        return gameID;
+    public long getGameId() {
+        return gameId;
     }
 
-    public void setGameID(long gameID) {
-        this.gameID = gameID;
+    public void setGameId(long gameId) {
+        this.gameId = gameId;
     }
 
     public String getGameMode() {
@@ -93,12 +93,12 @@ public class GameDTO implements Serializable {
         this.spell1 = spell1;
     }
 
-    public int getSpell2s() {
-        return spell2s;
+    public int getSpell2() {
+        return spell2;
     }
 
-    public void setSpell2s(int spell2s) {
-        this.spell2s = spell2s;
+    public void setSpell2(int spell2) {
+        this.spell2 = spell2;
     }
 
     public RawStatsDTO getStats() {
