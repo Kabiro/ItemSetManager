@@ -6,9 +6,13 @@ app.config(function ($stateProvider) {
 
     $stateProvider
         .state('home', {
-            url: '',
+            url: '/summoner/:region/:summoner',
             templateUrl: '/views/home.html',
             controller: 'homeCtrl'
+        }).state('login', {
+            url: '/login',
+            templateUrl: '/views/login.html',
+            controller: 'loginCtrl'
         })
     ;
 });
