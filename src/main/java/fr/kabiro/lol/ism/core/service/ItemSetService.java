@@ -1,6 +1,6 @@
 package fr.kabiro.lol.ism.core.service;
 
-import fr.kabiro.lol.ism.core.dto.file.ItemSetDto;
+import fr.kabiro.lol.ism.core.dto.ItemSetDto;
 import fr.kabiro.lol.ism.core.model.Region;
 import fr.kabiro.lol.ism.core.pojo.ZipFile;
 

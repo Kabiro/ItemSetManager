@@ -2,7 +2,7 @@ package fr.kabiro.lol.ism.core.service.impl;
 
 import fr.kabiro.lol.ism.Utils;
 import fr.kabiro.lol.ism.core.dao.BuildDao;
-import fr.kabiro.lol.ism.core.dto.file.ItemSetDto;
+import fr.kabiro.lol.ism.core.dto.ItemSetDto;
 import fr.kabiro.lol.ism.core.mapper.BuildMapper;
 import fr.kabiro.lol.ism.core.mapper.EventMapper;
 import fr.kabiro.lol.ism.core.model.Build;

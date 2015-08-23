@@ -1,4 +1,4 @@
-package fr.kabiro.lol.ism.core.dto.file;
+package fr.kabiro.lol.ism.core.dto;
 
 public class ItemDto {
     private Integer id;

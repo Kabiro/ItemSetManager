@@ -1,19 +1,20 @@
-package fr.kabiro.lol.ism.core.dto.file;
+package fr.kabiro.lol.ism.core.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import fr.kabiro.lol.ism.core.serialization.SerializationIdSerializer;
 import fr.kabiro.lol.ism.core.serialization.WithSerializationId;
 
 @JsonSerialize(using = SerializationIdSerializer.class)
-public enum ModeDto implements WithSerializationId{
+public enum MapDto implements WithSerializationId {
     ANY("any"),
-    CLASSIC("CLASSIC"),
-    ARAM("ARAM"),
-    DOMINION("ODIN");
+    SUMMONER_RIFT("SR"),
+    HOWLING_ABYSS("HA"),
+    TWISTED_TREELINE("TT"),
+    CRYSTAL_SCAR("CS");
 
     private String serializationId;
 
-    ModeDto(String serializationId){
+    MapDto(String serializationId){
         this.serializationId = serializationId;
     }
 

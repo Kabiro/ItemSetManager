@@ -1,6 +1,6 @@
 package fr.kabiro.lol.ism.core.mapper;
 
-import fr.kabiro.lol.ism.core.dto.file.ItemSetDto;
+import fr.kabiro.lol.ism.core.dto.ItemSetDto;
 import fr.kabiro.lol.ism.core.model.Build;
 import org.springframework.stereotype.Component;
 

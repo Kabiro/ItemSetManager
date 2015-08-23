@@ -1,8 +1,8 @@
 package fr.kabiro.lol.ism.core.mapper;
 
-import fr.kabiro.lol.ism.core.dto.file.BlockDto;
-import fr.kabiro.lol.ism.core.dto.file.ItemDto;
-import fr.kabiro.lol.ism.core.dto.file.ItemSetDto;
+import fr.kabiro.lol.ism.core.dto.BlockDto;
+import fr.kabiro.lol.ism.core.dto.ItemDto;
+import fr.kabiro.lol.ism.core.dto.ItemSetDto;
 import fr.kabiro.lol.ism.core.remote.match.dto.EventDTO;
 import org.springframework.stereotype.Component;
 
