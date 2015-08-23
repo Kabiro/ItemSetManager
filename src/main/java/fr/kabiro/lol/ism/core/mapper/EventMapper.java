@@ -14,14 +14,19 @@ public class EventMapper {
         itemSet.setTitle("The name of the page");
         itemSet.setType(TypeDto.custom);
         itemSet.setMode(ModeDto.any);
-        BlockDto block = new BlockDto();
-        block.setType("All items");
+        int index = 0;
+        BlockDto block = null;
         for (EventDTO event : events) {
+            if (index % 16 == 0) {
+                block = new BlockDto();
+                itemSet.getBlocks().add(block);
+                block.setType("Block number " + index / 16);
+            }
             ItemDto item = new ItemDto();
             item.setId(event.getItemId());
             block.getItems().add(item);
+            index++;
         }
-        itemSet.getBlocks().add(block);
         return itemSet;
     }
 }
