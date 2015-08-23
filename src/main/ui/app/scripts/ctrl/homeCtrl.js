@@ -6,7 +6,7 @@ app.controller('homeCtrl', function ($scope, $state, $stateParams, utils, itemsS
         $state.go('login');
     }
 
-    $scope.itemsSets = [];
+    $scope.builds = [];
     $scope.recentGames = [];
     $scope.itemsSetsFromGame = [];
     $scope.summoner = {
@@ -14,8 +14,8 @@ app.controller('homeCtrl', function ($scope, $state, $stateParams, utils, itemsS
         region: $stateParams.region
     };
 
-    itemsSetSrv.getByUser($scope.summoner.name, $scope.summoner.region).then(function (result) {
-        $scope.itemsSets = result.data;
+    itemsSetSrv.buildsByUser($scope.summoner.name, $scope.summoner.region).then(function (result) {
+        $scope.builds = result.data;
     });
 
     gameSrv.recentByUser($scope.summoner.name, $scope.summoner.region).then(function (result) {
