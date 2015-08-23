@@ -4,22 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemSetDto {
-    private Long id;
     private String title;
     private TypeDto type;
     private MapDto map;
     private ModeDto mode;
     private boolean priority = false;
-    private Integer sortRank;
+    private Integer sortrank;
     private List<BlockDto> blocks = new ArrayList<>();
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -61,12 +52,12 @@ public class ItemSetDto {
         this.priority = priority;
     }
 
-    public Integer getSortRank() {
-        return sortRank;
+    public Integer getSortrank() {
+        return sortrank;
     }
 
-    public void setSortRank(Integer sortRank) {
-        this.sortRank = sortRank;
+    public void setSortrank(Integer sortrank) {
+        this.sortrank = sortrank;
     }
 
     public List<BlockDto> getBlocks() {

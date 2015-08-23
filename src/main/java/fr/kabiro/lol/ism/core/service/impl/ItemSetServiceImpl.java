@@ -2,6 +2,7 @@ package fr.kabiro.lol.ism.core.service.impl;
 
 import fr.kabiro.lol.ism.Utils;
 import fr.kabiro.lol.ism.core.dao.BuildDao;
+import fr.kabiro.lol.ism.core.dto.BuildDto;
 import fr.kabiro.lol.ism.core.dto.ItemSetDto;
 import fr.kabiro.lol.ism.core.mapper.BuildMapper;
 import fr.kabiro.lol.ism.core.mapper.EventMapper;
@@ -39,7 +40,7 @@ public class ItemSetServiceImpl implements ItemSetService {
     private EventMapper eventMapper;
 
     @Override
-    public List<ItemSetDto> findItemsSetByUser(String name, Region region) {
+    public List<BuildDto> findItemsSetByUser(String name, Region region) {
         List<Build> builds = buildDao.findBuildsBySummonerNameAndRegion(name, region);
         return buildMapper.entityCollectionToDtoList(builds);
     }

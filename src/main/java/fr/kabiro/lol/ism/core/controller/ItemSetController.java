@@ -1,5 +1,6 @@
 package fr.kabiro.lol.ism.core.controller;
 
+import fr.kabiro.lol.ism.core.dto.BuildDto;
 import fr.kabiro.lol.ism.core.dto.ItemSetDto;
 import fr.kabiro.lol.ism.core.model.Region;
 import fr.kabiro.lol.ism.core.pojo.ZipFile;
@@ -22,7 +23,7 @@ public class ItemSetController {
     private ItemSetService itemSetService;
 
     @RequestMapping("/api/sets/v1/{region}/{name}")
-    public List<ItemSetDto> itemsSetByUser(@PathVariable("name") String name, @PathVariable("region") Region region) {
+    public List<BuildDto> itemsSetByUser(@PathVariable("name") String name, @PathVariable("region") Region region) {
         return itemSetService.findItemsSetByUser(name, region);
     }
 
