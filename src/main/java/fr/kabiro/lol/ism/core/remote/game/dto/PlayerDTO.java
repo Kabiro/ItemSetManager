@@ -7,7 +7,7 @@ import java.io.Serializable;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PlayerDTO implements Serializable {
     private int championId;
-    private Long riotId;//summonerId
+    private long summonerId;
     private int teamId;
 
     public int getChampionId() {
@@ -18,12 +18,12 @@ public class PlayerDTO implements Serializable {
         this.championId = championId;
     }
 
-    public Long getRiotId() {
-        return riotId;
+    public long getSummonerId() {
+        return summonerId;
     }
 
-    public void setRiotId(Long riotId) {
-        this.riotId = riotId;
+    public void setSummonerId(long summonerId) {
+        this.summonerId = summonerId;
     }
 
     public int getTeamId() {
