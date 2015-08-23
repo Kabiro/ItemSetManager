@@ -2,24 +2,43 @@
     <h3>{{::summoner.name}} ({{::summoner.region}})</h3>
 
     <div class="col-xs-6">
-        <h4>Items sets</h4>
+        <h4>Manage your items sets</h4>
         <ul>
-            <li ng-repeat="build in builds">{{::build.itemSet.title}}</li>
+            <li ng-repeat="build in builds">
+                {{::build.itemSet.title}} ({{::build.champions.length}} champions)
+            </li>
         </ul>
-        <h4>Recent games</h4>
+        <h4>Navigate your recent games</h4>
         <ul>
-            <li ng-repeat="game in recentGames">
+            <li ng-repeat="game in recentGames | orderBy:'createDate':true" ng-click="itemsSetByGame(game.gameId)">
                 <lol-image type="'championSquare'" id="game.championId"
-                           ng-click="itemsSetByGame(game.gameId)"></lol-image>
+                           width="'50px'" height="'50px'"></lol-image>
+                <div class="pull-right">
+                    {{game.stats.championsKilled}}/{{game.stats.numDeaths}}/{{game.stats.assists}}
+                    <div class="row">
+                        <lol-image type="'item'" id="game.stats.item0" width="'30px'" height="'30px'"></lol-image>
+                        <lol-image type="'item'" id="game.stats.item1" width="'30px'" height="'30px'"></lol-image>
+                        <lol-image type="'item'" id="game.stats.item2" width="'30px'" height="'30px'"></lol-image>
+                    </div>
+                    <div class="row">
+                        <lol-image type="'item'" id="game.stats.item3" width="'30px'" height="'30px'"></lol-image>
+                        <lol-image type="'item'" id="game.stats.item4" width="'30px'" height="'30px'"></lol-image>
+                        <lol-image type="'item'" id="game.stats.item5" width="'30px'" height="'30px'"></lol-image>
+                    </div>
+                </div>
                 <span>{{::game}}</span>
             </li>
         </ul>
     </div>
     <div class="col-xs-6">
-        <ul>
-            <li ng-repeat="itemSet in itemsSetsFromGame">
-                {{itemSet}}
-            </li>
-        </ul>
+        <div ng-repeat="itemSet in itemsSetsFromGame">
+            <h3>{{itemSet.title}}</h3>
+
+            <div ng-repeat="block in itemSet.blocks" class="row">
+                <h4>{{block.type}}</h4>
+                <lol-image ng-repeat="item in block.items" type="'item'" id="item.id" width="'30px'"
+                           height="'30px'"></lol-image>
+            </div>
+        </div>
     </div>
 </div>

@@ -50,7 +50,9 @@ app.directive('lolImage', function () {
         templateUrl: 'template/directives/lolImage.html',
         scope: {
             id: '=',
-            type: '='
+            type: '=',
+            width: '=',
+            height: '='
         },
         controller: function ($scope, championsSrv) {
             championsSrv.champions.then(function (result) {

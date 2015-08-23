@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RawStatsDTO implements Serializable {
-    private int assits;
+    private int assists;
     private int barracksKilled; // Number of inhinitors detroyed.
     private int championsKilled;
     private int combatPlayerScore;
@@ -85,12 +85,12 @@ public class RawStatsDTO implements Serializable {
     private int wardPlaced;
     private boolean win;
 
-    public int getAssits() {
-        return assits;
+    public int getAssists() {
+        return assists;
     }
 
-    public void setAssits(int assits) {
-        this.assits = assits;
+    public void setAssists(int assists) {
+        this.assists = assists;
     }
 
     public int getBarracksKilled() {
