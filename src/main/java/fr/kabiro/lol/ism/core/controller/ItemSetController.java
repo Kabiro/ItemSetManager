@@ -27,6 +27,11 @@ public class ItemSetController {
         return itemSetService.findItemsSetByUser(name, region);
     }
 
+    @RequestMapping("/api/sets/v1/{id}")
+    public BuildDto itemsSetById(@PathVariable("id") Long id) {
+        return itemSetService.findItemsSetById(id).get();
+    }
+
     @RequestMapping("/api/sets/v1/{region}/{name}/zip")
     public void zip(HttpServletResponse response, @PathVariable("name") String name, @PathVariable("region") Region region) {
         try {

@@ -13,6 +13,10 @@ app.config(function ($stateProvider) {
             url: '/login',
             templateUrl: '/views/login.html',
             controller: 'loginCtrl'
+        }).state('itemSet', {
+            url: '/itemSet/:itemSetId',
+            templateUrl: '/views/itemSet.html',
+            controller: 'itemSetCtrl'
         })
     ;
 });

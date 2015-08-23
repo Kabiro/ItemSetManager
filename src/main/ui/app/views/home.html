@@ -5,7 +5,8 @@
         <h4>Manage your items sets</h4>
         <ul>
             <li ng-repeat="build in builds">
-                {{::build.itemSet.title}} ({{::build.champions.length}} champions)
+                <a ui-sref="itemSet({itemSetId:build.id})">{{::build.itemSet.title}} ({{::build.champions.length}}
+                    champions)</a>
             </li>
         </ul>
         <h4>Navigate your recent games</h4>
@@ -16,14 +17,20 @@
                 <div class="pull-right">
                     {{game.stats.championsKilled}}/{{game.stats.numDeaths}}/{{game.stats.assists}}
                     <div class="row">
-                        <lol-image type="'item'" id="game.stats.item0" width="'30px'" height="'30px'"></lol-image>
-                        <lol-image type="'item'" id="game.stats.item1" width="'30px'" height="'30px'"></lol-image>
-                        <lol-image type="'item'" id="game.stats.item2" width="'30px'" height="'30px'"></lol-image>
+                        <lol-image type="'item'" id="game.stats.item0" ng-if="game.stats.item0" width="'30px'"
+                                   height="'30px'"></lol-image>
+                        <lol-image type="'item'" id="game.stats.item1" ng-if="game.stats.item1" width="'30px'"
+                                   height="'30px'"></lol-image>
+                        <lol-image type="'item'" id="game.stats.item2" ng-if="game.stats.item2" width="'30px'"
+                                   height="'30px'"></lol-image>
                     </div>
                     <div class="row">
-                        <lol-image type="'item'" id="game.stats.item3" width="'30px'" height="'30px'"></lol-image>
-                        <lol-image type="'item'" id="game.stats.item4" width="'30px'" height="'30px'"></lol-image>
-                        <lol-image type="'item'" id="game.stats.item5" width="'30px'" height="'30px'"></lol-image>
+                        <lol-image type="'item'" id="game.stats.item3" ng-if="game.stats.item3" width="'30px'"
+                                   height="'30px'"></lol-image>
+                        <lol-image type="'item'" id="game.stats.item4" ng-if="game.stats.item4" width="'30px'"
+                                   height="'30px'"></lol-image>
+                        <lol-image type="'item'" id="game.stats.item5" ng-if="game.stats.item5" width="'30px'"
+                                   height="'30px'"></lol-image>
                     </div>
                 </div>
                 <span>{{::game}}</span>

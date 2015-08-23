@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -74,5 +75,11 @@ public class ItemSetServiceImpl implements ItemSetService {
         return eventsByParticipant.values().stream()
                 .map(eventMapper::eventsToItemSet)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<BuildDto> findItemsSetById(Long id) {
+        Build build = buildDao.findOne(id);
+        return Optional.ofNullable(build).map(buildMapper::entityToDto);
     }
 }

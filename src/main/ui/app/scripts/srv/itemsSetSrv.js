@@ -10,4 +10,8 @@ app.service('itemsSetSrv', function ($http) {
         return $http.get('/api/sets/v1/game/' + region + '/' + gameId);
     };
 
+    this.getById = function (id) {
+        return $http.get('/api/sets/v1/' + id);
+    };
+
 });
