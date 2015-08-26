@@ -1,51 +1,45 @@
+<div class="row summoner-header">
+    <div class="col-xs-3">
+        <img src="https://ddragon.leagueoflegends.com/cdn/5.16.1/img/profileicon/588.png" class="summoner-icon">
+    </div>
+    <div class="col-xs-6 text-center">
+        <h3>{{::summoner.name}} ({{::summoner.region}})</h3>
+    </div>
+    <div class="col-xs-3">
+        <div class="pull-right user-cartouche">
+            <img src="https://ddragon.leagueoflegends.com/cdn/5.16.1/img/profileicon/588.png">
+            <label>Kabiro</label>
+        </div>
+    </div>
+</div>
 <div class="row">
-    <h3>{{::summoner.name}} ({{::summoner.region}})</h3>
-
-    <div class="col-xs-6">
-        <h4>Manage your items sets</h4>
+    <div class="col-xs-8">
+        <h4>Builds</h4>
         <ul>
             <li ng-repeat="build in builds">
                 <a ui-sref="itemSet({itemSetId:build.id})">{{::build.itemSet.title}} ({{::build.champions.length}}
                     champions)</a>
             </li>
         </ul>
-        <h4>Navigate your recent games</h4>
-        <ul>
-            <li ng-repeat="game in recentGames | orderBy:'createDate':true" ng-click="itemsSetByGame(game.gameId)">
-                <lol-image type="'championSquare'" id="game.championId"
-                           width="'50px'" height="'50px'"></lol-image>
-                <div class="pull-right">
-                    {{game.stats.championsKilled}}/{{game.stats.numDeaths}}/{{game.stats.assists}}
-                    <div class="row">
-                        <lol-image type="'item'" id="game.stats.item0" ng-if="game.stats.item0" width="'30px'"
-                                   height="'30px'"></lol-image>
-                        <lol-image type="'item'" id="game.stats.item1" ng-if="game.stats.item1" width="'30px'"
-                                   height="'30px'"></lol-image>
-                        <lol-image type="'item'" id="game.stats.item2" ng-if="game.stats.item2" width="'30px'"
-                                   height="'30px'"></lol-image>
-                    </div>
-                    <div class="row">
-                        <lol-image type="'item'" id="game.stats.item3" ng-if="game.stats.item3" width="'30px'"
-                                   height="'30px'"></lol-image>
-                        <lol-image type="'item'" id="game.stats.item4" ng-if="game.stats.item4" width="'30px'"
-                                   height="'30px'"></lol-image>
-                        <lol-image type="'item'" id="game.stats.item5" ng-if="game.stats.item5" width="'30px'"
-                                   height="'30px'"></lol-image>
-                    </div>
-                </div>
-                <span>{{::game}}</span>
-            </li>
-        </ul>
     </div>
-    <div class="col-xs-6">
-        <div ng-repeat="itemSet in itemsSetsFromGame">
-            <h3>{{itemSet.title}}</h3>
+    <div class="col-xs-4">
+        <h4>Recent games</h4>
 
-            <div ng-repeat="block in itemSet.blocks" class="row">
-                <h4>{{block.type}}</h4>
-                <lol-image ng-repeat="item in block.items" type="'item'" id="item.id" width="'30px'"
-                           height="'30px'"></lol-image>
-            </div>
+        <div ng-repeat="game in recentGames | orderBy:'createDate':true" ng-click="itemsSetByGame(game.gameId)"
+             class="game-row">
+            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
+            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
+            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
+            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
+            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
+
+            <span>VS</span>
+
+            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
+            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
+            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
+            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
+            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
         </div>
     </div>
 </div>
