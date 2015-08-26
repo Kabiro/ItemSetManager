@@ -15,19 +15,18 @@
 <div class="row">
     <div class="col-xs-8">
         <h3 class="text-center">Builds</h3>
-
-        <div ng-repeat="build in builds" class="panel panel-info">
-            <div class="panel-heading">
-                {{::build.itemSet.title}}
-            </div>
-            <div class="panel-body">
+        <accordion>
+            <accordion-group ng-repeat="build in builds" class="panel-info">
+                <accordion-heading>
+                    {{::build.itemSet.title}}
+                </accordion-heading>
                 <div ng-repeat="block in build.itemSet.blocks" class="row">
                     <h4>{{block.type}}</h4>
                     <lol-image ng-repeat="item in block.items" type="'item'" id="item.id" width="'30px'"
                                height="'30px'"></lol-image>
                 </div>
-            </div>
-        </div>
+            </accordion-group>
+        </accordion>
     </div>
     <div class="col-xs-4">
         <h3 class="text-center">Recent games</h3>
