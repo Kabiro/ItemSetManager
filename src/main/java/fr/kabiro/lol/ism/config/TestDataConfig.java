@@ -37,7 +37,7 @@ public class TestDataConfig {
     @PostConstruct
     public void generateTestDatas() throws IOException {
         if (summonerDao.findOne(149869L) == null) {
-            Champion[] champions = objectMapper.readValue(new ClassPathResource("champions.json").getFile(), Champion[].class);
+            Champion[] champions = objectMapper.readValue(new ClassPathResource("champions.json").getURL(), Champion[].class);
             championDao.save(Arrays.asList(champions));
 
             Summoner kabiro = Summoner.builder().name("Kabiro").riotId(149869L).region(Region.EUW).build();

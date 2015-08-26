@@ -32,7 +32,7 @@ public class RestClientMock implements RestGamesClient, RestMatchClient, RestSta
     @Override
     public RecentGamesDTO getRecentGamesBySummonerId(Long riotId, Region region) {
         try {
-            return objectMapper.readValue(new ClassPathResource("mocks/recentGames.json").getFile(), RecentGamesDTO.class);
+            return objectMapper.readValue(new ClassPathResource("mocks/recentGames.json").getURL(), RecentGamesDTO.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -41,7 +41,7 @@ public class RestClientMock implements RestGamesClient, RestMatchClient, RestSta
     @Override
     public MatchDetailDTO getMatchDetails(Long matchId, Region region, boolean includeTimeline) {
         try {
-            return objectMapper.readValue(new ClassPathResource("mocks/gameDetails.json").getFile(), MatchDetailDTO.class);
+            return objectMapper.readValue(new ClassPathResource("mocks/gameDetails.json").getURL(), MatchDetailDTO.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -50,7 +50,7 @@ public class RestClientMock implements RestGamesClient, RestMatchClient, RestSta
     @Override
     public ChampionListDto champions(Region region) {
         try {
-            return objectMapper.readValue(new ClassPathResource("mocks/championsMap.json").getFile(), ChampionListDto.class);
+            return objectMapper.readValue(new ClassPathResource("mocks/championsMap.json").getURL(), ChampionListDto.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
