@@ -6,4 +6,8 @@ app.service('summonerSrv', function ($http) {
         return $http.get('/api/summoners/v1/regions');
     };
 
+    this.byName = function(name, region){
+        return $http.get('/api/summoners/v1/'+region+'/'+name);
+    };
+
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('homeCtrl', function ($scope, $state, $stateParams, utils, itemsSetSrv, gameSrv) {
+app.controller('homeCtrl', function ($scope, $state, $stateParams, utils, itemsSetSrv, gameSrv, summonerSrv) {
 
     if (utils.isEmpty($stateParams.summoner) || utils.isEmpty($stateParams.region)) {
         $state.go('login');
@@ -13,11 +13,15 @@ app.controller('homeCtrl', function ($scope, $state, $stateParams, utils, itemsS
         region: $stateParams.region
     };
 
-    itemsSetSrv.buildsByUser($scope.summoner.name, $scope.summoner.region).then(function (result) {
-        $scope.builds = result.data;
-    });
+    summonerSrv.byName($scope.summoner.name, $scope.summoner.region).then(function (result) {
+        $scope.summoner = result.data;
 
-    gameSrv.recentByUser($scope.summoner.name, $scope.summoner.region).then(function (result) {
-        $scope.recentGames = result.data;
+        itemsSetSrv.buildsByUser($scope.summoner.name, $scope.summoner.region).then(function (result) {
+            $scope.builds = result.data;
+        });
+
+        gameSrv.recentByUser($scope.summoner.name, $scope.summoner.region).then(function (result) {
+            $scope.recentGames = result.data;
+        });
     });
 });

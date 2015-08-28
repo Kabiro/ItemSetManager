@@ -19,6 +19,8 @@ public class Summoner {
     @Column(nullable = false)
     private Region region;
 
+    private Integer summonerIcon;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "summoner")
     private List<Build> builds = new ArrayList<>();
 
@@ -29,6 +31,7 @@ public class Summoner {
         this.riotId = builder.riotId;
         this.name = builder.name;
         this.region = builder.region;
+        this.summonerIcon = builder.summonerIcon;
         this.builds = builder.builds;
     }
 
@@ -54,6 +57,14 @@ public class Summoner {
 
     public void setRegion(Region region) {
         this.region = region;
+    }
+
+    public Integer getSummonerIcon() {
+        return summonerIcon;
+    }
+
+    public void setSummonerIcon(Integer summonerIcon) {
+        this.summonerIcon = summonerIcon;
     }
 
     public List<Build> getBuilds() {
@@ -85,6 +96,7 @@ public class Summoner {
         private Long riotId;
         private String name;
         private Region region;
+        private Integer summonerIcon;
         private List<Build> builds = new ArrayList<>();
 
         public Builder riotId(Long riotId) {
@@ -99,6 +111,11 @@ public class Summoner {
 
         public Builder region(Region region) {
             this.region = region;
+            return this;
+        }
+
+        public Builder summonerIcon(Integer summonerIcon){
+            this.summonerIcon = summonerIcon;
             return this;
         }
 

@@ -1,7 +1,7 @@
 package fr.kabiro.lol.ism.core.service.impl;
 
+import fr.kabiro.lol.ism.core.dto.SummonerDto;
 import fr.kabiro.lol.ism.core.model.Region;
-import fr.kabiro.lol.ism.core.model.Summoner;
 import fr.kabiro.lol.ism.core.remote.game.RestGamesClient;
 import fr.kabiro.lol.ism.core.remote.game.dto.GameDTO;
 import fr.kabiro.lol.ism.core.service.GameService;
@@ -24,7 +24,7 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public Set<GameDTO> recentGamesBySummoner(String name, Region region) {
-        Optional<Summoner> summoner = summonerService.findByNameAndRegion(name, region);
+        Optional<SummonerDto> summoner = summonerService.findByNameAndRegion(name, region);
         if (summoner.isPresent()) {
             Long riotId = summoner.get().getRiotId();
             return gamesClient.getRecentGamesBySummonerId(riotId, region).getGames();
