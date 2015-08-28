@@ -12,18 +12,30 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row summoner-body">
     <div class="col-xs-8">
         <h3 class="text-center">Builds</h3>
         <accordion>
             <accordion-group ng-repeat="build in builds" class="panel-info">
                 <accordion-heading>
                     {{::build.itemSet.title}}
+                    <span class="label label-primary pull-right">
+                        {{::build.itemSet.map}} map
+                    </span>
+                    <span class="label label-primary pull-right">
+                        {{::build.itemSet.mode}} mode
+                    </span>
+                    <span ng-if="build.champions.length" class="label label-primary pull-right">
+                        {{::build.champions.length}} champion(s)
+                    </span>
+                    <span ng-if="!build.champions.length" class="label label-primary pull-right">
+                        any champion
+                    </span>
                 </accordion-heading>
-                <div ng-repeat="block in build.itemSet.blocks" class="row">
-                    <h4>{{block.type}}</h4>
-                    <lol-image ng-repeat="item in block.items" type="'item'" id="item.id" width="'30px'"
-                               height="'30px'"></lol-image>
+                <div ng-repeat="block in build.itemSet.blocks" class="row block-row">
+                    <h5 class="text-center">{{block.type}}</h5>
+                    <lol-image ng-repeat="item in block.items" type="'item'" id="item.id" width="'40px'"
+                               height="'40px'"></lol-image>
                 </div>
             </accordion-group>
         </accordion>
@@ -33,19 +45,14 @@
 
         <div ng-repeat="game in recentGames | orderBy:'createDate':true" ng-click="itemsSetByGame(game.gameId)"
              class="game-row">
-            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
-            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
-            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
-            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
-            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
+            <lol-image type="'championSquare'" id="game.championId"></lol-image>
+            <lol-image type="'championSquare'" id="p.championId"
+                       ng-repeat="p in game.fellowPlayers | filter:{teamId: game.teamId}"></lol-image>
 
             <span>VS</span>
+            <lol-image type="'championSquare'" id="p.championId"
+                       ng-repeat="p in game.fellowPlayers | filter:{teamId: '!' + game.teamId}"></lol-image>
 
-            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
-            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
-            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
-            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
-            <img src="http://ddragon.leagueoflegends.com/cdn/5.16.1/img/champion/Kalista.png">
         </div>
     </div>
 </div>

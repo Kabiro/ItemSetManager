@@ -17,6 +17,15 @@ a[ui-sref] {
     color: white;
 }
 
+.summoner-body accordion .label {
+    margin-left: 10px;
+}
+
+.block-row {
+    width: 90%;
+    margin: auto;
+}
+
 .summoner-icon {
     height: 70px;
 }
