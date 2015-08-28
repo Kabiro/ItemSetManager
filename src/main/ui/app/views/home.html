@@ -43,8 +43,8 @@
     <div class="col-xs-4">
         <h3 class="text-center">Recent games</h3>
 
-        <div ng-repeat="game in recentGames | orderBy:'createDate':true" ng-click="itemsSetByGame(game.gameId)"
-             class="game-row">
+        <div ng-repeat="game in recentGames | orderBy:'createDate':true" class="game-row"
+             ng-class="game.stats.win ? 'victory' : 'defeat'">
             <lol-image type="'championSquare'" id="game.championId"></lol-image>
             <lol-image type="'championSquare'" id="p.championId"
                        ng-repeat="p in game.fellowPlayers | filter:{teamId: game.teamId}"></lol-image>
@@ -52,7 +52,6 @@
             <span>VS</span>
             <lol-image type="'championSquare'" id="p.championId"
                        ng-repeat="p in game.fellowPlayers | filter:{teamId: '!' + game.teamId}"></lol-image>
-
         </div>
     </div>
 </div>

@@ -3,9 +3,10 @@ a[ui-sref] {
 }
 
 .game-row {
-    border: solid 1px #EEE;
+    border: solid 1px gray;
     padding: 15px;
     height: 65px;
+    border-radius: 6px;
 }
 
 .game-row img {
@@ -36,4 +37,19 @@ a[ui-sref] {
 
 .user-cartouche img {
     height: 35px;
+}
+
+.victory {
+    border-left-color: green;
+    border-left-width: 6px;
+}
+
+.defeat {
+    border-left-color: red;
+    border-left-width: 6px;
+}
+
+.vertical-text {
+    transform: rotate(90deg);
+    transform-origin: left top 0;
 }
