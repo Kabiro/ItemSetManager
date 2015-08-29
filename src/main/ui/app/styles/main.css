@@ -1,12 +1,13 @@
 a[ui-sref] {
     cursor: pointer;
+    color: white;
 }
 
 .game-row {
     border: solid 1px gray;
     padding: 15px;
-    height: 65px;
     border-radius: 6px;
+    width: 420px;
 }
 
 .game-row img {
@@ -23,8 +24,11 @@ a[ui-sref] {
 }
 
 .block-row {
-    width: 90%;
     margin: auto;
+}
+
+.block-row img {
+    height: 55px;
 }
 
 .summoner-icon img {
@@ -47,11 +51,6 @@ a[ui-sref] {
 .defeat {
     border-left-color: red;
     border-left-width: 6px;
-}
-
-.vertical-text {
-    transform: rotate(90deg);
-    transform-origin: left top 0;
 }
 
 .command-line{
