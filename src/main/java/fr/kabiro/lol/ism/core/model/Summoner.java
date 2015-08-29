@@ -1,10 +1,12 @@
 package fr.kabiro.lol.ism.core.model;
 
 
+import org.hibernate.annotations.BatchSize;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Summoner {
@@ -22,7 +24,11 @@ public class Summoner {
     private Integer summonerIcon;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "summoner")
-    private List<Build> builds = new ArrayList<>();
+    private Set<Build> builds = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @BatchSize(size = 100)
+    private Set<Build> followedBuilds = new HashSet<>();
 
     public Summoner() {
     }
@@ -67,12 +73,20 @@ public class Summoner {
         this.summonerIcon = summonerIcon;
     }
 
-    public List<Build> getBuilds() {
+    public Set<Build> getBuilds() {
         return builds;
     }
 
-    public void setBuilds(List<Build> builds) {
+    public void setBuilds(Set<Build> builds) {
         this.builds = builds;
+    }
+
+    public Set<Build> getFollowedBuilds() {
+        return followedBuilds;
+    }
+
+    public void setFollowedBuilds(Set<Build> followedBuilds) {
+        this.followedBuilds = followedBuilds;
     }
 
     @Override
@@ -97,7 +111,7 @@ public class Summoner {
         private String name;
         private Region region;
         private Integer summonerIcon;
-        private List<Build> builds = new ArrayList<>();
+        private Set<Build> builds = new HashSet<>();
 
         public Builder riotId(Long riotId) {
             this.riotId = riotId;
@@ -119,7 +133,7 @@ public class Summoner {
             return this;
         }
 
-        public Builder builds(List<Build> builds) {
+        public Builder builds(Set<Build> builds) {
             if (builds != null) {
                 this.builds = builds;
             }

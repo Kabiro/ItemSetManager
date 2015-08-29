@@ -16,4 +16,10 @@ public interface ItemSetService {
     List<ItemSetDto> itemsSetFromGame(Long gameId, Region region);
 
     Optional<BuildDto> findItemsSetById(Long id);
+
+    List<BuildDto> findFollowedItemsSetByUser(String name, Region region);
+
+    void followItemSet(String name, Region region, Long buildId);
+
+    void unfollowItemSet(String name, Region region, Long buildId);
 }

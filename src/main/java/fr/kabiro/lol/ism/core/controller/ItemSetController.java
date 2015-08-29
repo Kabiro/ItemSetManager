@@ -8,6 +8,7 @@ import fr.kabiro.lol.ism.core.service.ItemSetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +26,21 @@ public class ItemSetController {
     @RequestMapping("/api/sets/v1/{region}/{name}")
     public List<BuildDto> itemsSetByUser(@PathVariable("name") String name, @PathVariable("region") Region region) {
         return itemSetService.findItemsSetByUser(name, region);
+    }
+
+    @RequestMapping("/api/sets/v1/{region}/{name}/followed")
+    public List<BuildDto> followedItemsSetByUser(@PathVariable("name") String name, @PathVariable("region") Region region) {
+        return itemSetService.findFollowedItemsSetByUser(name, region);
+    }
+
+    @RequestMapping(value = "/api/sets/v1/{region}/{name}/followed/{id}", method = RequestMethod.PUT)
+    public void followItemSet(@PathVariable("name") String name, @PathVariable("region") Region region, @PathVariable("id") Long buildId) {
+        itemSetService.followItemSet(name, region, buildId);
+    }
+
+    @RequestMapping(value = "/api/sets/v1/{region}/{name}/followed/{id}", method = RequestMethod.DELETE)
+    public void unfollowItemSet(@PathVariable("name") String name, @PathVariable("region") Region region, @PathVariable("id") Long buildId) {
+        itemSetService.unfollowItemSet(name, region, buildId);
     }
 
     @RequestMapping("/api/sets/v1/{id}")

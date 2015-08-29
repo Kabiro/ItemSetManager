@@ -8,7 +8,7 @@
     <div class="col-xs-3">
         <div class="pull-right user-cartouche" ng-if="user">
             <lol-image type="'profile'" id="user.summonerIcon" class="summoner-icon"></lol-image>
-            <label>{{user.name}}</label>
+            <label ui-sref="home({summoner: user.name, region: user.region})">{{user.name}}</label>
             <i class="glyphicon glyphicon-log-out" ng-click="logout()"></i>
         </div>
         <div class="pull-right user-cartouche" ng-if="!user">
@@ -39,6 +39,41 @@
                     <span ng-if="!build.champions.length" class="label label-primary pull-right">
                         any champion
                     </span>
+                    <i class="glyphicon glyphicon-heart-empty"
+                       ng-if="user && user.name !== summoner.name && userFollowedBuilds.indexOf(build.id) < 0"
+                       ng-click="followBuild(build.id)"></i>
+                    <i class="glyphicon glyphicon-heart"
+                       ng-if="user && user.name !== summoner.name && userFollowedBuilds.indexOf(build.id) >= 0"
+                       ng-click="unfollowBuild(build.id)"></i>
+                </accordion-heading>
+                <div ng-repeat="block in build.itemSet.blocks" class="row block-row">
+                    <h5 class="text-center">{{block.type}}</h5>
+                    <lol-image ng-repeat="item in block.items" type="'item'" id="item.id" width="'40px'"
+                               height="'40px'"></lol-image>
+                </div>
+            </accordion-group>
+        </accordion>
+        <h3 class="text-center">Followed builds</h3>
+        <accordion>
+            <accordion-group ng-repeat="build in followedBuilds" class="panel-info">
+                <accordion-heading>
+                    {{::build.itemSet.title}}
+                    <span class="label label-primary pull-right">
+                        {{::build.itemSet.map}} map
+                    </span>
+                    <span class="label label-primary pull-right">
+                        {{::build.itemSet.mode}} mode
+                    </span>
+                    <span ng-if="build.champions.length" class="label label-primary pull-right">
+                        {{::build.champions.length}} champion(s)
+                    </span>
+                    <span ng-if="!build.champions.length" class="label label-primary pull-right">
+                        any champion
+                    </span>
+                    <i class="glyphicon glyphicon-heart-empty" ng-if="user && userFollowedBuilds.indexOf(build.id) < 0"
+                       ng-click="followBuild(build.id)"></i>
+                    <i class="glyphicon glyphicon-heart" ng-if="user && userFollowedBuilds.indexOf(build.id) >= 0"
+                       ng-click="unfollowBuild(build.id)"></i>
                 </accordion-heading>
                 <div ng-repeat="block in build.itemSet.blocks" class="row block-row">
                     <h5 class="text-center">{{block.type}}</h5>
