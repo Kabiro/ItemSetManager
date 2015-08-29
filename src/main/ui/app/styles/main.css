@@ -53,3 +53,9 @@ a[ui-sref] {
     transform: rotate(90deg);
     transform-origin: left top 0;
 }
+
+.command-line{
+    font-size: 0.7em;
+    white-space: nowrap;
+    width: 100%;
+}

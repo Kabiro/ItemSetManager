@@ -24,4 +24,9 @@ app.controller('homeCtrl', function ($scope, $state, $stateParams, utils, itemsS
             $scope.recentGames = result.data;
         });
     });
+
+    $scope.copyToClipboard = function(selector){
+        document.querySelector(selector).select();
+        document.execCommand('copy');
+    };
 });
