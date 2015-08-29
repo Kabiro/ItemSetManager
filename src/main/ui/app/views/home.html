@@ -6,9 +6,13 @@
         <h2>{{::summoner.name}} ({{::summoner.region}})</h2>
     </div>
     <div class="col-xs-3">
-        <div class="pull-right user-cartouche">
-            <img src="https://ddragon.leagueoflegends.com/cdn/5.16.1/img/profileicon/588.png">
-            <label>Kabiro</label>
+        <div class="pull-right user-cartouche" ng-if="user">
+            <lol-image type="'profile'" id="user.summonerIcon" class="summoner-icon"></lol-image>
+            <label>{{user.name}}</label>
+            <i class="glyphicon glyphicon-log-out" ng-click="logout()"></i>
+        </div>
+        <div class="pull-right user-cartouche" ng-if="!user">
+            <i class="glyphicon glyphicon-log-in" ui-sref="login"></i>
         </div>
     </div>
 </div>

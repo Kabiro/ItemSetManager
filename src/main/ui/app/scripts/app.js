@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('ItemSetManager', ['ui.router', 'ui.bootstrap']);
+var app = angular.module('ItemSetManager', ['ngCookies', 'ui.router', 'ui.bootstrap']);
 
 app.config(function ($stateProvider) {
 
@@ -10,7 +10,7 @@ app.config(function ($stateProvider) {
             templateUrl: '/views/home.html',
             controller: 'homeCtrl'
         }).state('login', {
-            url: '/login',
+            url: '',
             templateUrl: '/views/login.html',
             controller: 'loginCtrl'
         }).state('itemSet', {

@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('loginCtrl', function ($scope, $state, summonerSrv) {
+app.controller('loginCtrl', function ($scope, $rootScope, $state, summonerSrv, loginSrv) {
     $scope.summonerRegion = 'EUW';
     $scope.regions = [];
 
@@ -9,7 +9,11 @@ app.controller('loginCtrl', function ($scope, $state, summonerSrv) {
     });
 
     $scope.login = function (name, region) {
-        $state.go('home', {summoner: name, region: region});
+        summonerSrv.byName(name, region).then(function (result) {
+            loginSrv.logIn(result.data);
+            $rootScope.user = result.data;
+            $state.go('home', {summoner: name, region: region});
+        });
     };
 
 });

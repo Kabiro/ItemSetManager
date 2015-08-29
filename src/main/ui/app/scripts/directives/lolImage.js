@@ -2,7 +2,7 @@
 
 app.directive('lolImage', function () {
 
-    var baseUrl = 'http://ddragon.leagueoflegends.com/cdn/';
+    var baseUrl = 'https://ddragon.leagueoflegends.com/cdn/';
     var lolVersion = '5.16.1';
 
     var championIdToChampionKey = function (id, champions) {
