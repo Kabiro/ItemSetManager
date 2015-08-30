@@ -19,6 +19,14 @@ a[ui-sref] {
     color: white;
 }
 
+.user-cartouche {
+    padding: 17px 0;
+}
+
+.user-cartouche img {
+    height: 35px;
+}
+
 .summoner-body accordion .label {
     margin-left: 10px;
 }
@@ -29,18 +37,6 @@ a[ui-sref] {
 
 .block-row img {
     height: 55px;
-}
-
-.summoner-icon img {
-    height: 70px;
-}
-
-.user-cartouche {
-    margin: 17px 0px;
-}
-
-.user-cartouche img {
-    height: 35px;
 }
 
 .victory {

@@ -10,8 +10,24 @@
     <!-- endbuild -->
 </head>
 <body ng-app="ItemSetManager">
-<div ng-controller="mainCtrl"></div>
-
+<div class="row navbar summoner-header" ng-controller="mainCtrl">
+    <div class="col-xs-3 navbar-header">
+        <a ui-sref="login" class="navbar-brand">ItemSetManager</a>
+    </div>
+    <div class="col-xs-6 text-center">
+        <h2>{{::header.title}}</h2>
+    </div>
+    <div class="col-xs-3">
+        <div class="pull-right user-cartouche" ng-if="user">
+            <lol-image type="'profile'" id="user.summonerIcon" class="summoner-icon"></lol-image>
+            <a ui-sref="home({summoner: user.name, region: user.region})">{{user.name}}</a>
+            <i class="glyphicon glyphicon-log-out" ng-click="logout()"></i>
+        </div>
+        <div class="pull-right user-cartouche" ng-if="!user">
+            <i class="glyphicon glyphicon-log-in" ui-sref="login"></i>
+        </div>
+    </div>
+</div>
 <div ui-view class="container-fluid"></div>
 
 <!-- VENDORS -->

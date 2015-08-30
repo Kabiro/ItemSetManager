@@ -6,6 +6,9 @@ app.controller('homeCtrl', function ($scope, $rootScope, $state, $stateParams, u
         $state.go('login');
     }
 
+    $rootScope.header = {
+        title: $stateParams.summoner + ' (' + $stateParams.region + ')'
+    };
     $scope.builds = [];
     $scope.followedBuilds = [];
     $scope.userFollowedBuilds = [];
