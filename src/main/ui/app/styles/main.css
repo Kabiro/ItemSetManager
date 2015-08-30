@@ -3,18 +3,7 @@ a[ui-sref] {
     color: white;
 }
 
-.game-row {
-    border: solid 1px gray;
-    padding: 15px;
-    border-radius: 6px;
-    width: 420px;
-}
-
-.game-row img {
-    width: 35px;
-}
-
-.summoner-header {
+.navbar {
     background-color: #122b40;
     color: white;
 }
@@ -25,32 +14,4 @@ a[ui-sref] {
 
 .user-cartouche img {
     height: 35px;
-}
-
-.summoner-body accordion .label {
-    margin-left: 10px;
-}
-
-.block-row {
-    margin: auto;
-}
-
-.block-row img {
-    height: 55px;
-}
-
-.victory {
-    border-left-color: green;
-    border-left-width: 6px;
-}
-
-.defeat {
-    border-left-color: red;
-    border-left-width: 6px;
-}
-
-.command-line{
-    font-size: 0.7em;
-    white-space: nowrap;
-    width: 100%;
 }
