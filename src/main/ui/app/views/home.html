@@ -1,6 +1,27 @@
-<form class="input-group">
-    <input type="text" id="summonerName" placeholder="Summoner name" ng-model="summonerName"/>
-    <label for="region">Region</label>
-    <select id="region" ng-model="summonerRegion" ng-options="r for r in regions"></select>
-    <button class="btn btn-default" ng-click="searchSummoner(summonerName, summonerRegion)">Search</button>
-</form>
+<div class="home">
+    <h3>Search for a summoner</h3>
+
+    <form class="input-group">
+        <input type="text" id="summonerName" placeholder="Summoner name" ng-model="summonerName" class="form-control"/>
+        <span class="input-group input-group-btn">
+            <select id="region" ng-model="summonerRegion" ng-options="r for r in regions"
+                    class="btn btn-default"></select>
+        </span>
+        <span class="input-group input-group-btn">
+            <button class="btn btn-default" ng-click="searchSummoner(summonerName, summonerRegion)">Search</button>
+        </span>
+    </form>
+    <h3>Search for a game</h3>
+
+    <form class="input-group">
+        <input type="text" id="gameId" placeholder="Game id" ng-model="gameId" class="form-control"/>
+        <span class="input-group input-group-btn">
+            <select id="gameRegion" ng-model="gameRegion" ng-options="r for r in regions"
+                    class="btn btn-default"></select>
+        </span>
+        <span class="input-group input-group-btn">
+            <button class="btn btn-default" ng-click="searchGame(gameId, gameRegion)">Search</button>
+        </span>
+    </form>
+</div>
+
