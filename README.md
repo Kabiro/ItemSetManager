@@ -26,8 +26,20 @@ curl https://itemsetmanager.herokuapp.com/api/sets/v1/EUW/Kabiro/zip > /Applicat
 (new-object System.Net.WebClient).DownloadFile('https://itemsetmanager.herokuapp.com/api/sets/v1/EUW/Kabiro/zip', 'C:\League of Legends\Config.zip' ); $s = new-object -com shell.application; $s.namespace('C:\League of Legends\').Copyhere($s.namespace('C:\League of Legends\Config.zip').items())
 ``` 
 
+## Technologies
+
+* Hosting is done on Heroku
+* The backend uses the Spring Boot stack
+* The build tool for the backend is gradle
+* The database is PostgreSQL (free on heroku), accessed through hibernate
+* The frontend is built with angularJS and bootstrap
+* Build tools for the frontend are npm, bower and gulp
+
 # TODO List
+* [ ] Learn CSS
 * [ ] Improve UI
+* [ ] Make tests
+* [ ] Use caching
 * [ ] Provide an interface to easily edit an itemSet
 * [ ] Use CouchDB or MongoDB instead of PostgreSQL
 * [ ] Cleanup code
