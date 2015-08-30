@@ -4,6 +4,8 @@ app.controller('loginCtrl', function ($scope, $rootScope, $state, summonerSrv, l
     $scope.summonerRegion = 'EUW';
     $scope.regions = [];
 
+    $rootScope.header = {};
+
     summonerSrv.regions().then(function (result) {
         $scope.regions = result.data;
     });
@@ -12,7 +14,7 @@ app.controller('loginCtrl', function ($scope, $rootScope, $state, summonerSrv, l
         summonerSrv.byName(name, region).then(function (result) {
             loginSrv.logIn(result.data);
             $rootScope.user = result.data;
-            $state.go('home', {summoner: name, region: region});
+            $state.go('summoner', {summoner: name, region: region});
         });
     };
 

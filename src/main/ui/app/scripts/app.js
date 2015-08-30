@@ -5,11 +5,15 @@ var app = angular.module('ItemSetManager', ['ngCookies', 'ui.router', 'ui.bootst
 app.config(function ($stateProvider) {
 
     $stateProvider
-        .state('home', {
+        .state('summoner', {
             url: '/summoner/:region/:summoner',
-            templateUrl: '/views/home.html',
+            templateUrl: '/views/summoner.html',
             controller: 'homeCtrl'
         }).state('login', {
+            url: '/',
+            templateUrl: '/views/login.html',
+            controller: 'loginCtrl'
+        }).state('loginBis', {
             url: '',
             templateUrl: '/views/login.html',
             controller: 'loginCtrl'

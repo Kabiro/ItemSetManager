@@ -15,12 +15,12 @@
         <a ui-sref="login" class="navbar-brand">ItemSetManager</a>
     </div>
     <div class="col-xs-6 text-center">
-        <h2>{{::header.title}}</h2>
+        <h3>{{header.title}}</h3>
     </div>
     <div class="col-xs-3">
         <div class="pull-right user-cartouche" ng-if="user">
             <lol-image type="'profile'" id="user.summonerIcon" class="summoner-icon"></lol-image>
-            <a ui-sref="home({summoner: user.name, region: user.region})">{{user.name}}</a>
+            <a ui-sref="summoner({summoner: user.name, region: user.region})">{{user.name}}</a>
             <i class="glyphicon glyphicon-log-out" ng-click="logout()"></i>
         </div>
         <div class="pull-right user-cartouche" ng-if="!user">
@@ -49,7 +49,7 @@
 
 <script src="scripts/factories/utils.js"></script>
 
-<script src="scripts/ctrl/homeCtrl.js"></script>
+<script src="scripts/ctrl/summonerCtrl.js"></script>
 <script src="scripts/ctrl/itemSetCtrl.js"></script>
 <script src="scripts/ctrl/loginCtrl.js"></script>
 <script src="scripts/ctrl/mainCtrl.js"></script>
