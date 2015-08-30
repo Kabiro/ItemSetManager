@@ -6,6 +6,7 @@ import fr.kabiro.lol.ism.core.model.Region;
 import fr.kabiro.lol.ism.core.pojo.ZipFile;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface ItemSetService {
@@ -13,7 +14,7 @@ public interface ItemSetService {
 
     List<ZipFile> findZippedItemsSetByUser(String name, Region region);
 
-    List<ItemSetDto> itemsSetFromGame(Long gameId, Region region);
+    Map<Integer, ItemSetDto> itemsSetFromGame(Long gameId, Region region);
 
     Optional<BuildDto> findItemsSetById(Long id);
 

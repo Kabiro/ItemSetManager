@@ -66,7 +66,7 @@ public class ItemSetServiceImpl implements ItemSetService {
     }
 
     @Override
-    public List<ItemSetDto> itemsSetFromGame(Long gameId, Region region) {
+    public Map<Integer, ItemSetDto> itemsSetFromGame(Long gameId, Region region) {
         MatchDetailDTO details = matchClient.getMatchDetails(gameId, region, true);
         List<FrameDTO> frames = details.getTimeline().getFrames();
 
@@ -75,9 +75,8 @@ public class ItemSetServiceImpl implements ItemSetService {
                 .filter(event -> event.getEventType() == EventTypeDTO.ITEM_PURCHASED)
                 .collect(Collectors.groupingBy(EventDTO::getParticipantId));
 
-        return eventsByParticipant.values().stream()
-                .map(eventMapper::eventsToItemSet)
-                .collect(Collectors.toList());
+        return eventsByParticipant.entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, entry -> eventMapper.eventsToItemSet(entry.getValue())));
     }
 
     @Override

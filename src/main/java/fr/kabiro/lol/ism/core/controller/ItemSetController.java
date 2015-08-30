@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -69,7 +70,7 @@ public class ItemSetController {
     }
 
     @RequestMapping("/api/sets/v1/game/{region}/{gameId}")
-    public List<ItemSetDto> itemsSetFromGame(@PathVariable("gameId") Long gameId, @PathVariable("region") Region region) {
+    public Map<Integer, ItemSetDto> itemsSetFromGame(@PathVariable("gameId") Long gameId, @PathVariable("region") Region region) {
         return itemSetService.itemsSetFromGame(gameId, region);
     }
 

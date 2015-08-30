@@ -1,19 +1,28 @@
 <div class="row game">
 
-    <div class="col-md-5">
-        <div ng-repeat="p in game.participants | filter:{teamId: 100}">
-            <lol-image type="'championSquare'" id="game.championId"></lol-image>
-            {{::p}}
-        </div>
+    <accordion class="col-md-5 col-md-offset-1">
+        <accordion-group ng-repeat="p in game.participants | filter:{teamId: 100}" class="game-row panel-info">
+            <accordion-heading>
+                <lol-image type="'championSquare'" id="p.championId"></lol-image>
+                <span>{{::p.stats.kills}} / {{::p.stats.deaths}} / {{::p.stats.assists}}</span>
+            </accordion-heading>
+            <div ng-repeat="block in itemSets[p.participantId].blocks" class="block-row">
+                <h5 class="text-center">{{block.type}}</h5>
+                <lol-image ng-repeat="item in block.items" type="'item'" id="item.id"></lol-image>
+            </div>
+        </accordion-group>
+    </accordion>
 
-    </div>
-
-    <div class="col-md-5 col-md-offset-2">
-        <div ng-repeat="p in game.participants | filter:{teamId: 200}">
-            <lol-image></lol-image>
-            {{::p}}
-        </div>
-
-    </div>
+    <accordion class="col-md-5">
+        <accordion-group ng-repeat="p in game.participants | filter:{teamId: 200}" class="game-row panel-info"><accordion-heading>
+            <lol-image type="'championSquare'" id="p.championId"></lol-image>
+            <span>{{::p.stats.kills}} / {{::p.stats.deaths}} / {{::p.stats.assists}}</span>
+        </accordion-heading>
+            <div ng-repeat="block in itemSets[p.participantId].blocks" class="block-row">
+                <h5 class="text-center">{{block.type}}</h5>
+                <lol-image ng-repeat="item in block.items" type="'item'" id="item.id"></lol-image>
+            </div>
+        </accordion-group>
+    </accordion>
 
 </div>
