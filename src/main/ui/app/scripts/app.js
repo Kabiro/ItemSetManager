@@ -8,15 +8,15 @@ app.config(function ($stateProvider) {
         .state('summoner', {
             url: '/summoner/:region/:summoner',
             templateUrl: '/views/summoner.html',
-            controller: 'homeCtrl'
-        }).state('login', {
+            controller: 'summonerCtrl'
+        }).state('home', {
             url: '/',
-            templateUrl: '/views/login.html',
-            controller: 'loginCtrl'
-        }).state('loginBis', {
+            templateUrl: '/views/home.html',
+            controller: 'homeCtrl'
+        }).state('homeBis', {
             url: '',
-            templateUrl: '/views/login.html',
-            controller: 'loginCtrl'
+            templateUrl: '/views/home.html',
+            controller: 'homeCtrl'
         }).state('itemSet', {
             url: '/itemSet/:itemSetId',
             templateUrl: '/views/itemSet.html',

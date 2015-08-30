@@ -1,9 +1,9 @@
 'use strict';
 
-app.controller('homeCtrl', function ($scope, $rootScope, $state, $stateParams, utils, itemsSetSrv, gameSrv, summonerSrv) {
+app.controller('summonerCtrl', function ($scope, $rootScope, $state, $stateParams, utils, itemsSetSrv, gameSrv, summonerSrv) {
 
     if (utils.isEmpty($stateParams.summoner) || utils.isEmpty($stateParams.region)) {
-        $state.go('login');
+        $state.go('home');
     }
 
     $rootScope.header = {

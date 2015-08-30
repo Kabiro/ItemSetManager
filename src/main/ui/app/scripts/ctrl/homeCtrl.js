@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('loginCtrl', function ($scope, $rootScope, $state, summonerSrv, loginSrv) {
+app.controller('homeCtrl', function ($scope, $rootScope, $state, summonerSrv, loginSrv) {
     $scope.summonerRegion = 'EUW';
     $scope.regions = [];
 
