@@ -33,12 +33,13 @@ app.controller('summonerCtrl', function ($scope, $rootScope, $state, $stateParam
             $scope.recentGames = result.data;
         });
 
-
-        itemsSetSrv.followedBuildsByUser($rootScope.user.name, $rootScope.user.region).then(function (result) {
-            $scope.userFollowedBuilds = _.map(result.data, function (build) {
-                return build.id;
+        if ($rootScope.user){
+            itemsSetSrv.followedBuildsByUser($rootScope.user.name, $rootScope.user.region).then(function (result) {
+                $scope.userFollowedBuilds = _.map(result.data, function (build) {
+                    return build.id;
+                });
             });
-        });
+        }
     });
 
     $scope.copyToClipboard = function (selector) {

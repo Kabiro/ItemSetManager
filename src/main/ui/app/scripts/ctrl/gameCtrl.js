@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('gameCtrl', function ($scope, $rootScope, $stateParams, gameSrv, itemsSetSrv) {
+app.controller('gameCtrl', function ($scope, $rootScope, $stateParams, gameSrv) {
 
     $rootScope.header = {
         title: 'Game n°' + $stateParams.gameId + ' (' + $stateParams.gameRegion + ')'
