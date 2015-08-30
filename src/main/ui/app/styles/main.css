@@ -8,6 +8,19 @@ a[ui-sref] {
     color: white;
 }
 
+.footer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #122b40;
+    color: white;
+}
+
+.footer p {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
 .user-cartouche {
     padding: 17px 0;
 }
