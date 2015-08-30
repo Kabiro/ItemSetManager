@@ -26,4 +26,13 @@ app.service('itemsSetSrv', function ($http) {
         return $http.get('/api/sets/v1/' + id);
     };
 
+    this.create = function(summoner, region, champions, itemSet){
+        console.log(summoner, region, champions, itemSet);
+        return $http.put('/api/sets/v1/', itemSet, {params : {summonerName: summoner, summonerRegion: region, champions: champions}});
+    };
+
+    this.delete = function(itemSetId){
+        return $http.delete('api/sets/v1/' + itemSetId);
+    };
+
 });

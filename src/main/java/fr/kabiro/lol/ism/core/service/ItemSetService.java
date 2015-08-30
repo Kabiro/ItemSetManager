@@ -8,6 +8,7 @@ import fr.kabiro.lol.ism.core.pojo.ZipFile;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 public interface ItemSetService {
     List<BuildDto> findItemsSetByUser(String name, Region region);
@@ -23,4 +24,10 @@ public interface ItemSetService {
     void followItemSet(String name, Region region, Long buildId);
 
     void unfollowItemSet(String name, Region region, Long buildId);
+
+    BuildDto create(Set<String> champions, String summonerName, Region summonerRegion, ItemSetDto itemSet);
+
+    BuildDto update(Long buildId, Set<String> champions, ItemSetDto itemSet);
+
+    void delete(Long buildId);
 }

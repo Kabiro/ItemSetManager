@@ -6,6 +6,7 @@
                 <lol-image type="'championSquare'" id="p.championId"></lol-image>
                 <span>{{::p.stats.kills}} / {{::p.stats.deaths}} / {{::p.stats.assists}}</span>
                 <span class="label label-primary pull-right">{{::p.stats.goldSpent / 1000 | number:1}}k</span>
+                <i class="glyphicon glyphicon-plus pull-right" tooltip="Add to your itemSets" ng-if="user" ng-click="createItemSet(user, p.championId, itemSets[p.participantId])"></i>
             </accordion-heading>
             <div ng-repeat="block in itemSets[p.participantId].blocks" class="block-row">
                 <h5 class="text-center">{{block.type}}</h5>

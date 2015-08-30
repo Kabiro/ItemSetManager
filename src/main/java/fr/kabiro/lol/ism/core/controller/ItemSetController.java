@@ -6,15 +6,13 @@ import fr.kabiro.lol.ism.core.model.Region;
 import fr.kabiro.lol.ism.core.pojo.ZipFile;
 import fr.kabiro.lol.ism.core.service.ItemSetService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -74,4 +72,18 @@ public class ItemSetController {
         return itemSetService.itemsSetFromGame(gameId, region);
     }
 
+    @RequestMapping(value = "/api/sets/v1/", method = RequestMethod.PUT)
+    public BuildDto create(@RequestParam Set<String> champions, @RequestParam String summonerName, @RequestParam Region summonerRegion, @RequestBody ItemSetDto itemSet) {
+        return itemSetService.create(champions, summonerName, summonerRegion, itemSet);
+    }
+
+    @RequestMapping(value = "/api/sets/v1/{id}", method = RequestMethod.POST)
+    public BuildDto update(@PathVariable("id") Long buildId, @RequestParam Set<String> champions, @RequestBody ItemSetDto itemSet) {
+        return itemSetService.update(buildId, champions, itemSet);
+    }
+
+    @RequestMapping(value = "/api/sets/v1/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("id") Long buildId) {
+        itemSetService.delete(buildId);
+    }
 }

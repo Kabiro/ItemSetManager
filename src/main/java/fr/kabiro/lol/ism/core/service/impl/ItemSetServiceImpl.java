@@ -1,7 +1,11 @@
 package fr.kabiro.lol.ism.core.service.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Sets;
 import fr.kabiro.lol.ism.Utils;
 import fr.kabiro.lol.ism.core.dao.BuildDao;
+import fr.kabiro.lol.ism.core.dao.ChampionDao;
 import fr.kabiro.lol.ism.core.dao.SummonerDao;
 import fr.kabiro.lol.ism.core.dto.BuildDto;
 import fr.kabiro.lol.ism.core.dto.ItemSetDto;
@@ -34,6 +38,9 @@ public class ItemSetServiceImpl implements ItemSetService {
     private SummonerDao summonerDao;
 
     @Autowired
+    private ChampionDao championDao;
+
+    @Autowired
     private RestMatchClient matchClient;
 
     @Autowired
@@ -41,6 +48,9 @@ public class ItemSetServiceImpl implements ItemSetService {
 
     @Autowired
     private EventMapper eventMapper;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Override
     public List<BuildDto> findItemsSetByUser(String name, Region region) {
@@ -110,5 +120,41 @@ public class ItemSetServiceImpl implements ItemSetService {
             summoner.get().getFollowedBuilds().remove(build.get());
             summonerDao.save(summoner.get());
         }
+    }
+
+    @Override
+    public BuildDto create(Set<String> champions, String summonerName, Region summonerRegion, ItemSetDto itemSet) {
+        try {
+            Set<Champion> champs = Sets.newHashSet(championDao.findAll(champions));
+            Optional<Summoner> summoner = summonerDao.findByNameAndRegion(summonerName, summonerRegion);
+            Build build = Build.builder()
+                    .champions(champs)
+                    .json(objectMapper.writeValueAsString(itemSet))
+                    .summoner(summoner.get())
+                    .build();
+            buildDao.save(build);
+            return buildMapper.entityToDto(build);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public BuildDto update(Long buildId, Set<String> champions, ItemSetDto itemSet) {
+        try {
+            Build build = buildDao.findById(buildId).get();
+            Set<Champion> champs = Sets.newHashSet(championDao.findAll(champions));
+            build.setChampions(champs);
+            build.setJson(objectMapper.writeValueAsString(itemSet));
+            buildDao.save(build);
+            return buildMapper.entityToDto(build);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void delete(Long buildId) {
+        buildDao.delete(buildId);
     }
 }

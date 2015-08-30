@@ -14,6 +14,7 @@ public class EventMapper {
         itemSet.setTitle("The name of the page");
         itemSet.setType(TypeDto.custom);
         itemSet.setMode(ModeDto.any);
+        itemSet.setMap(MapDto.any);
         int index = 0;
         BlockDto block = null;
         for (EventDTO event : events) {
