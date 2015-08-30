@@ -67,7 +67,8 @@
         <h3 class="text-center">Navigate recent games</h3>
 
         <div ng-repeat="game in recentGames | orderBy:'createDate':true" class="game-row"
-             ng-class="game.stats.win ? 'victory' : 'defeat'">
+             ng-class="game.stats.win ? 'victory' : 'defeat'"
+             ui-sref="game({gameId: game.gameId, gameRegion: summoner.region})">
             <lol-image type="'championSquare'" id="game.championId"></lol-image>
             <lol-image type="'championSquare'" id="p.championId"
                        ng-repeat="p in game.fellowPlayers | filter:{teamId: game.teamId}"></lol-image>

@@ -17,10 +17,10 @@ app.config(function ($stateProvider) {
             url: '',
             templateUrl: '/views/home.html',
             controller: 'homeCtrl'
-        }).state('itemSet', {
-            url: '/itemSet/:itemSetId',
-            templateUrl: '/views/itemSet.html',
-            controller: 'itemSetCtrl'
+        }).state('game', {
+            url: '/game/:gameRegion/:gameId',
+            templateUrl: '/views/game.html',
+            controller: 'gameCtrl'
         })
     ;
 });
