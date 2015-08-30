@@ -10,7 +10,7 @@
     <!-- endbuild -->
 </head>
 <body ng-app="ItemSetManager">
-<div class="row navbar summoner-header" ng-controller="mainCtrl">
+<div class="row navbar summoner-header" ng-controller="navCtrl">
     <div class="col-xs-3 navbar-header">
         <a ui-sref="home" class="navbar-brand">ItemSetManager</a>
     </div>
@@ -23,9 +23,13 @@
             <a ui-sref="summoner({summoner: user.name, region: user.region})">{{user.name}}</a>
             <i class="glyphicon glyphicon-log-out" ng-click="logout()"></i>
         </div>
-        <div class="pull-right user-cartouche" ng-if="!user">
-            <i class="glyphicon glyphicon-log-in" ui-sref="login"></i>
-        </div>
+        <form class="pull-right navbar-form input-group" ng-if="!user">
+            <input type="text" class="form-control" ng-model="userName"/>
+            <select ng-model="userRegion" ng-options="r for r in regions"
+                    class="form-control input-group-addon"></select>
+            <button class="btn btn-default" ng-click="login(userName, userRegion)"><i
+                    class="glyphicon glyphicon-log-in"></i></button>
+        </form>
     </div>
 </div>
 <div ui-view class="container-fluid"></div>
@@ -52,7 +56,7 @@
 <script src="scripts/ctrl/summonerCtrl.js"></script>
 <script src="scripts/ctrl/itemSetCtrl.js"></script>
 <script src="scripts/ctrl/homeCtrl.js"></script>
-<script src="scripts/ctrl/mainCtrl.js"></script>
+<script src="scripts/ctrl/navCtrl.js"></script>
 
 <script src="scripts/srv/championsSrv.js"></script>
 <script src="scripts/srv/gameSrv.js"></script>

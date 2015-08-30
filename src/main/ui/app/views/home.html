@@ -2,5 +2,5 @@
     <input type="text" id="summonerName" placeholder="Summoner name" ng-model="summonerName"/>
     <label for="region">Region</label>
     <select id="region" ng-model="summonerRegion" ng-options="r for r in regions"></select>
-    <button class="btn btn-default" ng-click="login(summonerName, summonerRegion)">Search</button>
+    <button class="btn btn-default" ng-click="searchSummoner(summonerName, summonerRegion)">Search</button>
 </form>
