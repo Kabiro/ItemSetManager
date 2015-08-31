@@ -80,9 +80,11 @@ public class ItemSetServiceImpl implements ItemSetService {
         MatchDetailDTO details = matchClient.getMatchDetails(gameId, region, true);
         List<FrameDTO> frames = details.getTimeline().getFrames();
 
+        List<EventTypeDTO> EVENTS = Arrays.asList(EventTypeDTO.ITEM_PURCHASED, EventTypeDTO.ITEM_UNDO, EventTypeDTO.ITEM_SOLD);
+
         Map<Integer, List<EventDTO>> eventsByParticipant = frames.stream()
                 .flatMap(frame -> Utils.safe(frame.getEvents()).stream())
-                .filter(event -> event.getEventType() == EventTypeDTO.ITEM_PURCHASED)
+                .filter(event -> EVENTS.contains(event.getEventType()))
                 .collect(Collectors.groupingBy(EventDTO::getParticipantId));
 
         return eventsByParticipant.entrySet().stream()
