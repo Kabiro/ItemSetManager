@@ -31,7 +31,7 @@ curl https://itemsetmanager.herokuapp.com/api/sets/v1/EUW/Kabiro/zip > /Applicat
 * Hosting is done on Heroku
 * The backend uses the Spring Boot stack
 * The build tool for the backend is gradle
-* The database is PostgreSQL (free on heroku), accessed through hibernate
+* The database is PostgreSQL for production (free on heroku) and H2 for development, accessed through hibernate
 * The frontend is built with angularJS and bootstrap
 * Build tools for the frontend are npm, bower and gulp
 
@@ -41,9 +41,18 @@ curl https://itemsetmanager.herokuapp.com/api/sets/v1/EUW/Kabiro/zip > /Applicat
 * [ ] Make tests
 * [ ] Use caching
 * [ ] Provide an interface to easily edit an itemSet
+* [ ] Compute for each block the cost
 * [ ] Use CouchDB or MongoDB instead of PostgreSQL
 * [ ] Cleanup code
 * [ ] Real authentication system
+ 
+# Notes
+
+There are some minor changes on the heroku version, in order to make it work :
+* The build.gradle contains a stage task (which is run by heroku, and simply calls the build task)
+* The builded (gulp dist) ui is versioned under src/main/resources/public in order to be served by the server
+* added a Procfile file which explains to heroku how to run the jar
+* I also have a bunch of config variables which configure the connection to PostgreSQL
 
 # Disclaimer
 ItemSetManager isn’t endorsed by Riot Games and doesn’t reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
