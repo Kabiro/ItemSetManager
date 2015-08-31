@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('gameCtrl', function ($scope, $rootScope, $stateParams, gameSrv, itemsSetSrv, championsSrv) {
+app.controller('gameCtrl', function ($scope, $rootScope, $stateParams, $modal, gameSrv, itemsSetSrv, championsSrv) {
 
     $rootScope.header = {
         title: 'Game n°' + $stateParams.gameId + ' (' + $stateParams.gameRegion + ')'
@@ -19,9 +19,20 @@ app.controller('gameCtrl', function ($scope, $rootScope, $stateParams, gameSrv, 
 
     $scope.createItemSet = function(user, championId, itemSet){
         championsSrv.champions.then(function (result) {
-            var championKey = result.data[championId].key;
-            console.log(championKey);
-            itemsSetSrv.create(user.name, user.region, championKey, itemSet);
+
+            $modal.open({
+                animation: true,
+                size: 'sm',
+                templateUrl: 'template/modal/addItemSetModal.html',
+                controller: 'addItemSetModalCtrl',
+                resolve: {
+                    itemSet: function(){return itemSet;}
+                }
+            }).result.then(function () {
+                    var championKey = result.data[championId].key;
+                    itemsSetSrv.create(user.name, user.region, championKey, itemSet);
+                }, function () {
+                });
         });
     };
 

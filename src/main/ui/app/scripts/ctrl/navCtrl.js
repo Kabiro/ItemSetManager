@@ -23,7 +23,9 @@ app.controller('navCtrl', function ($scope, $rootScope, $state, loginSrv, summon
         summonerSrv.byName(name, region).then(function (result) {
             loginSrv.logIn(result.data);
             $rootScope.user = result.data;
-            $state.go('summoner', {summoner: name, region: region});
+            if ($state.current.name === 'home' || $state.current.name === 'homeBis'){
+                $state.go('summoner', {summoner: name, region: region});
+            }
         });
     };
 
