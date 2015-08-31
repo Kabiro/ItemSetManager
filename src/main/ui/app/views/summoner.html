@@ -21,6 +21,9 @@
                     <span ng-if="!build.champions.length" class="label label-primary pull-right">
                         any champion
                     </span>
+                    <i class="glyphicon glyphicon-trash"
+                       ng-if="user && user.name === summoner.name"
+                       ng-click="delete(build.id)"></i>
                     <i class="glyphicon glyphicon-heart-empty"
                        ng-if="user && user.name !== summoner.name && userFollowedBuilds.indexOf(build.id) < 0"
                        ng-click="followBuild(build.id)"></i>

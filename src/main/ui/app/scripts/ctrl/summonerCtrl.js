@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('summonerCtrl', function ($scope, $rootScope, $state, $stateParams, utils, itemsSetSrv, gameSrv, summonerSrv) {
+app.controller('summonerCtrl', function ($scope, $rootScope, $state, $stateParams, $modal, utils, itemsSetSrv, gameSrv, summonerSrv) {
 
     if (utils.isEmpty($stateParams.summoner) || utils.isEmpty($stateParams.region)) {
         $state.go('home');
@@ -56,6 +56,23 @@ app.controller('summonerCtrl', function ($scope, $rootScope, $state, $stateParam
     $scope.unfollowBuild = function (buildId) {
         itemsSetSrv.unfollowBuild($scope.user.name, $scope.user.region, buildId).then(function () {
             $scope.userFollowedBuilds.splice($scope.userFollowedBuilds.indexOf(buildId), 1);
+        });
+    };
+
+    $scope.delete = function(buildId){
+        $modal.open({
+            animation: true,
+            size: 'sm',
+            templateUrl: 'template/modal/validateModal.html',
+            controller: 'validateModalCtrl',
+            resolve: {
+                text: function(){return 'Are you sure you want to delete this itemSet?';}
+            }
+        }).result.then(function () {
+            itemsSetSrv.delete(buildId).then(function(){
+                $scope.builds = _.filter($scope.builds, function(build){return build.id !== buildId;});
+            });
+        }, function () {
         });
     };
 });

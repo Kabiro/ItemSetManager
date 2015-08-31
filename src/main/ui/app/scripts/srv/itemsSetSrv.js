@@ -27,7 +27,6 @@ app.service('itemsSetSrv', function ($http) {
     };
 
     this.create = function(summoner, region, champions, itemSet){
-        console.log(summoner, region, champions, itemSet);
         return $http.put('/api/sets/v1/', itemSet, {params : {summonerName: summoner, summonerRegion: region, champions: champions}});
     };
 
