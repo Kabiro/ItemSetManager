@@ -13,6 +13,7 @@
     <!-- endbuild -->
 </head>
 <body ng-app="ItemSetManager">
+<div class="wrapper">
 <div class="row navbar" ng-controller="navCtrl">
     <div class="col-xs-3 navbar-header">
         <a ui-sref="home" class="navbar-brand">ItemSetManager</a>
@@ -36,7 +37,8 @@
     </div>
 </div>
 <div ui-view class="container-fluid"></div>
-
+    <div class="push"></div>
+</div>
 <div class="footer">
     <a href="https://github.com/Kabiro/ItemSetManager"><img src="images/GitHub-Mark-Light-32px.png" class="pull-right" /></a>
     <p>

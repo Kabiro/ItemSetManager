@@ -8,22 +8,6 @@ a[ui-sref] {
     color: white;
 }
 
-.footer {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #122b40;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    left:0;
-}
-
-.footer p {
-    width: 80%;
-    margin: auto;
-    text-align: center;
-}
-
 .user-cartouche {
     padding-top: 12px;
     padding-right: 12px;
@@ -31,4 +15,33 @@ a[ui-sref] {
 
 .user-cartouche img {
     height: 35px;
+}
+
+/** FOOTER **/
+
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -60px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+    height: 60px; /* .push must be the same height as .footer */
+}
+.footer{
+    padding: 10px;
+    background-color: #122b40;
+    color: white;
+}
+
+.footer p {
+    width: 80%;
+    margin: auto;
+    text-align: center;
 }
