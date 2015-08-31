@@ -8,9 +8,13 @@
                 <span class="label label-primary pull-right">{{::p.stats.goldSpent / 1000 | number:1}}k</span>
                 <i class="glyphicon glyphicon-plus pull-right" tooltip="Add to your itemSets" ng-if="user" ng-click="createItemSet(user, p.championId, itemSets[p.participantId])"></i>
             </accordion-heading>
-            <div ng-repeat="block in itemSets[p.participantId].blocks" class="block-row">
-                <h5 class="text-center">{{block.type}}</h5>
-                <lol-image ng-repeat="item in block.items" type="'item'" id="item.id"></lol-image>
+            <div ng-repeat="block in itemSets[p.participantId].blocks" class="block-row row">
+                <div class="col-md-3 col-md-offset-2">
+                    <h5 class="text-center">{{block.type}}</h5>
+                </div>
+                <div class="col-md-5">
+                    <lol-image ng-repeat="item in block.items" type="'item'" id="item.id"></lol-image>
+                </div>
             </div>
         </accordion-group>
     </accordion>
@@ -23,9 +27,13 @@
                 <span class="label label-primary pull-right">{{::p.stats.goldSpent / 1000 | number:1}}k</span>
                 <i class="glyphicon glyphicon-plus pull-right" tooltip="Add to your itemSets" ng-if="user" ng-click="createItemSet(user, p.championId, itemSets[p.participantId])"></i>
             </accordion-heading>
-            <div ng-repeat="block in itemSets[p.participantId].blocks" class="block-row">
-                <h5 class="text-center">{{block.type}}</h5>
-                <lol-image ng-repeat="item in block.items" type="'item'" id="item.id"></lol-image>
+            <div ng-repeat="block in itemSets[p.participantId].blocks" class="block-row row">
+                <div class="col-md-3 col-md-offset-2">
+                    <h5 class="text-center">{{block.type}}</h5>
+                </div>
+                <div class="col-md-5">
+                    <lol-image ng-repeat="item in block.items" type="'item'" id="item.id"></lol-image>
+                </div>
             </div>
         </accordion-group>
     </accordion>

@@ -32,8 +32,12 @@
                        ng-click="unfollowBuild(build.id)"></i>
                 </accordion-heading>
                 <div ng-repeat="block in build.itemSet.blocks" class="row block-row">
-                    <h5 class="text-center">{{block.type}}</h5>
-                    <lol-image ng-repeat="item in block.items" type="'item'" id="item.id"></lol-image>
+                    <div class="col-md-3 col-md-offset-2">
+                        <h5 class="text-center">{{block.type}}</h5>
+                    </div>
+                    <div class="col-md-5">
+                        <lol-image ng-repeat="item in block.items" type="'item'" id="item.id"></lol-image>
+                    </div>
                 </div>
             </accordion-group>
         </accordion>
