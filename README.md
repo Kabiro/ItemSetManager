@@ -6,10 +6,16 @@ Live version at [https://itemsetmanager.herokuapp.com](https://itemsetmanager.he
 
 * Requires a [jdk 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [npm](https://nodejs.org/), bower (npm install -g bower) and gulp (npm install -g gulp)  
 * The JAVA_HOME environment variable must be set correctly
-* move to src/main/ui and execute npm install && bower install && gulp dist
-* in the project root execute eiter ./gradlew build or ./gradlew.bat build
-* execute java -jar --riot.api.key=YOUR_API_KEY build/libs/ItemSetManager-0.0.1-SNAPSHOT.jar
-* open your browser at [http://localhost:8080](http://localhost:8080)
+* Move to src/main/ui and execute npm install && bower install && gulp dist
+* In the project root execute eiter ./gradlew build or ./gradlew.bat build
+* Execute java -jar --riot.api.key=YOUR_API_KEY build/libs/ItemSetManager-0.0.1-SNAPSHOT.jar
+* Open your browser at [http://localhost:8080](http://localhost:8080)
+
+### Dev mode
+
+* Run src/main/java/fr/kabiro/lol/ism/ItemSetManagerApplication.java in an IDE with --riot.api.key=YOUR_API_KEY or --spring.profiles.active=MOCK_RIOT
+* Execute gulp in src/main/ui
+* Open your browser at [http://localhost:9000](http://localhost:9000)
 
 ## Presentation
 
