@@ -1,0 +1,17 @@
+<div class="buildEdit">
+    <p class="alert alert-warning text-center">
+        This page is a very basic draft for editing your builds. You can find explanations in the <a href="https://developer.riotgames.com/docs/item-sets">Riot Games documentation</a>.
+    </p>
+    <div>
+    <textarea>
+        {{json}}
+    </textarea>
+    <textarea class="pull-right">
+        {{champions}}
+    </textarea>
+    </div>
+    <p class="alert alert-success text-center" ng-if="success">
+        Update successful!
+    </p>
+    <button class="btn btn-primary" ng-click="update()">Validate</button>
+</div>

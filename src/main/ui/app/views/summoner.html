@@ -21,6 +21,9 @@
                     <span ng-if="!build.champions.length" class="label label-primary pull-right">
                         any champion
                     </span>
+                    <i class="glyphicon glyphicon-pencil"
+                       ng-if="user && user.name === summoner.name"
+                       ui-sref="buildEdit({buildId: build.id})"></i>
                     <i class="glyphicon glyphicon-trash"
                        ng-if="user && user.name === summoner.name"
                        ng-click="delete(build.id)"></i>

@@ -21,6 +21,10 @@ app.config(function ($stateProvider) {
             url: '/game/:gameRegion/:gameId',
             templateUrl: '/views/game.html',
             controller: 'gameCtrl'
+        }).state('buildEdit', {
+            url: '/build/:buildId/edit',
+            templateUrl: '/views/buildEdit.html',
+            controller: 'buildEditCtrl'
         })
     ;
 });

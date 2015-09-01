@@ -1,0 +1,10 @@
+.buildEdit textarea {
+    width: 40%;
+    min-height: 500px;
+    margin: auto;
+}
+
+.buildEdit button {
+    margin: auto;
+    display: block;
+}

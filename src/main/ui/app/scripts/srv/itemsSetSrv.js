@@ -34,4 +34,8 @@ app.service('itemsSetSrv', function ($http) {
         return $http.delete('api/sets/v1/' + itemSetId);
     };
 
+    this.update = function(id, itemSet, champions){
+        return $http.post('api/sets/v1/' + id, itemSet, {params: {champions: champions}});
+    };
+
 });
