@@ -2,7 +2,11 @@
 
 Live version at [https://itemsetmanager.herokuapp.com](https://itemsetmanager.herokuapp.com) 
 
+It can take time to start, since it is a free hosted version which is automatically put on sleep mode by heroku when unused.
+
 ## Running
+
+### Production mode
 
 * Requires a [jdk 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [npm](https://nodejs.org/), bower (npm install -g bower) and gulp (npm install -g gulp)  
 * The JAVA_HOME environment variable must be set correctly
@@ -10,6 +14,13 @@ Live version at [https://itemsetmanager.herokuapp.com](https://itemsetmanager.he
 * In the project root execute eiter ./gradlew build or ./gradlew.bat build
 * Execute java -jar --riot.api.key=YOUR_API_KEY build/libs/ItemSetManager-0.0.1-SNAPSHOT.jar
 * Open your browser at [http://localhost:8080](http://localhost:8080)
+ 
+NB : if you want to use PostgreSQL instead of H2, you need to passe those properties :
+* spring.datasource.url=JDBC_DATABASE_URL
+* spring.datasource.username=YOUR_DATABASE_USER
+* spring.datasource.password=YOUR_DATABASE_PASSWORD
+* spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+* spring.jpa.hibernate.ddl-auto=update
 
 ### Dev mode
 
