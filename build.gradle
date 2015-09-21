@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.2.5.RELEASE'
+        springBootVersion = '1.2.6.RELEASE'
         commonsIoVersion = '2.4'
         jodaTimeVersion = '2.8.2'
         guavaVersion = '18.0'
