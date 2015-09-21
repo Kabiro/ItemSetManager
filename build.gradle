@@ -4,6 +4,7 @@ buildscript {
         commonsIoVersion = '2.4'
         jodaTimeVersion = '2.8.2'
         guavaVersion = '18.0'
+        hikariVersion = '2.4.1'
     }
     repositories {
         mavenCentral()
@@ -38,6 +39,7 @@ dependencies {
     compile("commons-io:commons-io:${commonsIoVersion}")
     compile("joda-time:joda-time:${jodaTimeVersion}")
     compile("com.google.guava:guava:${guavaVersion}")
+    compile("com.zaxxer:HikariCP:${hikariVersion}")
     runtime("com.h2database:h2")
     runtime("org.postgresql:postgresql:9.4-1201-jdbc41")
     testCompile("org.springframework.boot:spring-boot-starter-test")
