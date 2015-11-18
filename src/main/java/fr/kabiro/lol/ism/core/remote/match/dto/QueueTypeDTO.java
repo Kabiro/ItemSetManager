@@ -33,5 +33,6 @@ public enum QueueTypeDTO {
     ASCENSION_5x5,
     HEXAKILL,
     KING_PORO_5x5,
-    COUNTER_PICK
+    COUNTER_PICK,
+    BILGEWATER_ARAM_5x5
 }
