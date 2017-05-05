@@ -54,7 +54,7 @@ public class Config {
             ds.setPassword(environment.getProperty("spring.datasource.password"));
         }
         else{                                                   //Fallback to h2
-            ds.setJdbcUrl("jdbc:h2:mem:");
+            ds.setJdbcUrl("jdbc:h2:mem:DB_CLOSE_ON_EXIT=FALSE");
         }
         return ds;
     }
