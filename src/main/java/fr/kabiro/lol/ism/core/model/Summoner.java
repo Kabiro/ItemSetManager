@@ -15,6 +15,9 @@ public class Summoner {
     private Long riotId;
 
     @Column(nullable = false)
+    private Long accountId;
+
+    @Column(nullable = false)
     private String name;
 
     @Enumerated(EnumType.STRING)
@@ -35,6 +38,7 @@ public class Summoner {
 
     private Summoner(Builder builder) {
         this.riotId = builder.riotId;
+        this.accountId = builder.accountId;
         this.name = builder.name;
         this.region = builder.region;
         this.summonerIcon = builder.summonerIcon;
@@ -47,6 +51,14 @@ public class Summoner {
 
     public void setRiotId(Long riotId) {
         this.riotId = riotId;
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 
     public String getName() {
@@ -108,6 +120,7 @@ public class Summoner {
 
     public static class Builder {
         private Long riotId;
+        private Long accountId;
         private String name;
         private Region region;
         private Integer summonerIcon;
@@ -115,6 +128,11 @@ public class Summoner {
 
         public Builder riotId(Long riotId) {
             this.riotId = riotId;
+            return this;
+        }
+
+        public Builder accountId(Long accountId) {
+            this.accountId = accountId;
             return this;
         }
 

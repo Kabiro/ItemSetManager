@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 public class RemoteSummonerMapper {
     public Summoner dtoToEntity(SummonerDTO summonerDTO, Region region) {
         return Summoner.builder()
-                .name(summonerDTO.getName())
-                .riotId(summonerDTO.getId())
+                .riotId(summonerDTO.id)
+                .accountId(summonerDTO.accountId)
+                .name(summonerDTO.name)
                 .region(region)
-                .summonerIcon(summonerDTO.getProfileIconId())
+                .summonerIcon(summonerDTO.profileIconId)
                 .build();
     }
 }

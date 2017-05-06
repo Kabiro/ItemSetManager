@@ -1,0 +1,207 @@
+{
+  "matches": [
+    {
+      "lane": "MID",
+      "gameId": 3171492709,
+      "champion": 24,
+      "platformId": "EUW1",
+      "timestamp": 1494013935910,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3171408597,
+      "champion": 497,
+      "platformId": "EUW1",
+      "timestamp": 1494012522450,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3170503941,
+      "champion": 74,
+      "platformId": "EUW1",
+      "timestamp": 1493932670348,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3170399585,
+      "champion": 412,
+      "platformId": "EUW1",
+      "timestamp": 1493929014850,
+      "queue": 610,
+      "role": "DUO",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3169271937,
+      "champion": 81,
+      "platformId": "EUW1",
+      "timestamp": 1493846916733,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3167658613,
+      "champion": 114,
+      "platformId": "EUW1",
+      "timestamp": 1493755598741,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3167492443,
+      "champion": 429,
+      "platformId": "EUW1",
+      "timestamp": 1493745513876,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3166526161,
+      "champion": 267,
+      "platformId": "EUW1",
+      "timestamp": 1493671961631,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3166521101,
+      "champion": 30,
+      "platformId": "EUW1",
+      "timestamp": 1493670343159,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3166475206,
+      "champion": 43,
+      "platformId": "EUW1",
+      "timestamp": 1493669086972,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3166306080,
+      "champion": 60,
+      "platformId": "EUW1",
+      "timestamp": 1493662322100,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3163366256,
+      "champion": 64,
+      "platformId": "EUW1",
+      "timestamp": 1493490433434,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3163314122,
+      "champion": 115,
+      "platformId": "EUW1",
+      "timestamp": 1493488450086,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3163246584,
+      "champion": 10,
+      "platformId": "EUW1",
+      "timestamp": 1493484250867,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3163205840,
+      "champion": 122,
+      "platformId": "EUW1",
+      "timestamp": 1493482435565,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3162016053,
+      "champion": 236,
+      "platformId": "EUW1",
+      "timestamp": 1493408229974,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3161960268,
+      "champion": 79,
+      "platformId": "EUW1",
+      "timestamp": 1493406511297,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3160852854,
+      "champion": 62,
+      "platformId": "EUW1",
+      "timestamp": 1493326141285,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3160798959,
+      "champion": 13,
+      "platformId": "EUW1",
+      "timestamp": 1493324602750,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    },
+    {
+      "lane": "MID",
+      "gameId": 3160778303,
+      "champion": 150,
+      "platformId": "EUW1",
+      "timestamp": 1493323331320,
+      "queue": 65,
+      "role": "NONE",
+      "season": 8
+    }
+  ],
+  "endIndex": 20,
+  "startIndex": 0,
+  "totalGames": 20
+}

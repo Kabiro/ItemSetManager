@@ -1,8 +1,8 @@
 package fr.kabiro.lol.ism.core.mapper;
 
 import fr.kabiro.lol.ism.core.dto.*;
-import fr.kabiro.lol.ism.core.remote.match.dto.EventDTO;
-import fr.kabiro.lol.ism.core.remote.match.dto.EventTypeDTO;
+import fr.kabiro.lol.ism.core.remote.match.dto.MatchEventDto;
+import fr.kabiro.lol.ism.core.remote.match.dto.MatchEventType;
 import org.joda.time.Duration;
 import org.joda.time.Period;
 import org.joda.time.format.PeriodFormatter;
@@ -26,7 +26,7 @@ public class EventMapper {
                 .toFormatter();
     }
 
-    public ItemSetDto eventsToItemSet(Collection<EventDTO> events) {
+    public ItemSetDto eventsToItemSet(Collection<MatchEventDto> events) {
         ItemSetDto itemSet = new ItemSetDto();
         itemSet.setTitle("The name of the page");
         itemSet.setType(TypeDto.custom);
@@ -37,10 +37,10 @@ public class EventMapper {
         block.setType("Starter");
         itemSet.getBlocks().add(block);
         Long lastBackTimestamp = 0L;
-        for (EventDTO event : events) {
-            if (event.getEventType() == EventTypeDTO.ITEM_PURCHASED && isNotUndone(event, events)){
-                if (event.getTimestamp() - lastBackTimestamp > 100_000L) {  //Backs last up to 100 seconds
-                    lastBackTimestamp = event.getTimestamp();
+        for (MatchEventDto event : events) {
+            if (event.type == MatchEventType.ITEM_PURCHASED && isNotUndone(event, events)){
+                if (event.timestamp - lastBackTimestamp > 100_000L) {  //Backs last up to 100 seconds
+                    lastBackTimestamp = event.timestamp;
                     block = new BlockDto();
                     itemSet.getBlocks().add(block);
                     Period period = Duration.millis(lastBackTimestamp).toPeriod();
@@ -48,25 +48,25 @@ public class EventMapper {
                 }
             }
             ItemDto item = new ItemDto();
-            item.setId(event.getItemId());
+            item.setId(event.itemId);
             block.getItems().add(item);
         }
         return itemSet;
     }
 
-    public boolean isNotUndone(EventDTO event, Collection<EventDTO> events){
+    private boolean isNotUndone(MatchEventDto event, Collection<MatchEventDto> events){
         return events.stream()
-                .filter(other -> other.getTimestamp() > event.getTimestamp())
-                .filter(other -> Objects.equals(other.getItemId(), event.getItemId()))
+                .filter(other -> other.timestamp > event.timestamp)
+                .filter(other -> Objects.equals(other.timestamp, event.itemId))
                 .filter(other -> undone(other) || soldRapidly(event, other))
                 .count() == 0;
     }
 
-    private boolean soldRapidly(EventDTO event, EventDTO other) {
-        return other.getEventType() == EventTypeDTO.ITEM_SOLD && other.getTimestamp() - event.getTimestamp() < 5000;
+    private boolean soldRapidly(MatchEventDto event, MatchEventDto other) {
+        return other.type == MatchEventType.ITEM_SOLD && other.timestamp - event.timestamp < 5000;
     }
 
-    private boolean undone(EventDTO other) {
-        return other.getEventType() == EventTypeDTO.ITEM_UNDO;
+    private boolean undone(MatchEventDto other) {
+        return other.type == MatchEventType.ITEM_UNDO;
     }
 }

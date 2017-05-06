@@ -3,10 +3,10 @@ package fr.kabiro.lol.ism.core.remote.mock;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.kabiro.lol.ism.config.Profils;
 import fr.kabiro.lol.ism.core.model.Region;
-import fr.kabiro.lol.ism.core.remote.game.RestGamesClient;
-import fr.kabiro.lol.ism.core.remote.game.dto.RecentGamesDTO;
 import fr.kabiro.lol.ism.core.remote.match.RestMatchClient;
-import fr.kabiro.lol.ism.core.remote.match.dto.MatchDetailDTO;
+import fr.kabiro.lol.ism.core.remote.match.dto.MatchDto;
+import fr.kabiro.lol.ism.core.remote.match.dto.MatchListDto;
+import fr.kabiro.lol.ism.core.remote.match.dto.MatchTimelineDto;
 import fr.kabiro.lol.ism.core.remote.staticdata.RestStaticDataClient;
 import fr.kabiro.lol.ism.core.remote.staticdata.dto.ChampionListDto;
 import fr.kabiro.lol.ism.core.remote.summoner.RestSummonerClient;
@@ -17,31 +17,41 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 @Component
 @Profile(Profils.MOCK_RIOT)
-public class RestClientMock implements RestGamesClient, RestMatchClient, RestStaticDataClient, RestSummonerClient {
+public class RestClientMock implements RestMatchClient, RestStaticDataClient, RestSummonerClient {
 
-    @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    public RestClientMock(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
+
     @Override
-    public RecentGamesDTO getRecentGamesBySummonerId(Long riotId, Region region) {
+    public MatchListDto getRecentMatchesByAccount(Long accountId, Region region) {
         try {
-            return objectMapper.readValue(new ClassPathResource("mocks/recentGames.json").getURL(), RecentGamesDTO.class);
+            return objectMapper.readValue(new ClassPathResource("mocks/recentMatchLists.json").getURL(), MatchListDto.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public MatchDetailDTO getMatchDetails(Long matchId, Region region, boolean includeTimeline) {
+    public MatchTimelineDto getTimeline(Long matchId, Region region) {
         try {
-            return objectMapper.readValue(new ClassPathResource("mocks/gameDetails.json").getURL(), MatchDetailDTO.class);
+            return objectMapper.readValue(new ClassPathResource("mocks/matchTimeline.json").getURL(), MatchTimelineDto.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public MatchDto getMatch(Long matchId, Region region) {
+        try {
+            return objectMapper.readValue(new ClassPathResource("mocks/match.json").getURL(), MatchDto.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -57,22 +67,12 @@ public class RestClientMock implements RestGamesClient, RestMatchClient, RestSta
     }
 
     @Override
-    public Set<SummonerDTO> getSummonersByNames(Collection<String> names, Region region) {
-        return null;
-    }
-
-    @Override
     public Optional<SummonerDTO> getSummonerByName(String name, Region region) {
-        return null;
+        try {
+            return Optional.of(objectMapper.readValue(new ClassPathResource("mocks/summonerByName.json").getURL(), SummonerDTO.class));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    @Override
-    public Map<Long, SummonerDTO> getSummonersByRiotIds(Collection<Long> riotIds, Region region) {
-        return null;
-    }
-
-    @Override
-    public Optional<SummonerDTO> getSummonerByRiotId(Long id, Region region) {
-        return null;
-    }
 }

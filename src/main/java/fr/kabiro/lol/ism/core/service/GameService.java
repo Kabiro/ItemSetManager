@@ -1,14 +1,13 @@
 package fr.kabiro.lol.ism.core.service;
 
 import fr.kabiro.lol.ism.core.model.Region;
-import fr.kabiro.lol.ism.core.remote.game.dto.GameDTO;
-import fr.kabiro.lol.ism.core.remote.match.dto.MatchDetailDTO;
+import fr.kabiro.lol.ism.core.remote.match.dto.MatchDto;
+import fr.kabiro.lol.ism.core.remote.match.dto.MatchReferenceDto;
 
-import java.util.Optional;
-import java.util.Set;
+import java.util.List;
 
 public interface GameService {
-    Set<GameDTO> recentGamesBySummoner(String name, Region region);
+    List<MatchReferenceDto> recentGamesBySummoner(String name, Region region);
 
-    Optional<MatchDetailDTO> byId(Long id, Region region);
+    MatchDto byId(Long id, Region region);
 }

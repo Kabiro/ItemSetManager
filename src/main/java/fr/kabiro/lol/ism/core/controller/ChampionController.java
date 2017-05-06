@@ -1,6 +1,6 @@
 package fr.kabiro.lol.ism.core.controller;
 
-import fr.kabiro.lol.ism.core.remote.staticdata.dto.ChampionDTO;
+import fr.kabiro.lol.ism.core.remote.staticdata.dto.ChampionDto;
 import fr.kabiro.lol.ism.core.remote.staticdata.dto.ChampionListDto;
 import fr.kabiro.lol.ism.core.service.ChampionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +16,8 @@ public class ChampionController {
     private ChampionService championService;
 
     @RequestMapping("/api/champions/v1/champions")
-    public Map<Integer, ChampionDTO> all() {
+    public Map<String, ChampionDto> all() {
         ChampionListDto champions = championService.getAll();
-        return champions.getData();
+        return champions.data;
     }
 }

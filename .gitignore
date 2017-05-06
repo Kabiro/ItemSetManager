@@ -1,6 +1,7 @@
 .idea
 .gradle
 build
+classes
 *.iml
 src/main/ui/app/bower_components
 src/main/ui/node_modules

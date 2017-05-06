@@ -14,45 +14,26 @@ import java.util.Map;
 
 @Component
 public abstract class RestRiotClient {
-    private String version;
-
     @Autowired
     @Value("${riot.api.key}")
     private String apiKey;
 
     @Autowired
-    @Value("${riot.api.baseUrl}")
-    private String baseUrl;
+    @Value("${riot.api.host}")
+    private String host;
 
     @Autowired
-    protected RestOperations restOperations;
+    private RestOperations restOperations;
 
-
-    public RestRiotClient(String version) {
-        this.version = version;
-    }
-
-
-    protected <T> T doGet(String suffixe, Region region, Map<String, Object> params, Class<T> t) {
-        UriComponentsBuilder uriBuilder = this.buildUri(baseUrl, suffixe, region, params);
-
-        return restOperations.getForObject(uriBuilder.build().toString(), t);
-    }
-
-    protected <T> T doGet(String suffixe, Region region, Map<String, Object> params, ParameterizedTypeReference<T> parameterizedTypeReference) {
-        UriComponentsBuilder uriBuilder = this.buildUri(baseUrl, suffixe, region, params);
-
-        return restOperations.exchange(uriBuilder.build().toString(), HttpMethod.GET, null, parameterizedTypeReference).getBody();
-    }
-
-    protected UriComponentsBuilder buildUri(String baseUrl, String suffixe, Region region, Map<String, Object> params) {
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(baseUrl)
-                .path(region.toString().toLowerCase() + "/" + version + suffixe)
+    protected <T> T doGetV3(String path, Region region, Map<String, Object> params, Class<T> t) {
+        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(host.replace("{{region}}", region.getV3().name().toLowerCase()))
+                .path(path)
                 .queryParam("api_key", apiKey);
 
         for (Map.Entry<String, Object> param : Utils.safe(params).entrySet()) {
             uriBuilder.queryParam(param.getKey(), param.getValue());
         }
-        return uriBuilder;
+
+        return restOperations.getForObject(uriBuilder.build().toString(), t);
     }
 }

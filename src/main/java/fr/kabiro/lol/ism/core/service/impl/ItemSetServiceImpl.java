@@ -3,7 +3,6 @@ package fr.kabiro.lol.ism.core.service.impl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Sets;
-import fr.kabiro.lol.ism.Utils;
 import fr.kabiro.lol.ism.core.dao.BuildDao;
 import fr.kabiro.lol.ism.core.dao.ChampionDao;
 import fr.kabiro.lol.ism.core.dao.SummonerDao;
@@ -17,10 +16,10 @@ import fr.kabiro.lol.ism.core.model.Region;
 import fr.kabiro.lol.ism.core.model.Summoner;
 import fr.kabiro.lol.ism.core.pojo.ZipFile;
 import fr.kabiro.lol.ism.core.remote.match.RestMatchClient;
-import fr.kabiro.lol.ism.core.remote.match.dto.EventDTO;
-import fr.kabiro.lol.ism.core.remote.match.dto.EventTypeDTO;
-import fr.kabiro.lol.ism.core.remote.match.dto.FrameDTO;
-import fr.kabiro.lol.ism.core.remote.match.dto.MatchDetailDTO;
+import fr.kabiro.lol.ism.core.remote.match.dto.MatchEventDto;
+import fr.kabiro.lol.ism.core.remote.match.dto.MatchEventType;
+import fr.kabiro.lol.ism.core.remote.match.dto.MatchFrameDto;
+import fr.kabiro.lol.ism.core.remote.match.dto.MatchTimelineDto;
 import fr.kabiro.lol.ism.core.service.ItemSetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,15 +76,15 @@ public class ItemSetServiceImpl implements ItemSetService {
 
     @Override
     public Map<Integer, ItemSetDto> itemsSetFromGame(Long gameId, Region region) {
-        MatchDetailDTO details = matchClient.getMatchDetails(gameId, region, true);
-        List<FrameDTO> frames = details.getTimeline().getFrames();
+        MatchTimelineDto timeline = matchClient.getTimeline(gameId, region);
+        List<MatchFrameDto> frames = timeline.frames;
 
-        List<EventTypeDTO> EVENTS = Arrays.asList(EventTypeDTO.ITEM_PURCHASED, EventTypeDTO.ITEM_UNDO, EventTypeDTO.ITEM_SOLD);
+        List<MatchEventType> EVENTS = Arrays.asList(MatchEventType.ITEM_PURCHASED, MatchEventType.ITEM_UNDO, MatchEventType.ITEM_SOLD);
 
-        Map<Integer, List<EventDTO>> eventsByParticipant = frames.stream()
-                .flatMap(frame -> Utils.safe(frame.getEvents()).stream())
-                .filter(event -> EVENTS.contains(event.getEventType()))
-                .collect(Collectors.groupingBy(EventDTO::getParticipantId));
+        Map<Integer, List<MatchEventDto>> eventsByParticipant = frames.stream()
+                .flatMap(frame -> frame.events.stream())
+                .filter(event -> EVENTS.contains(event.type))
+                .collect(Collectors.groupingBy(event -> event.participantId));
 
         return eventsByParticipant.entrySet().stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, entry -> eventMapper.eventsToItemSet(entry.getValue())));

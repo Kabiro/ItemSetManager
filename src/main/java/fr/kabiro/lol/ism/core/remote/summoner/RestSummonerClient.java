@@ -9,11 +9,5 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface RestSummonerClient {
-    Set<SummonerDTO> getSummonersByNames(Collection<String> names, Region region);
-
     Optional<SummonerDTO> getSummonerByName(String name, Region region);
-
-    Map<Long, SummonerDTO> getSummonersByRiotIds(Collection<Long> riotIds, Region region);
-
-    Optional<SummonerDTO> getSummonerByRiotId(Long id, Region region);
 }

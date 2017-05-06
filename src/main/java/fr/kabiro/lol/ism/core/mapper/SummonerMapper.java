@@ -11,6 +11,7 @@ public class SummonerMapper {
     public SummonerDto entityToDto(Summoner entity){
         SummonerDto dto = new SummonerDto();
         dto.setRiotId(entity.getRiotId());
+        dto.setAccountId(entity.getAccountId());
         dto.setName(entity.getName());
         dto.setRegion(RegionDto.valueOf(entity.getRegion().name()));
         dto.setSummonerIcon(entity.getSummonerIcon());

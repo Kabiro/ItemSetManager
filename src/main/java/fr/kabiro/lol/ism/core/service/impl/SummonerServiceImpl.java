@@ -37,9 +37,7 @@ public class SummonerServiceImpl implements SummonerService {
         summoner = summonerClient.getSummonerByName(name, region)
                 .map(dto -> remoteSummonerMapper.dtoToEntity(dto, region));
 
-        if (summoner.isPresent()) {
-            summonerDao.save(summoner.get());
-        }
+        summoner.ifPresent(summoner1 -> summonerDao.save(summoner1));
 
         return summoner.map(summonerMapper::entityToDto);
     }
