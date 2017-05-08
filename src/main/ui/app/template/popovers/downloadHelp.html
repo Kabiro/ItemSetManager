@@ -1,9 +1,10 @@
-<i class="glyphicon glyphicon-copy pull-right" ng-click="copyToClipboard('.windows')"></i>
+<i class="glyphicon glyphicon-copy pull-right" ng-click="summoner.copyToClipboard('.windows')"></i>
 <span class="label label-info">Command line for windows</span>
 <input type="text" class="command-line windows"
-       value="(new-object System.Net.WebClient).DownloadFile('https://itemsetmanager.herokuapp.com/api/sets/v1/{{summoner.region}}/{{summoner.name}}/zip', 'C:\League of Legends\Config.zip' ); $s = new-object -com shell.application; $s.namespace('C:\League of Legends\').Copyhere($s.namespace('C:\League of Legends\Config.zip').items())"/>
-<i class="glyphicon glyphicon-copy pull-right" ng-click="copyToClipboard('.mac')"></i>
+       value="(new-object System.Net.WebClient).DownloadFile('https://itemsetmanager.herokuapp.com/api/sets/v1/{{summoner.summoner.region}}/{{summoner.summoner.name}}/zip', 'C:\League of Legends\Config.zip' ); $s = new-object -com shell.application; $s.namespace('C:\League of Legends\').Copyhere($s.namespace('C:\League of Legends\Config.zip').items())"/>
+<i class="glyphicon glyphicon-copy pull-right" ng-click="summoner.copyToClipboard('.mac')"></i>
 <span class="label label-info">Command line for mac</span>
-<input type="text" class="command-line mac" value="curl https://itemsetmanager.herokuapp.com/api/sets/v1/{{summoner.region}}/{{summoner.name}}/zip > /Applications/League\ of\ Legends.app/Contents/LoL/Config/Config.zip && unzip -o /Applications/League\ of\ Legends.app/Contents/LoL/Config/Config.zip -d /Applications/League\ of\ Legends.app/Contents/LoL/Config/"/>
-<a class="glyphicon glyphicon-save-file pull-right" href="/api/sets/v1/{{summoner.region}}/{{summoner.name}}/zip"></a>
+<input type="text" class="command-line mac"
+       value="curl https://itemsetmanager.herokuapp.com/api/sets/v1/{{summoner.summoner.region}}/{{summoner.summoner.name}}/zip > /Applications/League\ of\ Legends.app/Contents/LoL/Config/Config.zip && unzip -o /Applications/League\ of\ Legends.app/Contents/LoL/Config/Config.zip -d /Applications/League\ of\ Legends.app/Contents/LoL/Config/"/>
+<a class="glyphicon glyphicon-save-file pull-right" href="/api/sets/v1/{{summoner.summoner.region}}/{{summoner.summoner.name}}/zip"></a>
 <span class="label label-info">Download zip</span>

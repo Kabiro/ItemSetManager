@@ -1,18 +1,17 @@
-'use strict';
+import {ChampionsService} from "../srv/ChampionsService";
 
-app.directive('lolImage', function () {
+export const LolImageDirective = [() => {
+    const baseUrl = 'https://ddragon.leagueoflegends.com/cdn/';
+    const lolVersion = '7.9.2';
 
-    var baseUrl = 'https://ddragon.leagueoflegends.com/cdn/';
-    var lolVersion = '7.9.2';
-
-    var championIdToChampionKey = function (id, champions) {
+    const championIdToChampionKey = function (id: any, champions: any) {
         return champions[id].key;
     };
-    var identity = function (id) {
+    const identity = function (id: any) {
         return id;
     };
 
-    var configs = {
+    const configs: any = {
         profile: {
             version: true,
             prefix: 'img/profileicon/',
@@ -52,16 +51,16 @@ app.directive('lolImage', function () {
             id: '=',
             type: '='
         },
-        controller: function ($scope, championsSrv) {
-            championsSrv.champions.then(function (result) {
-                var champions = result.data;
+        controller: ['$scope', 'ChampionsService', ($scope: ng.IScope, championsService: ChampionsService) =>  {
+            championsService.champions.then((result) => {
+                const champions = result.data;
                 $scope.imageUrl = baseUrl;
-                var config = configs[$scope.type];
+                const config = configs[$scope.type];
                 if (config.version) {
                     $scope.imageUrl += lolVersion + '/';
                 }
                 $scope.imageUrl += config.prefix + config.transformFunction($scope.id, champions) + config.suffix;
             });
-        }
+        }]
     };
-});
+}];

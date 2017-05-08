@@ -40,7 +40,7 @@ public class TestDataConfig {
             Champion[] champions = objectMapper.readValue(new ClassPathResource("champions.json").getURL(), Champion[].class);
             championDao.save(Arrays.asList(champions));
 
-            Summoner kabiro = Summoner.builder().name("Kabiro").riotId(149869L).accountId(155605L).region(Region.EUW).build();
+            Summoner kabiro = Summoner.builder().name("Kabiro").riotId(149869L).accountId(155605L).region(Region.EUW1).build();
 
             InputStream itemSetIS = new ClassPathResource("itemSet.json").getInputStream();
             String itemSet = IOUtils.toString(itemSetIS);

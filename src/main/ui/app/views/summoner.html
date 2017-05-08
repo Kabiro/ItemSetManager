@@ -1,13 +1,13 @@
 <div class="row summoner">
     <div class="col-xs-8">
-        <h4 class="pull-right" popover-template="'template/popovers/downloadHelp.html'" popover-title="Download" popover-placement="bottom" >
+        <h4 class="pull-right" uib-popover-template="'template/popovers/downloadHelp.html'" popover-title="Download" popover-placement="bottom" >
             Download your builds
             <i class="glyphicon glyphicon-download-alt"></i>
         </h4>
         <h3 class="text-center">Builds</h3>
-        <accordion>
-            <accordion-group ng-repeat="build in builds" class="panel-info">
-                <accordion-heading>
+        <uib-accordion>
+            <div uib-accordion-group ng-repeat="build in summoner.builds" class="panel-info">
+                <uib-accordion-heading>
                     {{::build.itemSet.title}}
                     <span class="label label-primary pull-right">
                         {{::build.itemSet.map}} map
@@ -22,18 +22,18 @@
                         any champion
                     </span>
                     <i class="glyphicon glyphicon-pencil"
-                       ng-if="user && user.name === summoner.name"
-                       ui-sref="buildEdit({buildId: build.id})"></i>
+                       ng-if="user && user.name === summoner.summoner.name"
+                       ng-click="summoner.edit(build.id)"></i>
                     <i class="glyphicon glyphicon-trash"
-                       ng-if="user && user.name === summoner.name"
-                       ng-click="delete(build.id)"></i>
+                       ng-if="user && user.name === summoner.summoner.name"
+                       ng-click="summoner.delete(build.id)"></i>
                     <i class="glyphicon glyphicon-heart-empty"
-                       ng-if="user && user.name !== summoner.name && userFollowedBuilds.indexOf(build.id) < 0"
-                       ng-click="followBuild(build.id)"></i>
+                       ng-if="user && user.name !== summoner.summoner.name && summoner.userFollowedBuilds.indexOf(build.id) < 0"
+                       ng-click="summoner.followBuild(build.id)"></i>
                     <i class="glyphicon glyphicon-heart"
-                       ng-if="user && user.name !== summoner.name && userFollowedBuilds.indexOf(build.id) >= 0"
-                       ng-click="unfollowBuild(build.id)"></i>
-                </accordion-heading>
+                       ng-if="user && user.name !== summoner.summoner.name && summoner.userFollowedBuilds.indexOf(build.id) >= 0"
+                       ng-click="summoner.unfollowBuild(build.id)"></i>
+                </uib-accordion-heading>
                 <div ng-repeat="block in build.itemSet.blocks" class="row block-row">
                     <div class="col-md-3 col-md-offset-2">
                         <h5 class="text-center">{{block.type}}</h5>
@@ -42,12 +42,12 @@
                         <lol-image ng-repeat="item in block.items" type="'item'" id="item.id"></lol-image>
                     </div>
                 </div>
-            </accordion-group>
-        </accordion>
+            </div>
+        </uib-accordion>
         <h3 class="text-center" ng-if="followedBuilds.length > 0">Followed builds</h3>
-        <accordion>
-            <accordion-group ng-repeat="build in followedBuilds" class="panel-info">
-                <accordion-heading>
+        <uib-accordion>
+            <div uib-accordion-group ng-repeat="build in summoner.followedBuilds" class="panel-info">
+                <uib-accordion-heading>
                     {{::build.itemSet.title}}
                     <span class="label label-primary pull-right">
                         {{::build.itemSet.map}} map
@@ -65,30 +65,24 @@
                        ng-click="followBuild(build.id)"></i>
                     <i class="glyphicon glyphicon-heart" ng-if="user && userFollowedBuilds.indexOf(build.id) >= 0"
                        ng-click="unfollowBuild(build.id)"></i>
-                </accordion-heading>
+                </uib-accordion-heading>
                 <div ng-repeat="block in build.itemSet.blocks" class="row block-row">
                     <h5 class="text-center">{{block.type}}</h5>
                     <lol-image ng-repeat="item in block.items" type="'item'" id="item.id"></lol-image>
                 </div>
-            </accordion-group>
-        </accordion>
-        <p ng-if="builds.length == 0 && followedBuilds.length == 0" class="alert alert-warning">
+            </div>
+        </uib-accordion>
+        <p ng-if="summoner.builds.length == 0 && summoner.followedBuilds.length == 0" class="alert alert-warning">
             It looks like you don't have any builds yet. Why not create one from a game? Or perhaps you could follow a build from another summoner?
         </p>
     </div>
     <div class="col-xs-4">
         <h3 class="text-center">Navigate recent games</h3>
 
-        <div ng-repeat="game in recentGames | orderBy:'createDate':true" class="game-row"
-             ng-class="game.stats.win ? 'victory' : 'defeat'"
-             ui-sref="game({gameId: game.gameId, gameRegion: summoner.region})">
-            <lol-image type="'championSquare'" id="game.championId"></lol-image>
-            <lol-image type="'championSquare'" id="p.championId"
-                       ng-repeat="p in game.fellowPlayers | filter:{teamId: game.teamId}"></lol-image>
-
-            <span>VS</span>
-            <lol-image type="'championSquare'" id="p.championId"
-                       ng-repeat="p in game.fellowPlayers | filter:{teamId: '!' + game.teamId}"></lol-image>
+        <div ng-repeat="game in summoner.recentGames | orderBy:'timestamp':true" class="game-row"
+             ui-sref="game({gameId: game.gameId, gameRegion: game.platformId})">
+            <lol-image type="'championSquare'" id="game.champion"></lol-image>
+            {{game.timestamp | date:'medium' }}
         </div>
     </div>
 </div>

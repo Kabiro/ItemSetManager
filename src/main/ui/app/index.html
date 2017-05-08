@@ -3,7 +3,7 @@
 <head>
     <title>ItemSetManager</title>
     <!-- build:css css/vendors.min.css -->
-    <link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.css'>
+    <link rel='stylesheet' href='styles/vendors/bootstrap.min.css'>
     <!-- endbuild -->
     <!-- build:css css/combined.min.css -->
     <link rel="stylesheet" media="screen" href="styles/buildEdit.css">
@@ -15,7 +15,7 @@
 </head>
 <body ng-app="ItemSetManager">
 <div class="wrapper">
-<div class="row navbar" ng-controller="navCtrl">
+<div class="row navbar" ng-controller="NavigationController as nav">
     <div class="col-xs-3 navbar-header">
         <a ui-sref="home" class="navbar-brand">ItemSetManager</a>
     </div>
@@ -26,13 +26,13 @@
         <div class="pull-right user-cartouche" ng-if="user">
             <lol-image type="'profile'" id="user.summonerIcon" class="summoner-icon"></lol-image>
             <a ui-sref="summoner({summoner: user.name, region: user.region})">{{user.name}}</a>
-            <i class="glyphicon glyphicon-log-out" ng-click="logout()"></i>
+            <i class="glyphicon glyphicon-log-out" ng-click="nav.logout()"></i>
         </div>
         <form class="pull-right navbar-form input-group" ng-if="!user">
-            <input type="text" class="form-control" ng-model="userName" placeholder="login"/>
-            <select ng-model="userRegion" ng-options="r for r in regions"
+            <input type="text" class="form-control" ng-model="nav.userName" placeholder="login"/>
+            <select ng-model="nav.userRegion" ng-options="r for r in nav.regions"
                     class="form-control input-group-addon"></select>
-            <button class="btn btn-default" ng-click="login(userName, userRegion)"><i
+            <button class="btn btn-default" ng-click="nav.login(nav.userName, nav.userRegion)"><i
                     class="glyphicon glyphicon-log-in"></i></button>
         </form>
     </div>
@@ -48,41 +48,8 @@
         or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
     </p>
 </div>
-<!-- VENDORS -->
-<!-- build:js js/vendors.min.js -->
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="bower_components/lodash/lodash.js"></script>
-<!-- endbuild -->
-
-<!-- CUSTOM -->
-<!-- build:js js/combined.min.js -->
-<script src="scripts/app.js"></script>
-
-<script src="scripts/directives/lolImage.js"></script>
-
-<script src="scripts/factories/utils.js"></script>
-
-<script src="scripts/ctrl/addItemSetModalCtrl.js"></script>
-<script src="scripts/ctrl/buildEditCtrl.js"></script>
-<script src="scripts/ctrl/summonerCtrl.js"></script>
-<script src="scripts/ctrl/gameCtrl.js"></script>
-<script src="scripts/ctrl/homeCtrl.js"></script>
-<script src="scripts/ctrl/navCtrl.js"></script>
-<script src="scripts/ctrl/validateModalCtrl.js"></script>
-
-<script src="scripts/srv/championsSrv.js"></script>
-<script src="scripts/srv/gameSrv.js"></script>
-<script src="scripts/srv/itemsSetSrv.js"></script>
-<script src="scripts/srv/loginSrv.js"></script>
-<script src="scripts/srv/summonerSrv.js"></script>
-
-<!-- endbuild -->
 
 
+    <script src="bundle.js"></script>
 </body>
 </html>

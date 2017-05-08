@@ -29,7 +29,7 @@ public class Config {
 
     @Bean
     public Region defaultRegion(){
-        return Region.EUW;
+        return Region.EUW1;
     }
 
     @Bean

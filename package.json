@@ -1,0 +1,29 @@
+{
+  "name": "ItemSetManager",
+  "version": "0.0.1-SNAPSHOT",
+  "scripts": {
+    "bunde": "webpack -p",
+    "webpack": "webpack",
+    "webpack-dev-server": "webpack-dev-server",
+    "tsc": "tsc"
+  },
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.1",
+    "angular": "^1.6.4",
+    "angular-cookies": "^1.6.4",
+    "angular-ui-bootstrap": "^2.5.0",
+    "bootstrap": "^3.3.7"
+  },
+  "devDependencies": {
+    "@types/angular": "^1.6.17",
+    "@types/angular-cookies": "^1.4.3",
+    "@types/angular-ui-bootstrap": "^0.13.41",
+    "@types/angular-ui-router": "^1.1.36",
+    "clean-webpack-plugin": "^0.1.16",
+    "copy-webpack-plugin": "^4.0.1",
+    "ts-loader": "^2.0.3",
+    "typescript": "^2.3.2",
+    "webpack": "^2.5.0",
+    "webpack-dev-server": "^2.4.5"
+  }
+}

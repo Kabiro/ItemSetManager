@@ -26,7 +26,7 @@ public abstract class RestRiotClient {
     private RestOperations restOperations;
 
     protected <T> T doGetV3(String path, Region region, Map<String, Object> params, Class<T> t) {
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(host.replace("{{region}}", region.getV3().name().toLowerCase()))
+        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(host.replace("{{region}}", region.name().toLowerCase()))
                 .path(path)
                 .queryParam("api_key", apiKey);
 

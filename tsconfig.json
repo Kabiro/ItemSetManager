@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "dom", "es7"
+    ],
+    "strict": true,
+    "strictNullChecks": false,  //a cause de ui-router...
+    "outDir": "./build/typescript"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
