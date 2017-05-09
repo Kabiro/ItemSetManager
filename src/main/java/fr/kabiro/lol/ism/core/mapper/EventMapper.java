@@ -46,10 +46,10 @@ public class EventMapper {
                     Period period = Duration.millis(lastBackTimestamp).toPeriod();
                     block.setType("Back at " + FORMATTER.print(period));
                 }
+                ItemDto item = new ItemDto();
+                item.setId(event.itemId);
+                block.getItems().add(item);
             }
-            ItemDto item = new ItemDto();
-            item.setId(event.itemId);
-            block.getItems().add(item);
         }
         return itemSet;
     }
@@ -57,16 +57,16 @@ public class EventMapper {
     private boolean isNotUndone(MatchEventDto event, Collection<MatchEventDto> events){
         return events.stream()
                 .filter(other -> other.timestamp > event.timestamp)
-                .filter(other -> Objects.equals(other.timestamp, event.itemId))
-                .filter(other -> undone(other) || soldRapidly(event, other))
+                .filter(other -> Objects.equals(other.beforeId, event.itemId))
+                .filter(other -> undone(event, other) || sold(event, other))
                 .count() == 0;
     }
 
-    private boolean soldRapidly(MatchEventDto event, MatchEventDto other) {
-        return other.type == MatchEventType.ITEM_SOLD && other.timestamp - event.timestamp < 5000;
+    private boolean sold(MatchEventDto event, MatchEventDto other) {
+        return other.type == MatchEventType.ITEM_SOLD && other.timestamp - event.timestamp < 15000;
     }
 
-    private boolean undone(MatchEventDto other) {
-        return other.type == MatchEventType.ITEM_UNDO;
+    private boolean undone(MatchEventDto event, MatchEventDto other) {
+        return other.type == MatchEventType.ITEM_UNDO && other.timestamp - event.timestamp < 15000;
     }
 }
