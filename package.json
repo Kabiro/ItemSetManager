@@ -5,7 +5,7 @@
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
     "tsc": "tsc",
-    "postinstall": "npm run webpack -- -p"
+    "heroku-postbuild": "webpack -p"
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.1",
