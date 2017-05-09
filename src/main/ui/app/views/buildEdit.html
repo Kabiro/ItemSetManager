@@ -3,15 +3,11 @@
         This page is a very basic draft for editing your builds. You can find explanations in the <a href="https://developer.riotgames.com/docs/item-sets">Riot Games documentation</a>.
     </p>
     <div>
-    <textarea>
-        {{json}}
-    </textarea>
-    <textarea class="pull-right">
-        {{champions}}
-    </textarea>
+    <textarea>{{$ctrl.json}}</textarea>
+    <textarea class="pull-right">{{$ctrl.champions}}</textarea>
     </div>
-    <p class="alert alert-success text-center" ng-if="success">
+    <p class="alert alert-success text-center" ng-if="$ctrl.success">
         Update successful!
     </p>
-    <button class="btn btn-primary" ng-click="update()">Validate</button>
+    <button class="btn btn-primary" ng-click="$ctrl.update()">Validate</button>
 </div>

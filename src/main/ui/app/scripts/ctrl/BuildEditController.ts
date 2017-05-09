@@ -17,8 +17,8 @@ export class BuildEditController {
             this.build = result.data;
             $rootScope.header.title = result.data.itemSet.title;
 
-            this.json = JSON.stringify(result.data.itemSet);
-            this.champions = JSON.stringify((<any[]>result.data.champions).map(item => item.key));
+            this.json = JSON.stringify(result.data.itemSet, null, 4);
+            this.champions = JSON.stringify((<any[]>result.data.champions).map(item => item.key), null, 4);
         });
     }
 
@@ -29,8 +29,8 @@ export class BuildEditController {
         this.itemsSetService.update(this.build.id, itemSet, champions).then((result) => {
             this.build = result.data;
 
-            this.json = JSON.stringify(result.data.itemSet);
-            this.champions = JSON.stringify((<any[]>result.data.champions).map(item => item.key));
+            this.json = JSON.stringify(result.data.itemSet, null, 4);
+            this.champions = JSON.stringify((<any[]>result.data.champions).map(item => item.key), null, 4);
 
             this.success = true;
             this.$timeout(() => {

@@ -6,11 +6,11 @@
         <label for="itemSetTitle" class="control-label col-xs-2">Title</label>
 
         <div class="col-xs-10">
-            <input type="text" class="form-control" id="itemSetTitle" ng-model="itemSet.title">
+            <input type="text" class="form-control" id="itemSetTitle" ng-model="$ctrl.itemSet.title">
         </div>
     </div>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
 </div>

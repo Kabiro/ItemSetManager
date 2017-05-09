@@ -8,7 +8,7 @@ import {GameService} from "./srv/GameService";
 import {ItemsSetService} from "./srv/ItemsSetService";
 import {LoginService} from "./srv/LoginService";
 import {SummonerService} from "./srv/SummonerService";
-import {AddItemSetModelController} from "./ctrl/AddItemSetModelController";
+import {AddItemSetModalController} from "./ctrl/AddItemSetModalController";
 import {BuildEditController} from "./ctrl/BuildEditController";
 import {GameController} from "./ctrl/GameController";
 import {HomeController} from "./ctrl/HomeController";
@@ -25,7 +25,7 @@ app
     .service('ItemsSetService', ItemsSetService)
     .service('LoginService', LoginService)
     .service('SummonerService', SummonerService)
-    .controller('AddItemSetModelController', AddItemSetModelController)
+    .controller('AddItemSetModalController', AddItemSetModalController)
     .controller('BuildEditController', BuildEditController)
     .controller('GameController', GameController)
     .controller('HomeController', HomeController)
@@ -56,11 +56,13 @@ app.config(function ($stateProvider: IStateProvider) {
         }).state('game', {
             url: '/game/:gameRegion/:gameId',
             templateUrl: '/views/game.html',
-            controller: 'GameController'
+            controller: 'GameController',
+            controllerAs: '$ctrl',
         }).state('buildEdit', {
             url: '/build/:buildId/edit',
             templateUrl: '/views/buildEdit.html',
-            controller: 'BuildEditController'
+            controller: 'BuildEditController',
+            controllerAs: '$ctrl'
         })
     ;
 });

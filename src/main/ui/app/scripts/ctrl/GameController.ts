@@ -26,13 +26,15 @@ export class GameController {
     }
 
     createItemSet(user: any, championId: number, itemSet: any) {
+        console.log(user, championId, itemSet);
         this.championsService.champions.then((result) => {
 
             this.$modal.open({
                 animation: true,
                 size: 'sm',
                 templateUrl: 'template/modal/addItemSetModal.html',
-                controller: 'addItemSetModalCtrl',
+                controller: 'AddItemSetModalController',
+                controllerAs: '$ctrl',
                 resolve: {
                     itemSet: function () {
                         return itemSet;
@@ -41,7 +43,7 @@ export class GameController {
             }).result.then(() => {
                 const championKey = result.data[championId].key;
                 this.itemsSetService.create(user.name, user.region, championKey, itemSet);
-            });
+            }, () => {});
         });
     };
 }

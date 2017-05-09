@@ -1,14 +1,15 @@
 <div class="row game">
 
-    <accordion class="col-md-5 col-md-offset-1">
-        <accordion-group ng-repeat="p in game.participants | filter:{teamId: 100}" class="game-row {{p.stats.winner ? 'panel-success' : 'panel-danger'}}">
-            <accordion-heading>
+    <div class="col-md-1"></div>
+    <uib-accordion class="col-md-5" ng-repeat="team in $ctrl.game.teams">
+      <div uib-accordion-group ng-repeat="p in $ctrl.game.participants | filter:{teamId: team.teamId}" class="game-row panel {{team.win == 'Win' ? 'panel-success' : 'panel-danger'}}">
+            <uib-accordion-heading>
                 <lol-image type="'championSquare'" id="p.championId"></lol-image>
                 <span>{{::p.stats.kills}} / {{::p.stats.deaths}} / {{::p.stats.assists}}</span>
                 <span class="label label-primary pull-right">{{::p.stats.goldSpent / 1000 | number:1}}k</span>
-                <i class="glyphicon glyphicon-plus pull-right" tooltip="Add to your itemSets" ng-if="user" ng-click="createItemSet(user, p.championId, itemSets[p.participantId])"></i>
-            </accordion-heading>
-            <div ng-repeat="block in itemSets[p.participantId].blocks" class="block-row row">
+                <i class="glyphicon glyphicon-plus pull-right" tooltip="Add to your itemSets" ng-if="user" ng-click="$ctrl.createItemSet(user, p.championId, $ctrl.itemSet[p.participantId])"></i>
+            </uib-accordion-heading>
+            <div ng-repeat="block in $ctrl.itemSet[p.participantId].blocks" class="block-row row">
                 <div class="col-md-3 col-md-offset-2">
                     <h5 class="text-center">{{block.type}}</h5>
                 </div>
@@ -16,27 +17,8 @@
                     <lol-image ng-repeat="item in block.items" type="'item'" id="item.id"></lol-image>
                 </div>
             </div>
-        </accordion-group>
-    </accordion>
-
-    <accordion class="col-md-5">
-        <accordion-group ng-repeat="p in game.participants | filter:{teamId: 200}" class="game-row {{p.stats.winner ? 'panel-success' : 'panel-danger'}}" >
-            <accordion-heading>
-                <lol-image type="'championSquare'" id="p.championId"></lol-image>
-                <span>{{::p.stats.kills}} / {{::p.stats.deaths}} / {{::p.stats.assists}}</span>
-                <span class="label label-primary pull-right">{{::p.stats.goldSpent / 1000 | number:1}}k</span>
-                <i class="glyphicon glyphicon-plus pull-right" tooltip="Add to your itemSets" ng-if="user" ng-click="createItemSet(user, p.championId, itemSets[p.participantId])"></i>
-            </accordion-heading>
-            <div ng-repeat="block in itemSets[p.participantId].blocks" class="block-row row">
-                <div class="col-md-3 col-md-offset-2">
-                    <h5 class="text-center">{{block.type}}</h5>
-                </div>
-                <div class="col-md-5">
-                    <lol-image ng-repeat="item in block.items" type="'item'" id="item.id"></lol-image>
-                </div>
-            </div>
-        </accordion-group>
-    </accordion>
+        </div>
+    </uib-accordion>
 
 </div>
 <p class="alert alert-warning text-center" style="width: 20%; margin: auto" ng-if="!user">

@@ -1,5 +1,5 @@
-export class AddItemSetModelController {
-    static $inject = ["$modalInstance", "ItemSet"];
+export class AddItemSetModalController {
+    static $inject = ["$uibModalInstance", "itemSet"];
 
     constructor(private $modalInstance: angular.ui.bootstrap.IModalInstanceService, public itemSet: object) {}
 
