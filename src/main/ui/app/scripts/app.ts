@@ -35,7 +35,7 @@ app
     .directive('lolImage', LolImageDirective)
 ;
 
-app.config(function ($stateProvider: IStateProvider) {
+app.config(['$stateProvider', function ($stateProvider: IStateProvider) {
 
     $stateProvider
         .state('summoner', {
@@ -65,4 +65,4 @@ app.config(function ($stateProvider: IStateProvider) {
             controllerAs: '$ctrl'
         })
     ;
-});
+}]);

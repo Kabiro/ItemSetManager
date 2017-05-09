@@ -1,9 +1,13 @@
+const webpack = require("webpack");
 const path = require("path");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: "scripts/app.ts",
+    entry: {
+        app: "scripts/app.ts",
+        vendor: "scripts/vendor.ts"
+    },
     resolve: {
         modules: [
             path.resolve('./src/main/ui/app'),
@@ -13,7 +17,7 @@ module.exports = {
     },
     output: {
         path: path.resolve('./src/main/resources/public'),
-        filename: "bundle.js"
+        filename: "[name].js"
     },
     module: {
         loaders: [
@@ -30,7 +34,10 @@ module.exports = {
             {from: 'images/**', context: './src/main/ui/app/'},
             {from: 'css/bootstrap.min.css', context: './node_modules/bootstrap/dist/', to: './styles/vendors/'},
             {from: 'fonts/**', context: './node_modules/bootstrap/dist/', to: './styles/'}
-        ])
+        ]),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['app', 'vendor']
+        })
     ],
     devServer: {
         contentBase: path.resolve('./src/main/resources/public'),
