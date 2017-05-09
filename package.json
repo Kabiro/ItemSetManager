@@ -5,7 +5,7 @@
     "webpack": "webpack",
     "webpack-dev-server": "webpack-dev-server",
     "tsc": "tsc",
-    "start": "webpack -p"
+    "postinstall": "webpack -p"
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.1",
