@@ -3,6 +3,7 @@ package fr.kabiro.lol.ism.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zaxxer.hikari.HikariDataSource;
 import fr.kabiro.lol.ism.core.model.Region;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -15,6 +16,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @Configuration
+@EnableConfigurationProperties(RiotApiConfig.class)
 public class Config {
 
     @Bean
