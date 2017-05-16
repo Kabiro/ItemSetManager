@@ -48,8 +48,8 @@ task wrapper(type: Wrapper) {
     gradleVersion = '3.5'
 }
 
-task stage(type: Copy, dependsOn: [build]) {
-    from jar.archivePath
+task stage(type: Copy, dependsOn: [bootJar]) {
+    from bootJar.archivePath
     into 'build'
     rename {
         'app.jar'
