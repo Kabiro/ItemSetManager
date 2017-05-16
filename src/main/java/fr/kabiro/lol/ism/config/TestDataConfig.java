@@ -36,7 +36,7 @@ public class TestDataConfig {
 
     @PostConstruct
     public void generateTestDatas() throws IOException {
-        if (summonerDao.findById(149869L).isPresent()) {
+        if (!summonerDao.findById(149869L).isPresent()) {
             Champion[] champions = objectMapper.readValue(new ClassPathResource("champions.json").getURL(), Champion[].class);
             championDao.saveAll(Arrays.asList(champions));
 
