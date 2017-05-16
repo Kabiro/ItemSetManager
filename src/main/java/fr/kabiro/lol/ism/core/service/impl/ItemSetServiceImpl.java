@@ -126,7 +126,7 @@ public class ItemSetServiceImpl implements ItemSetService {
     @Override
     public BuildDto create(Set<String> champions, String summonerName, Region summonerRegion, ItemSetDto itemSet) {
         try {
-            Set<Champion> champs = Sets.newHashSet(championDao.findAll(champions));
+            Set<Champion> champs = Sets.newHashSet(championDao.findAllById(champions));
             Optional<Summoner> summoner = summonerDao.findByNameAndRegion(summonerName, summonerRegion);
             Build build = Build.builder()
                     .champions(champs)
@@ -144,7 +144,7 @@ public class ItemSetServiceImpl implements ItemSetService {
     public BuildDto update(Long buildId, Set<String> champions, ItemSetDto itemSet) {
         try {
             Build build = buildDao.findById(buildId).get();
-            Set<Champion> champs = Sets.newHashSet(championDao.findAll(champions));
+            Set<Champion> champs = Sets.newHashSet(championDao.findAllById(champions));
             build.setChampions(champs);
             build.setJson(objectMapper.writeValueAsString(itemSet));
             buildDao.save(build);
@@ -156,6 +156,6 @@ public class ItemSetServiceImpl implements ItemSetService {
 
     @Override
     public void delete(Long buildId) {
-        buildDao.delete(buildId);
+        buildDao.deleteById(buildId);
     }
 }

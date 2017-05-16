@@ -36,9 +36,9 @@ public class TestDataConfig {
 
     @PostConstruct
     public void generateTestDatas() throws IOException {
-        if (summonerDao.findOne(149869L) == null) {
+        if (summonerDao.findById(149869L).isPresent()) {
             Champion[] champions = objectMapper.readValue(new ClassPathResource("champions.json").getURL(), Champion[].class);
-            championDao.save(Arrays.asList(champions));
+            championDao.saveAll(Arrays.asList(champions));
 
             Summoner kabiro = Summoner.builder().name("Kabiro").riotId(149869L).accountId(155605L).region(Region.EUW1).build();
 
@@ -51,7 +51,7 @@ public class TestDataConfig {
             Build b3 = Build.builder().json(itemSet).summoner(kabiro).build();
 
             summonerDao.save(kabiro);
-            buildDao.save(Arrays.asList(b1, b2, b3));
+            buildDao.saveAll(Arrays.asList(b1, b2, b3));
 
         }
     }
