@@ -2,9 +2,10 @@ buildscript {
     ext {
         springBootVersion = '2.0.0.M1'
         commonsIoVersion = '2.4'
-        jodaTimeVersion = '2.8.2'
-        guavaVersion = '18.0'
-        hikariVersion = '2.4.1'
+        jodaTimeVersion = '2.9.2'
+        guavaVersion = '21.0'
+        hikariVersion = '2.6.1'
+        postgresqlDriverVersion = '42.1.1'
     }
     repositories {
         mavenCentral()
@@ -40,7 +41,7 @@ dependencies {
     compile("com.google.guava:guava:${guavaVersion}")
     compile("com.zaxxer:HikariCP:${hikariVersion}")
     runtime("com.h2database:h2")
-    runtime("org.postgresql:postgresql:9.4-1201-jdbc41")
+    runtime("org.postgresql:postgresql:${postgresqlDriverVersion}")
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
