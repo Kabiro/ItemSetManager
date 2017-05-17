@@ -11,7 +11,6 @@ import fr.kabiro.lol.ism.core.remote.staticdata.RestStaticDataClient;
 import fr.kabiro.lol.ism.core.remote.staticdata.dto.ChampionListDto;
 import fr.kabiro.lol.ism.core.remote.summoner.RestSummonerClient;
 import fr.kabiro.lol.ism.core.remote.summoner.dto.SummonerDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
@@ -25,10 +24,10 @@ public class RestClientMock implements RestMatchClient, RestStaticDataClient, Re
 
     private ObjectMapper objectMapper;
 
-    @Autowired
     public RestClientMock(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
+
 
     @Override
     public MatchListDto getRecentMatchesByAccount(Long accountId, Region region) {

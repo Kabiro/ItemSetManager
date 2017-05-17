@@ -5,7 +5,6 @@ import fr.kabiro.lol.ism.core.dto.ItemSetDto;
 import fr.kabiro.lol.ism.core.model.Region;
 import fr.kabiro.lol.ism.core.pojo.ZipFile;
 import fr.kabiro.lol.ism.core.service.ItemSetService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -19,8 +18,11 @@ import java.util.zip.ZipOutputStream;
 @RestController
 public class ItemSetController {
 
-    @Autowired
     private ItemSetService itemSetService;
+
+    public ItemSetController(ItemSetService itemSetService) {
+        this.itemSetService = itemSetService;
+    }
 
     @RequestMapping("/api/sets/v1/{region}/{name}")
     public List<BuildDto> itemsSetByUser(@PathVariable("name") String name, @PathVariable("region") Region region) {

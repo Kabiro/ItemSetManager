@@ -8,7 +8,6 @@ import fr.kabiro.lol.ism.core.model.Region;
 import fr.kabiro.lol.ism.core.model.Summoner;
 import fr.kabiro.lol.ism.core.remote.summoner.RestSummonerClient;
 import fr.kabiro.lol.ism.core.service.SummonerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,17 +15,20 @@ import java.util.Optional;
 @Service
 public class SummonerServiceImpl implements SummonerService {
 
-    @Autowired
     private SummonerDao summonerDao;
 
-    @Autowired
     private RestSummonerClient summonerClient;
 
-    @Autowired
     private RemoteSummonerMapper remoteSummonerMapper;
 
-    @Autowired
     private SummonerMapper summonerMapper;
+
+    public SummonerServiceImpl(SummonerDao summonerDao, RestSummonerClient summonerClient, RemoteSummonerMapper remoteSummonerMapper, SummonerMapper summonerMapper) {
+        this.summonerDao = summonerDao;
+        this.summonerClient = summonerClient;
+        this.remoteSummonerMapper = remoteSummonerMapper;
+        this.summonerMapper = summonerMapper;
+    }
 
     @Override
     public Optional<SummonerDto> findByNameAndRegion(String name, Region region) {

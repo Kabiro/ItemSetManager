@@ -9,7 +9,6 @@ import fr.kabiro.lol.ism.core.model.Champion;
 import fr.kabiro.lol.ism.core.model.Region;
 import fr.kabiro.lol.ism.core.model.Summoner;
 import org.apache.commons.io.IOUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
@@ -22,17 +21,20 @@ import java.util.HashSet;
 @Configuration
 public class TestDataConfig {
 
-    @Autowired
     private SummonerDao summonerDao;
 
-    @Autowired
     private BuildDao buildDao;
 
-    @Autowired
     private ChampionDao championDao;
 
-    @Autowired
     private ObjectMapper objectMapper;
+
+    public TestDataConfig(SummonerDao summonerDao, BuildDao buildDao, ChampionDao championDao, ObjectMapper objectMapper) {
+        this.summonerDao = summonerDao;
+        this.buildDao = buildDao;
+        this.championDao = championDao;
+        this.objectMapper = objectMapper;
+    }
 
     @PostConstruct
     public void generateTestDatas() throws IOException {

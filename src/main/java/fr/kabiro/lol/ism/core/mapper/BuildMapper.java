@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.kabiro.lol.ism.core.dto.BuildDto;
 import fr.kabiro.lol.ism.core.dto.ItemSetDto;
 import fr.kabiro.lol.ism.core.model.Build;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -16,11 +15,14 @@ import java.util.stream.Collectors;
 @Component
 public class BuildMapper {
 
-    @Autowired
     private ChampionMapper championMapper;
 
-    @Autowired
     private ObjectMapper objectMapper;
+
+    public BuildMapper(ChampionMapper championMapper, ObjectMapper objectMapper) {
+        this.championMapper = championMapper;
+        this.objectMapper = objectMapper;
+    }
 
     public List<BuildDto> entityCollectionToDtoList(Collection<Build> builds) {
         List<BuildDto> dtos = new ArrayList<>();

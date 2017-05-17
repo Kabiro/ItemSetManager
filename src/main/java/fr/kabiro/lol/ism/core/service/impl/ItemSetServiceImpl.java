@@ -21,7 +21,6 @@ import fr.kabiro.lol.ism.core.remote.match.dto.MatchEventType;
 import fr.kabiro.lol.ism.core.remote.match.dto.MatchFrameDto;
 import fr.kabiro.lol.ism.core.remote.match.dto.MatchTimelineDto;
 import fr.kabiro.lol.ism.core.service.ItemSetService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -30,26 +29,29 @@ import java.util.stream.Collectors;
 @Service
 public class ItemSetServiceImpl implements ItemSetService {
 
-    @Autowired
     private BuildDao buildDao;
 
-    @Autowired
     private SummonerDao summonerDao;
 
-    @Autowired
     private ChampionDao championDao;
 
-    @Autowired
     private RestMatchClient matchClient;
 
-    @Autowired
     private BuildMapper buildMapper;
 
-    @Autowired
     private EventMapper eventMapper;
 
-    @Autowired
     private ObjectMapper objectMapper;
+
+    public ItemSetServiceImpl(BuildDao buildDao, SummonerDao summonerDao, ChampionDao championDao, RestMatchClient matchClient, BuildMapper buildMapper, EventMapper eventMapper, ObjectMapper objectMapper) {
+        this.buildDao = buildDao;
+        this.summonerDao = summonerDao;
+        this.championDao = championDao;
+        this.matchClient = matchClient;
+        this.buildMapper = buildMapper;
+        this.eventMapper = eventMapper;
+        this.objectMapper = objectMapper;
+    }
 
     @Override
     public List<BuildDto> findItemsSetByUser(String name, Region region) {

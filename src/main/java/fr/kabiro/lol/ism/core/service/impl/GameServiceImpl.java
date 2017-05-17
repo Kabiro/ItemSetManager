@@ -7,7 +7,6 @@ import fr.kabiro.lol.ism.core.remote.match.dto.MatchDto;
 import fr.kabiro.lol.ism.core.remote.match.dto.MatchReferenceDto;
 import fr.kabiro.lol.ism.core.service.GameService;
 import fr.kabiro.lol.ism.core.service.SummonerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -17,11 +16,14 @@ import java.util.Optional;
 @Service
 public class GameServiceImpl implements GameService {
 
-    @Autowired
     private SummonerService summonerService;
 
-    @Autowired
     private RestMatchClient matchClient;
+
+    public GameServiceImpl(SummonerService summonerService, RestMatchClient matchClient) {
+        this.summonerService = summonerService;
+        this.matchClient = matchClient;
+    }
 
     @Override
     public List<MatchReferenceDto> recentGamesBySummoner(String name, Region region) {
