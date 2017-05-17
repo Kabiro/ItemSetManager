@@ -2,6 +2,7 @@ const webpack = require("webpack");
 const path = require("path");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -17,7 +18,7 @@ module.exports = {
     },
     output: {
         path: path.resolve('./src/main/resources/public'),
-        filename: "[name].js"
+        filename: "[name].[hash].js"
     },
     module: {
         loaders: [
@@ -29,7 +30,8 @@ module.exports = {
             ['./src/main/resources/public']
         ),
         new CopyWebpackPlugin([
-            {from: '**/*.html', context: './src/main/ui/app/'},
+            {from: 'template/**/*.html', context: './src/main/ui/app/'},
+            {from: 'views/**/*.html', context: './src/main/ui/app/'},
             {from: '**/*.css', context: './src/main/ui/app/'},
             {from: 'images/**', context: './src/main/ui/app/'},
             {from: 'css/bootstrap.min.css', context: './node_modules/bootstrap/dist/', to: './styles/vendors/'},
@@ -37,6 +39,9 @@ module.exports = {
         ]),
         new webpack.optimize.CommonsChunkPlugin({
             name: ['app', 'vendor']
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/main/ui/app/index.html'
         })
     ],
     devServer: {
