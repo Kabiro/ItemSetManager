@@ -64,10 +64,10 @@ public class ItemSetServiceImpl implements ItemSetService {
         List<ZipFile> zipFiles = new ArrayList<>();
         for (Build build : builds) {
             if (build.getChampions().isEmpty()) {
-                zipFiles.add(new ZipFile("Global/Recommended/itemSetManager_" + build.getId() + ".json", build.getJson().getBytes()));
+                zipFiles.add(new ZipFile("Config/Global/Recommended/itemSetManager_" + build.getId() + ".json", build.getJson().getBytes()));
             } else {
                 for (Champion champion : build.getChampions()) {
-                    zipFiles.add(new ZipFile("Champions/" + champion.getKey() + "/Recommended/itemSetManager_" + build.getId() + ".json", build.getJson().getBytes()));
+                    zipFiles.add(new ZipFile("Config/Champions/" + champion.getKey() + "/Recommended/itemSetManager_" + build.getId() + ".json", build.getJson().getBytes()));
                 }
             }
         }
