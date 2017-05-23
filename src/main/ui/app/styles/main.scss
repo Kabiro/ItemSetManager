@@ -1,0 +1,51 @@
+
+a[ui-sref] {
+  cursor: pointer;
+  color: white;
+}
+
+.navbar {
+  background-color: #122b40;
+  color: white;
+}
+
+.user-cartouche {
+  padding-top: 12px;
+  padding-right: 12px;
+}
+
+.user-cartouche img {
+  height: 35px;
+}
+
+/** FOOTER **/
+
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.footer, .push {
+  height: 60px; /* .push must be the same height as .footer */
+}
+
+.footer {
+  padding: 10px;
+  background-color: #122b40;
+  color: white;
+}
+
+.footer p {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}

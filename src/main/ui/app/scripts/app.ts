@@ -16,6 +16,7 @@ import {NavigationController} from "./ctrl/NavigationController";
 import {SummonerController} from "./ctrl/SummonerController";
 import {ValidateModalController} from "./ctrl/ValidateModalController";
 import {LolImageDirective} from "./directives/LolImageDirective";
+import "../styles/app.scss";
 
 const app = angular.module('ItemSetManager', ['ngCookies', 'ui.router', 'ui.bootstrap']);
 

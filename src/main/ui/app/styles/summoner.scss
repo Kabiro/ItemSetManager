@@ -1,0 +1,39 @@
+.summoner {
+  .game-row {
+    border: solid 1px gray;
+    padding: 15px;
+    border-radius: 6px;
+    width: 420px;
+    margin: auto;
+  }
+
+  .game-row img {
+    width: 35px;
+  }
+
+  .accordion .label {
+    margin-left: 10px;
+  }
+
+  .block-row {
+    margin: auto;
+  }
+
+  .block-row img {
+    height: 40px;
+  }
+
+  .victory {
+    border-left: 6px green;
+  }
+
+  .defeat {
+    border-left: 6px red;
+  }
+
+  .command-line {
+    font-size: 0.7em;
+    white-space: nowrap;
+    width: 100%;
+  }
+}
