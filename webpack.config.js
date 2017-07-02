@@ -12,8 +12,9 @@ const extractSass = new ExtractTextPlugin({
 
 module.exports = {
     entry: {
-        app: "scripts/app.ts",
-        vendor: "scripts/vendor.ts"
+        main: "scripts/main.ts",
+        vendor: "scripts/vendor.ts",
+        polyfill: "scripts/polyfill.ts"
     },
     resolve: {
         modules: [
@@ -55,6 +56,10 @@ module.exports = {
         new CleanWebpackPlugin(
             ['./src/main/resources/public']
         ),
+        new webpack.ContextReplacementPlugin(   //https://github.com/angular/angular/issues/11580
+            /angular(\\|\/)core(\\|\/)@angular/,
+            path.resolve(__dirname, '../src')
+        ),
         new CopyWebpackPlugin([
             {from: 'template/**/*.html', context: './src/main/ui/app/'},
             {from: 'views/**/*.html', context: './src/main/ui/app/'},
@@ -62,7 +67,7 @@ module.exports = {
         ]),
         extractSass,
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['app', 'vendor']
+            name: ['main', 'vendor', 'polyfill']
         }),
         new HtmlWebpackPlugin({
             template: './src/main/ui/app/index.html'

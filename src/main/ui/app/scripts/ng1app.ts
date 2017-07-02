@@ -1,7 +1,4 @@
 import * as angular from "angular";
-import "angular-cookies";
-import "@uirouter/angularjs";
-import "angular-ui-bootstrap";
 import {IStateProvider} from "angular-ui-router";
 import {ChampionsService} from "./srv/ChampionsService";
 import {GameService} from "./srv/GameService";
@@ -18,9 +15,9 @@ import {ValidateModalController} from "./ctrl/ValidateModalController";
 import {LolImageDirective} from "./directives/LolImageDirective";
 import "../styles/app.scss";
 
-const app = angular.module('ItemSetManager', ['ngCookies', 'ui.router', 'ui.bootstrap']);
+export const ng1App = angular.module('ItemSetManager', ['ngCookies', 'ui.router', 'ui.bootstrap']);
 
-app
+ng1App
     .service('ChampionsService', ChampionsService)
     .service('GameService', GameService)
     .service('ItemsSetService', ItemsSetService)
@@ -36,7 +33,7 @@ app
     .directive('lolImage', LolImageDirective)
 ;
 
-app.config(['$stateProvider', function ($stateProvider: IStateProvider) {
+ng1App.config(['$stateProvider', function ($stateProvider: IStateProvider) {
 
     $stateProvider
         .state('summoner', {
