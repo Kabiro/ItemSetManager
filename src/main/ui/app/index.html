@@ -5,7 +5,7 @@
 </head>
 <body ng-app="ItemSetManager">
 <div class="wrapper">
-<div class="row navbar" ng-controller="NavigationController as nav">
+<div class="navbar" ng-controller="NavigationController as nav">
     <div class="col-xs-3 navbar-header">
         <a ui-sref="home" class="navbar-brand">ItemSetManager</a>
     </div>
@@ -16,7 +16,7 @@
         <div class="pull-right user-cartouche" ng-if="user">
             <lol-image type="'profile'" id="user.summonerIcon" class="summoner-icon"></lol-image>
             <a ui-sref="summoner({summoner: user.name, region: user.region})">{{user.name}}</a>
-            <i class="glyphicon glyphicon-log-out" ng-click="nav.logout()"></i>
+            <i class="glyphicon glyphicon-log-out clickable" ng-click="nav.logout()"></i>
         </div>
         <form class="pull-right navbar-form input-group" ng-if="!user">
             <input type="text" class="form-control" ng-model="nav.userName" placeholder="login"/>
