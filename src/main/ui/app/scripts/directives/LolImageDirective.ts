@@ -2,7 +2,7 @@ import {ChampionsService} from "../srv/ChampionsService";
 
 export const LolImageDirective = [() => {
     const baseUrl = 'https://ddragon.leagueoflegends.com/cdn/';
-    const lolVersion = '7.9.2';
+    const lolVersion = '7.13.1';
 
     const championIdToChampionKey = function (id: any, champions: any) {
         return champions[id].key;
