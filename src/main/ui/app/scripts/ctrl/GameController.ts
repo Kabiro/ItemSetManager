@@ -26,7 +26,6 @@ export class GameController {
     }
 
     createItemSet(user: any, championId: number, itemSet: any) {
-        console.log(user, championId, itemSet);
         this.championsService.champions.then((result) => {
 
             this.$modal.open({
