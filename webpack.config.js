@@ -62,6 +62,7 @@ module.exports = {
         ),
         new CopyWebpackPlugin([
             {from: 'template/**/*.html', context: './src/main/ui/app/'},
+            {from: '**/*.html', context: './src/main/ui/app/scripts/'},
             {from: 'views/**/*.html', context: './src/main/ui/app/'},
             {from: 'images/**', context: './src/main/ui/app/'}
         ]),

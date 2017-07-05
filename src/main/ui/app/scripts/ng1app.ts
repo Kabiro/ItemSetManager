@@ -1,4 +1,5 @@
 import * as angular from "angular";
+import {IDirectiveFactory} from "angular";
 import {IStateProvider} from "angular-ui-router";
 import {ChampionsService} from "./srv/ChampionsService";
 import {GameService} from "./srv/GameService";
@@ -14,6 +15,8 @@ import {SummonerController} from "./ctrl/SummonerController";
 import {ValidateModalController} from "./ctrl/ValidateModalController";
 import {LolImageDirective} from "./directives/LolImageDirective";
 import "../styles/app.scss";
+import {LolImageComponent} from "./core/lolimage/LolImageComponent";
+import {upgradeAdapter} from "./ng2app";
 
 export const ng1App = angular.module('ItemSetManager', ['ngCookies', 'ui.router', 'ui.bootstrap']);
 
@@ -31,6 +34,7 @@ ng1App
     .controller('SummonerController', SummonerController)
     .controller('ValidateModalController', ValidateModalController)
     .directive('lolImage', LolImageDirective)
+    .directive('ismLolImage', upgradeAdapter.downgradeNg2Component(LolImageComponent) as IDirectiveFactory)
 ;
 
 ng1App.config(['$stateProvider', function ($stateProvider: IStateProvider) {
