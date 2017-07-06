@@ -13,7 +13,6 @@ import {HomeController} from "./ctrl/HomeController";
 import {NavigationController} from "./ctrl/NavigationController";
 import {SummonerController} from "./ctrl/SummonerController";
 import {ValidateModalController} from "./ctrl/ValidateModalController";
-import {LolImageDirective} from "./directives/LolImageDirective";
 import "../styles/app.scss";
 import {LolImageComponent} from "./core/lolimage/LolImageComponent";
 import {upgradeAdapter} from "./ng2app";
@@ -33,7 +32,6 @@ ng1App
     .controller('NavigationController', NavigationController)
     .controller('SummonerController', SummonerController)
     .controller('ValidateModalController', ValidateModalController)
-    .directive('lolImage', LolImageDirective)
     .directive('ismLolImage', upgradeAdapter.downgradeNg2Component(LolImageComponent) as IDirectiveFactory)
 ;
 

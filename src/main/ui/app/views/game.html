@@ -4,7 +4,7 @@
     <uib-accordion class="col-md-5" ng-repeat="team in $ctrl.game.teams">
       <div uib-accordion-group ng-repeat="p in $ctrl.game.participants | filter:{teamId: team.teamId}" class="game-row panel {{team.win == 'Win' ? 'panel-success' : 'panel-danger'}}">
             <uib-accordion-heading>
-                <lol-image type="'championSquare'" id="p.championId"></lol-image>
+                <ism-lol-image type="championSquare" [id]="p.championId"></ism-lol-image>
                 <span>{{::p.stats.kills}} / {{::p.stats.deaths}} / {{::p.stats.assists}}</span>
                 <span class="label label-primary pull-right">{{::p.stats.goldSpent / 1000 | number:1}}k</span>
                 <i class="glyphicon glyphicon-plus pull-right" tooltip="Add to your itemSets" ng-if="user" ng-click="$ctrl.createItemSet(user, p.championId, $ctrl.itemSet[p.participantId])"></i>
@@ -14,7 +14,7 @@
                     <h5 class="text-center">{{block.type}}</h5>
                 </div>
                 <div class="col-md-5">
-                    <lol-image ng-repeat="item in block.items" type="'item'" id="item.id"></lol-image>
+                    <ism-lol-image ng-repeat="item in block.items" type="item" [id]="item.id"></ism-lol-image>
                 </div>
             </div>
         </div>

@@ -14,7 +14,7 @@
     </div>
     <div class="col-xs-3">
         <div class="pull-right user-cartouche" ng-if="user">
-            <lol-image type="'profile'" id="user.summonerIcon" class="summoner-icon"></lol-image>
+            <ism-lol-image type="profile" [id]="user.summonerIcon" class="summoner-icon"></ism-lol-image>
             <a ui-sref="summoner({summoner: user.name, region: user.region})">{{user.name}}</a>
             <i class="glyphicon glyphicon-log-out clickable" ng-click="nav.logout()"></i>
         </div>

@@ -68,7 +68,7 @@
                 </uib-accordion-heading>
                 <div ng-repeat="block in build.itemSet.blocks" class="row block-row">
                     <h5 class="text-center">{{block.type}}</h5>
-                    <lol-image ng-repeat="item in block.items" type="'item'" id="item.id"></lol-image>
+                    <ism-lol-image ng-repeat="item in block.items" type="item" [id]="item.id"></ism-lol-image>
                 </div>
             </div>
         </uib-accordion>
@@ -81,7 +81,7 @@
 
         <div ng-repeat="game in summoner.recentGames | orderBy:'timestamp':true" class="game-row"
              ui-sref="game({gameId: game.gameId, gameRegion: game.platformId})">
-            <lol-image type="'championSquare'" id="game.champion"></lol-image>
+            <ism-lol-image type="championSquare" [id]="game.champion"></ism-lol-image>
             {{game.timestamp | date:'medium' }}
         </div>
     </div>
