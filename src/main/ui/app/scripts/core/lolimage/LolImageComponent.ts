@@ -62,11 +62,11 @@ export class LolImageComponent implements OnInit {
         return id;
     }
 
-    constructor() {
+    constructor(@Inject(ChampionsService) private championService: ChampionsService) {
     }
 
     ngOnInit(): void {
-        /*this.championService.champions.then((result) => {
+        this.championService.champions.then((result) => {
             const champions = result.data;
             this.imageUrl = this.baseUrl;
             const config = this.configs[this.type];
@@ -74,6 +74,6 @@ export class LolImageComponent implements OnInit {
                 this.imageUrl += this.lolVersion + '/';
             }
             this.imageUrl += config.prefix + config.transformFunction(this.id, champions) + config.suffix;
-        });*/
+        }, () => {});
     }
 }
