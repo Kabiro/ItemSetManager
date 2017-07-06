@@ -5,11 +5,12 @@
     border-radius: 6px;
     width: 420px;
     margin: auto;
-    cursor: pointer;
-  }
-
-  .game-row img {
-    width: 35px;
+    a {
+      color:black;
+    }
+    img {
+      width: 35px;
+    }
   }
 
   .accordion .label {

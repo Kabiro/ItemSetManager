@@ -79,10 +79,11 @@
     <div class="col-xs-4">
         <h3 class="text-center">Navigate recent games</h3>
 
-        <div ng-repeat="game in summoner.recentGames | orderBy:'timestamp':true" class="game-row"
-             ui-sref="game({gameId: game.gameId, gameRegion: game.platformId})">
-            <ism-lol-image type="championSquare" [id]="game.champion"></ism-lol-image>
-            {{game.timestamp | date:'medium' }}
+        <div ng-repeat="game in summoner.recentGames | orderBy:'timestamp':true" class="game-row">
+            <a ui-sref="game({gameId: game.gameId, gameRegion: game.platformId})">
+                <ism-lol-image type="championSquare" [id]="game.champion"></ism-lol-image>
+                <span>{{game.timestamp | date:'medium' }}</span>
+            </a>
         </div>
     </div>
 </div>
