@@ -4,14 +4,14 @@ import fr.kabiro.lol.ism.core.dto.SummonerDto;
 import fr.kabiro.lol.ism.core.model.Region;
 import fr.kabiro.lol.ism.core.remote.match.RestMatchClient;
 import fr.kabiro.lol.ism.core.remote.match.dto.MatchDto;
-import fr.kabiro.lol.ism.core.remote.match.dto.MatchReferenceDto;
 import fr.kabiro.lol.ism.core.service.GameService;
 import fr.kabiro.lol.ism.core.service.SummonerService;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class GameServiceImpl implements GameService {
@@ -26,15 +26,19 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public List<MatchReferenceDto> recentGamesBySummoner(String name, Region region) {
+    public List<MatchDto> recentGamesBySummoner(String name, Region region) {
         Optional<SummonerDto> summoner = summonerService.findByNameAndRegion(name, region);
         return summoner
-                .map(summonerDto -> matchClient.getRecentMatchesByAccount(summonerDto.getAccountId(), region).matches)
-                .orElseGet(Collections::emptyList);
+                .stream()
+                .flatMap(summonerDto -> matchClient.getRecentMatchesIdsByPuuid(summonerDto.getPuuid(), region).stream())
+                .limit(5)
+                .map(matchId -> matchClient.getMatch(matchId, region))
+                .sorted(Comparator.comparing(match -> match.info.gameStartTimestamp))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public MatchDto byId(Long id, Region region) {
+    public MatchDto byId(String id, Region region) {
         return matchClient.getMatch(id, region);
     }
 }

@@ -81,8 +81,10 @@
 
         <div ng-repeat="game in summoner.recentGames | orderBy:'timestamp':true" class="game-row">
             <a ui-sref="game({gameId: game.gameId, gameRegion: game.platformId})">
-                <ism-lol-image type="championSquare" [id]="game.champion"></ism-lol-image>
-                <span>{{game.timestamp | date:'medium' }}</span>
+                <div>
+                    <ism-lol-image ng-repeat="p in game.info.participants" type="championSquare" [id]="p.championId"></ism-lol-image>
+                </div>
+                <span>{{game.info.gameStartTimestamp | date:'medium' }}</span>
             </a>
         </div>
     </div>

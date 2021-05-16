@@ -25,6 +25,6 @@ public class RestStaticDataClientImpl extends RestRiotClient implements RestStat
         String url = "/lol/static-data/v3/champions";
         Map<String, Object> params = new HashMap<>();
         params.put("dataById", true);
-        return doGet(url, region, params, ChampionListDto.class);
+        return doGet(url, region, false, params, ChampionListDto.class);
     }
 }

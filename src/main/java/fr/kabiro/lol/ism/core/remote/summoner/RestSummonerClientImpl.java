@@ -23,6 +23,6 @@ public class RestSummonerClientImpl extends RestRiotClient implements RestSummon
     @Override
     public Optional<SummonerDTO> getSummonerByName(String name, Region region) {
         String url = "/lol/summoner/v4/summoners/by-name/" + name;
-        return Optional.of(doGet(url, region, Collections.emptyMap(), SummonerDTO.class));
+        return Optional.of(doGet(url, region, false, Collections.emptyMap(), SummonerDTO.class));
     }
 }
