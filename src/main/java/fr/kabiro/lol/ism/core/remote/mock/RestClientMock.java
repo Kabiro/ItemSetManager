@@ -30,7 +30,7 @@ public class RestClientMock implements RestMatchClient, RestStaticDataClient, Re
 
 
     @Override
-    public MatchListDto getRecentMatchesByAccount(Long accountId, Region region) {
+    public MatchListDto getRecentMatchesByAccount(String accountId, Region region) {
         try {
             return objectMapper.readValue(new ClassPathResource("mocks/recentMatchLists.json").getURL(), MatchListDto.class);
         } catch (IOException e) {

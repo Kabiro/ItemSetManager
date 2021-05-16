@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface SummonerDao extends CrudRepository<Summoner, Long> {
+public interface SummonerDao extends CrudRepository<Summoner, String> {
 
     Optional<Summoner> findByNameAndRegion(String name, Region region);
 }

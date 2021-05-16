@@ -6,10 +6,11 @@ import java.io.Serializable;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SummonerDTO implements Serializable {
-    public int profileIconId;
+    public String id;
+    public String accountId;
+    public String puuid;
     public String name;
-    public long summonerLevel;
+    public int profileIconId;
     public long revisionDate;
-    public long id;
-    public long accountId;
+    public long summonerLevel;
 }

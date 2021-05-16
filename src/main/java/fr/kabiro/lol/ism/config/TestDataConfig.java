@@ -38,11 +38,17 @@ public class TestDataConfig {
 
     @PostConstruct
     public void generateTestDatas() throws IOException {
-        if (!summonerDao.findById(149869L).isPresent()) {
+        if (!summonerDao.findById("149869").isPresent()) {
             Champion[] champions = objectMapper.readValue(new ClassPathResource("champions.json").getURL(), Champion[].class);
             championDao.saveAll(Arrays.asList(champions));
 
-            Summoner kabiro = Summoner.builder().name("Kabiro").riotId(149869L).accountId(155605L).region(Region.EUW1).build();
+            Summoner kabiro = Summoner.builder()
+                    .name("Kabiro")
+                    .riotId("aQXdQOzToJnytVq-M7PpbXR1qN6NeE9ac8ofUnSufy5O")
+                    .accountId("BQ7cPkC2E6oj7eMF8WtJWDNtEgnPutnUBPibP-f0ogs")
+                    .puuid("q_MN0Yn5CSbkrF47Llv2lBnsNrgblgKpXXc1lYvXHRzjo6QZPQvvarVl2ALi-mX6AkAgqv9U5wFMxA")
+                    .region(Region.EUW1)
+                    .build();
 
             InputStream itemSetIS = new ClassPathResource("itemSet.json").getInputStream();
             String itemSet = IOUtils.toString(itemSetIS);

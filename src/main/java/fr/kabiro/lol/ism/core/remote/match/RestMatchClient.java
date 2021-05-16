@@ -6,7 +6,7 @@ import fr.kabiro.lol.ism.core.remote.match.dto.MatchListDto;
 import fr.kabiro.lol.ism.core.remote.match.dto.MatchTimelineDto;
 
 public interface RestMatchClient {
-    MatchListDto getRecentMatchesByAccount(Long accountId, Region region);
+    MatchListDto getRecentMatchesByAccount(String accountId, Region region);
 
     MatchTimelineDto getTimeline(Long matchId, Region region);
 

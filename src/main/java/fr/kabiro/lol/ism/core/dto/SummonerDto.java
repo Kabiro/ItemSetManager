@@ -8,8 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SummonerDto {
-    private Long riotId;
-    private Long accountId;
+    private String riotId;
+    private String accountId;
+    private String puuid;
     private String name;
     private RegionDto region;
     private Integer summonerIcon;

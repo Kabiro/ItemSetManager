@@ -20,7 +20,7 @@ public abstract class RestRiotClient {
         this.restOperations = restOperations;
     }
 
-    protected <T> T doGetV3(String path, Region region, Map<String, Object> params, Class<T> t) {
+    protected <T> T doGet(String path, Region region, Map<String, Object> params, Class<T> t) {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(riotApiConfig.getHost().replace("{{region}}", region.name().toLowerCase()))
                 .path(path)
                 .queryParam("api_key", riotApiConfig.getKey());

@@ -22,20 +22,20 @@ public class RestMatchClientImpl extends RestRiotClient implements RestMatchClie
     }
 
     @Override
-    public MatchListDto getRecentMatchesByAccount(Long accountId, Region region) {
+    public MatchListDto getRecentMatchesByAccount(String accountId, Region region) {
         String url = "/lol/match/v3/matchlists/by-account/" + accountId + "/recent";
-        return doGetV3(url, region, Collections.emptyMap(), MatchListDto.class);
+        return doGet(url, region, Collections.emptyMap(), MatchListDto.class);
     }
 
     @Override
     public MatchTimelineDto getTimeline(Long matchId, Region region) {
         String url = "/lol/match/v3/timelines/by-match/" + matchId;
-        return doGetV3(url, region, Collections.emptyMap(), MatchTimelineDto.class);
+        return doGet(url, region, Collections.emptyMap(), MatchTimelineDto.class);
     }
 
     @Override
     public MatchDto getMatch(Long matchId, Region region) {
         String url = "/lol/match/v3/matches/" + matchId;
-        return doGetV3(url, region, Collections.emptyMap(), MatchDto.class);
+        return doGet(url, region, Collections.emptyMap(), MatchDto.class);
     }
 }

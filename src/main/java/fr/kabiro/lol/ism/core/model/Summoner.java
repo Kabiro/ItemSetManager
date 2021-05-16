@@ -16,10 +16,13 @@ import java.util.Set;
 public class Summoner {
 
     @Id
-    private Long riotId;
+    private String riotId;
 
     @Column(nullable = false)
-    private Long accountId;
+    private String accountId;
+
+    @Column(nullable = false)
+    private String puuid;
 
     @Column(nullable = false)
     private String name;

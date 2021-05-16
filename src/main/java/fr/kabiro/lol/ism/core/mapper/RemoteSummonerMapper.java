@@ -11,6 +11,7 @@ public class RemoteSummonerMapper {
         return Summoner.builder()
                 .riotId(summonerDTO.id)
                 .accountId(summonerDTO.accountId)
+                .puuid(summonerDTO.puuid)
                 .name(summonerDTO.name)
                 .region(region)
                 .summonerIcon(summonerDTO.profileIconId)
