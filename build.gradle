@@ -1,11 +1,11 @@
 buildscript {
     ext {
         springBootVersion = '2.4.5'
-        commonsIoVersion = '2.4'
-        jodaTimeVersion = '2.9.2'
-        guavaVersion = '21.0'
-        hikariVersion = '2.6.1'
-        postgresqlDriverVersion = '42.1.1'
+        commonsIoVersion = '2.8.0'
+        jodaTimeVersion = '2.10.10'
+        guavaVersion = '30.1.1-jre'
+        hikariVersion = '4.0.3'
+        postgresqlDriverVersion = '42.2.20'
     }
     repositories {
         mavenCentral()
