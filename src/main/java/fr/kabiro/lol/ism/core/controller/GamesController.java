@@ -1,6 +1,7 @@
 package fr.kabiro.lol.ism.core.controller;
 
 import fr.kabiro.lol.ism.core.model.Region;
+import fr.kabiro.lol.ism.core.model.match.MatchSummary;
 import fr.kabiro.lol.ism.core.remote.match.dto.MatchDto;
 import fr.kabiro.lol.ism.core.service.GameService;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,7 @@ public class GamesController {
     }
 
     @RequestMapping("/api/games/v1/{region}/{name}/recents")
-    public List<MatchDto> recentGamesBySummoner(@PathVariable("name") String name, @PathVariable("region") Region region) {
+    public List<MatchSummary> recentGamesBySummoner(@PathVariable("name") String name, @PathVariable("region") Region region) {
         return gameService.recentGamesBySummoner(name, region);
     }
 

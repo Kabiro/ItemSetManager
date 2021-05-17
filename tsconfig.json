@@ -9,7 +9,8 @@
     "strictNullChecks": false,  //a cause de ui-router...
     "outDir": "./build/typescript",
     "experimentalDecorators": true,
-    "sourceMap": false
+    "sourceMap": false,
+    "skipLibCheck": true
   },
   "exclude": [
     "node_modules"

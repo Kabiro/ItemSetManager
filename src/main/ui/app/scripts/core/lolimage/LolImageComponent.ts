@@ -18,7 +18,7 @@ export class LolImageComponent implements OnInit {
     @Input() type: Image;
 
     private baseUrl = 'https://ddragon.leagueoflegends.com/cdn/';
-    private lolVersion = '7.13.1';
+    private lolVersion = '11.10.1';
     private imageUrl: string = null;
 
     private configs:{ [K in Image]: ImageConfig } = {
@@ -55,7 +55,7 @@ export class LolImageComponent implements OnInit {
     };
 
     private championIdToChampionKey(id: string, champions: any): string {
-        return champions[id].key;
+        return champions[id].id;
     }
 
     private identity(id: string): string {
@@ -66,13 +66,14 @@ export class LolImageComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.championService.champions.then((result) => {
-            const champions = result.data;
+        this.championService.championsByKey.then((result) => {
+            const champions = result;
             this.imageUrl = this.baseUrl;
             const config = this.configs[this.type];
             if (config.version) {
                 this.imageUrl += this.lolVersion + '/';
             }
+            console.log(this.id, this.type, this.imageUrl);
             this.imageUrl += config.prefix + config.transformFunction(this.id, champions) + config.suffix;
         }, () => {});
     }

@@ -6,8 +6,6 @@ import fr.kabiro.lol.ism.core.model.Region;
 import fr.kabiro.lol.ism.core.remote.match.RestMatchClient;
 import fr.kabiro.lol.ism.core.remote.match.dto.MatchDto;
 import fr.kabiro.lol.ism.core.remote.match.dto.MatchTimelineDto;
-import fr.kabiro.lol.ism.core.remote.staticdata.RestStaticDataClient;
-import fr.kabiro.lol.ism.core.remote.staticdata.dto.ChampionListDto;
 import fr.kabiro.lol.ism.core.remote.summoner.RestSummonerClient;
 import fr.kabiro.lol.ism.core.remote.summoner.dto.SummonerDTO;
 import org.springframework.context.annotation.Profile;
@@ -20,7 +18,7 @@ import java.util.Optional;
 
 @Component
 @Profile(Profils.MOCK_RIOT)
-public class RestClientMock implements RestMatchClient, RestStaticDataClient, RestSummonerClient {
+public class RestClientMock implements RestMatchClient, RestSummonerClient {
 
     private ObjectMapper objectMapper;
 
@@ -51,15 +49,6 @@ public class RestClientMock implements RestMatchClient, RestStaticDataClient, Re
     public MatchDto getMatch(String matchId, Region region) {
         try {
             return objectMapper.readValue(new ClassPathResource("mocks/match.json").getURL(), MatchDto.class);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public ChampionListDto champions(Region region) {
-        try {
-            return objectMapper.readValue(new ClassPathResource("mocks/championsMap.json").getURL(), ChampionListDto.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

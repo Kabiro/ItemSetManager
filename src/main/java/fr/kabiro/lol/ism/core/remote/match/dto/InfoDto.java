@@ -6,6 +6,7 @@ import java.util.List;
 public class InfoDto {
     public Long gameId;
     public String gameMode;
+    public String platformId;
     public Long gameStartTimestamp;
     public List<ParticipanDto> participants = new ArrayList<>();
 }
