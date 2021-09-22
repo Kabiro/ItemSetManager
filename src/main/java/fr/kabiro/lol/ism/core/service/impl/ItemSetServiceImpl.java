@@ -16,10 +16,7 @@ import fr.kabiro.lol.ism.core.model.Region;
 import fr.kabiro.lol.ism.core.model.Summoner;
 import fr.kabiro.lol.ism.core.pojo.ZipFile;
 import fr.kabiro.lol.ism.core.remote.match.RestMatchClient;
-import fr.kabiro.lol.ism.core.remote.match.dto.MatchEventDto;
-import fr.kabiro.lol.ism.core.remote.match.dto.MatchEventType;
-import fr.kabiro.lol.ism.core.remote.match.dto.MatchFrameDto;
-import fr.kabiro.lol.ism.core.remote.match.dto.MatchTimelineDto;
+import fr.kabiro.lol.ism.core.remote.match.dto.*;
 import fr.kabiro.lol.ism.core.service.ItemSetService;
 import org.springframework.stereotype.Service;
 
@@ -77,15 +74,14 @@ public class ItemSetServiceImpl implements ItemSetService {
     }
 
     @Override
-    public Map<Integer, ItemSetDto> itemsSetFromGame(Long gameId, Region region) {
+    public Map<Integer, ItemSetDto> itemsSetFromGame(String gameId, Region region) {
         MatchTimelineDto timeline = matchClient.getTimeline(gameId, region);
-        List<MatchFrameDto> frames = timeline.frames;
+        List<FrameDto> frames = timeline.info.frames;
 
-        List<MatchEventType> EVENTS = Arrays.asList(MatchEventType.ITEM_PURCHASED, MatchEventType.ITEM_UNDO, MatchEventType.ITEM_SOLD);
-
-        Map<Integer, List<MatchEventDto>> eventsByParticipant = frames.stream()
+        Map<Integer, List<ItemFrameEventDto>> eventsByParticipant = frames.stream()
                 .flatMap(frame -> frame.events.stream())
-                .filter(event -> EVENTS.contains(event.type))
+                .filter(event -> event instanceof ItemFrameEventDto)
+                .map(event -> ((ItemFrameEventDto) event))
                 .collect(Collectors.groupingBy(event -> event.participantId));
 
         return eventsByParticipant.entrySet().stream()

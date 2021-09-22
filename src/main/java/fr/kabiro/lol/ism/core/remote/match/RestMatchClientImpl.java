@@ -28,8 +28,8 @@ public class RestMatchClientImpl extends RestRiotClient implements RestMatchClie
     }
 
     @Override
-    public MatchTimelineDto getTimeline(Long matchId, Region region) {
-        String url = "/lol/match/v3/timelines/by-match/" + matchId;
+    public MatchTimelineDto getTimeline(String matchId, Region region) {
+        String url = "/lol/match/v5/matches/" + matchId + "/timeline";
         return doGet(url, region, true, Collections.emptyMap(), MatchTimelineDto.class);
     }
 

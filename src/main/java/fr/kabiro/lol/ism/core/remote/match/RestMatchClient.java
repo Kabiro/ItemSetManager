@@ -9,7 +9,7 @@ import java.util.List;
 public interface RestMatchClient {
     List<String> getRecentMatchesIdsByPuuid(String accountId, Region region);
 
-    MatchTimelineDto getTimeline(Long matchId, Region region);
+    MatchTimelineDto getTimeline(String matchId, Region region);
 
     MatchDto getMatch(String matchId, Region region);
 }

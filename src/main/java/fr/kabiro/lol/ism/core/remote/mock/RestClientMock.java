@@ -37,7 +37,7 @@ public class RestClientMock implements RestMatchClient, RestSummonerClient {
     }
 
     @Override
-    public MatchTimelineDto getTimeline(Long matchId, Region region) {
+    public MatchTimelineDto getTimeline(String matchId, Region region) {
         try {
             return objectMapper.readValue(new ClassPathResource("mocks/matchTimeline.json").getURL(), MatchTimelineDto.class);
         } catch (IOException e) {

@@ -15,7 +15,7 @@ public interface ItemSetService {
 
     List<ZipFile> findZippedItemsSetByUser(String name, Region region);
 
-    Map<Integer, ItemSetDto> itemsSetFromGame(Long gameId, Region region);
+    Map<Integer, ItemSetDto> itemsSetFromGame(String gameId, Region region);
 
     Optional<BuildDto> findItemsSetById(Long id);
 

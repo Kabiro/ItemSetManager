@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InfoDto {
-    public Long gameId;
+    public String gameId;
     public String gameMode;
     public String platformId;
     public Long gameStartTimestamp;
-    public List<ParticipanDto> participants = new ArrayList<>();
+    public List<ParticipantDto> participants = new ArrayList<>();
+    public List<TeamDto> teams = new ArrayList<>();
 }

@@ -9,7 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 public class MatchSummary {
-    private Long gameId;
+    private String gameId;
     private String gameMode;
     private String platformId;
     private Long gameStartTimestamp;

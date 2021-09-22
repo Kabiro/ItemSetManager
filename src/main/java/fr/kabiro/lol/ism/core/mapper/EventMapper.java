@@ -1,8 +1,7 @@
 package fr.kabiro.lol.ism.core.mapper;
 
 import fr.kabiro.lol.ism.core.dto.*;
-import fr.kabiro.lol.ism.core.remote.match.dto.MatchEventDto;
-import fr.kabiro.lol.ism.core.remote.match.dto.MatchEventType;
+import fr.kabiro.lol.ism.core.remote.match.dto.ItemFrameEventDto;
 import org.joda.time.Duration;
 import org.joda.time.Period;
 import org.joda.time.format.PeriodFormatter;
@@ -26,7 +25,7 @@ public class EventMapper {
                 .toFormatter();
     }
 
-    public ItemSetDto eventsToItemSet(Collection<MatchEventDto> events) {
+    public ItemSetDto eventsToItemSet(Collection<ItemFrameEventDto> events) {
         ItemSetDto itemSet = new ItemSetDto();
         itemSet.setTitle("The name of the page");
         itemSet.setType(TypeDto.custom);
@@ -37,8 +36,8 @@ public class EventMapper {
         block.setType("Starter");
         itemSet.getBlocks().add(block);
         Long lastBackTimestamp = 0L;
-        for (MatchEventDto event : events) {
-            if (event.type == MatchEventType.ITEM_PURCHASED && isNotUndone(event, events)){
+        for (ItemFrameEventDto event : events) {
+            if (event.isPurchaseEvent() && isNotUndone(event, events)){
                 if (event.timestamp - lastBackTimestamp > 100_000L) {  //Backs last up to 100 seconds
                     lastBackTimestamp = event.timestamp;
                     block = new BlockDto();
@@ -54,19 +53,15 @@ public class EventMapper {
         return itemSet;
     }
 
-    private boolean isNotUndone(MatchEventDto event, Collection<MatchEventDto> events){
+    private boolean isNotUndone(ItemFrameEventDto event, Collection<ItemFrameEventDto> events){
         return events.stream()
                 .filter(other -> other.timestamp > event.timestamp)
-                .filter(other -> Objects.equals(other.beforeId, event.itemId))
-                .filter(other -> undone(event, other) || sold(event, other))
-                .count() == 0;
+                .filter(other -> Objects.equals(other.itemId, event.itemId))
+                .noneMatch(other -> sold(event, other));
     }
 
-    private boolean sold(MatchEventDto event, MatchEventDto other) {
-        return other.type == MatchEventType.ITEM_SOLD && other.timestamp - event.timestamp < 15000;
+    private boolean sold(ItemFrameEventDto event, ItemFrameEventDto other) {
+        return other.isDestroyEvent() && other.timestamp - event.timestamp < 15000;
     }
 
-    private boolean undone(MatchEventDto event, MatchEventDto other) {
-        return other.type == MatchEventType.ITEM_UNDO && other.timestamp - event.timestamp < 15000;
-    }
 }

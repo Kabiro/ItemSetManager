@@ -4,7 +4,7 @@ import fr.kabiro.lol.ism.core.model.match.MatchSummary;
 import fr.kabiro.lol.ism.core.model.match.Team;
 import fr.kabiro.lol.ism.core.model.match.TeamPlayer;
 import fr.kabiro.lol.ism.core.remote.match.dto.MatchDto;
-import fr.kabiro.lol.ism.core.remote.match.dto.ParticipanDto;
+import fr.kabiro.lol.ism.core.remote.match.dto.ParticipantDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class MatchSummaryMapper {
 
     public MatchSummary matchDtoToMatchSummary(MatchDto dto) {
         return MatchSummary.builder()
-                .gameId(dto.info.gameId)
+                .gameId(dto.metadata.matchId)
                 .gameMode(dto.info.gameMode)
                 .platformId(dto.info.platformId)
                 .gameStartTimestamp(dto.info.gameStartTimestamp)
@@ -36,7 +36,7 @@ public class MatchSummaryMapper {
                 .build();
     }
 
-    private TeamPlayer participantToTeamPlayer(ParticipanDto dto) {
+    private TeamPlayer participantToTeamPlayer(ParticipantDto dto) {
         return TeamPlayer.builder()
                 .championId(dto.championId)
                 .championName(dto.championName)
