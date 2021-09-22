@@ -18,7 +18,7 @@ export class LolImageComponent implements OnInit {
     @Input() type: Image;
 
     private baseUrl = 'https://ddragon.leagueoflegends.com/cdn/';
-    private lolVersion = '11.10.1';
+    private lolVersion = '11.19.1';
     private imageUrl: string = null;
 
     private configs:{ [K in Image]: ImageConfig } = {
