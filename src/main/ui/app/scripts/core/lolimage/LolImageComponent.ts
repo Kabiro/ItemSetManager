@@ -73,7 +73,6 @@ export class LolImageComponent implements OnInit {
             if (config.version) {
                 this.imageUrl += this.lolVersion + '/';
             }
-            console.log(this.id, this.type, this.imageUrl);
             this.imageUrl += config.prefix + config.transformFunction(this.id, champions) + config.suffix;
         }, () => {});
     }
