@@ -8,15 +8,15 @@ import {GameService} from "./srv/GameService";
 import {ItemsSetService} from "./srv/ItemsSetService";
 import {LoginService} from "./srv/LoginService";
 import {SummonerService} from "./srv/SummonerService";
-import {HttpModule} from "@angular/http";
 import {CookieService} from "angular2-cookie";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
     imports: [
         BrowserModule,
         UpgradeModule,
         CoreModule,
-        HttpModule
+        HttpClientModule
     ],
     providers: [
         ChampionsService,
