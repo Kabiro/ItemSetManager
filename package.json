@@ -8,12 +8,12 @@
     "heroku-postbuild": "webpack -p"
   },
   "dependencies": {
-    "@angular/common": "^8.2.14",
-    "@angular/compiler": "^8.2.14",
-    "@angular/core": "^8.2.14",
-    "@angular/platform-browser": "^8.2.14",
-    "@angular/platform-browser-dynamic": "^8.2.14",
-    "@angular/upgrade": "^8.2.14",
+    "@angular/common": "^9.1.13",
+    "@angular/compiler": "^9.1.13",
+    "@angular/core": "^9.1.13",
+    "@angular/platform-browser": "^9.1.13",
+    "@angular/platform-browser-dynamic": "^9.1.13",
+    "@angular/upgrade": "^9.1.13",
     "@uirouter/angularjs": "^1.0.1",
     "angular": "^1.6.4",
     "angular-cookies": "^1.6.4",
