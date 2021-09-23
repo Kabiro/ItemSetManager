@@ -2,6 +2,7 @@ import {IModalService} from "angular-ui-bootstrap";
 import {GameService} from "../srv/GameService";
 import {ItemsSetService} from "../srv/ItemsSetService";
 import {ChampionsService} from "../srv/ChampionsService";
+
 export class GameController {
 
     static $inject = ['$rootScope', '$stateParams', '$uibModal', 'GameService', 'ItemsSetService', 'ChampionsService'];
@@ -9,7 +10,7 @@ export class GameController {
     game: any = {};
     itemSet: any = {};
 
-    constructor(private $rootScope: ng.IRootScopeService, private $stateParams: angular.ui.IStateParamsService, private $modal: IModalService,
+    constructor(private $rootScope: any, private $stateParams: angular.ui.IStateParamsService, private $modal: IModalService,
                 private gameService: GameService, private itemsSetService: ItemsSetService, private championsService: ChampionsService) {
         this.$rootScope.header = {
             title: 'Game n°' + $stateParams.gameId + ' (' + $stateParams.gameRegion + ')'
@@ -17,15 +18,15 @@ export class GameController {
 
 
         this.gameService.getById($stateParams.gameId, $stateParams.gameRegion).then((result) => {
-            this.game = result.data;
+            this.game = result;
         });
 
         this.itemsSetService.getByGame($stateParams.gameId, $stateParams.gameRegion).then((result) => {
-            this.itemSet = result.data;
+            this.itemSet = result;
         });
     }
 
-    createItemSet(user: any, championId: number, itemSet: any) {
+    createItemSet(user: any, championId: string, itemSet: any) {
         this.championsService.champions.then((result) => {
 
             this.$modal.open({

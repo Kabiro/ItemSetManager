@@ -10,7 +10,8 @@
     "outDir": "./build/typescript",
     "experimentalDecorators": true,
     "sourceMap": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true
   },
   "exclude": [
     "node_modules"

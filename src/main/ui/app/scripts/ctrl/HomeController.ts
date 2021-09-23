@@ -1,4 +1,5 @@
 import {SummonerService} from "../srv/SummonerService";
+
 export class HomeController {
 
     static $inject = ["$rootScope", "$state", "SummonerService"];
@@ -7,11 +8,11 @@ export class HomeController {
     gameRegion: string = "EUW1";
     regions: string[] = [];
 
-    constructor(private $rootScope: ng.IRootScopeService, private $state: ng.ui.IStateService, private summonerService: SummonerService) {
+    constructor(private $rootScope: any, private $state: ng.ui.IStateService, private summonerService: SummonerService) {
         this.$rootScope.header = {};
 
         this.summonerService.regions().then(result => {
-            this.regions = result.data || [];
+            this.regions = result || [];
         });
     }
 

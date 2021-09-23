@@ -1,48 +1,48 @@
+import {Injectable} from "@angular/core";
+import 'rxjs/add/operator/toPromise';
+import {Build, ItemSet} from "../model/Build";
+import {Http} from "@angular/http";
+
+@Injectable()
 export class ItemsSetService {
-    static $inject = ['$http'];
-
-    constructor(private $http: ng.IHttpService) {
+    constructor(private http: Http) {
     }
 
-    buildsByUser(username: string, region: string): ng.IHttpPromise<any> {
-        return this.$http.get('/api/sets/v1/' + region + '/' + username);
+    buildsByUser(username: string, region: string): Promise<Build[]> {
+        return this.http.get('/api/sets/v1/' + region + '/' + username).toPromise().then(r => r.json());
     }
 
-    followedBuildsByUser(username: string, region: string): ng.IHttpPromise<any> {
-        return this.$http.get('/api/sets/v1/' + region + '/' + username + '/followed');
+    followedBuildsByUser(username: string, region: string): Promise<Build[]> {
+        return this.http.get('/api/sets/v1/' + region + '/' + username + '/followed').toPromise().then(r => r.json());
     }
 
-    followBuild(username: string, region: string, buildId: number): ng.IHttpPromise<object> {
-        return this.$http.put('/api/sets/v1/' + region + '/' + username + '/followed/' + buildId, null);
+    followBuild(username: string, region: string, buildId: number): Promise<any> {
+        return this.http.put('/api/sets/v1/' + region + '/' + username + '/followed/' + buildId, null).toPromise().then(r => r.json());
     }
 
-    unfollowBuild(username: string, region: string, buildId: number): ng.IHttpPromise<object> {
-        return this.$http.delete('/api/sets/v1/' + region + '/' + username + '/followed/' + buildId);
+    unfollowBuild(username: string, region: string, buildId: number): Promise<any> {
+        return this.http.delete('/api/sets/v1/' + region + '/' + username + '/followed/' + buildId).toPromise().then(r => r.json());
     }
 
-    getByGame(gameId: number, region: string): ng.IHttpPromise<any> {
-        return this.$http.get('/api/sets/v1/game/' + region + '/' + gameId);
+    getByGame(gameId: number, region: string): Promise<Map<number, ItemSet>> {
+        return this.http.get('/api/sets/v1/game/' + region + '/' + gameId).toPromise().then(r => r.json());
     }
 
-    getById(id: number): ng.IHttpPromise<any> {
-        return this.$http.get('/api/sets/v1/' + id);
+    getById(id: number): Promise<Build> {
+        return this.http.get('/api/sets/v1/' + id).toPromise().then(r => r.json());
     }
 
-    create(summoner: any, region: string, champions: any, itemSet: any): ng.IHttpPromise<any> {
-        return this.$http.put('/api/sets/v1/', itemSet, {
-            params: {
-                summonerName: summoner,
-                summonerRegion: region,
-                champions: champions
-            }
-        });
+    create(summoner: any, region: string, champions: any, itemSet: any): Promise<Build> {
+        return this.http.put('/api/sets/v1/', itemSet, {
+            params: {summonerName: summoner, summonerRegion: region, champions: champions}
+        }).toPromise().then(r => r.json());
     }
 
-    delete(itemSetId: number): ng.IHttpPromise<object> {
-        return this.$http.delete('api/sets/v1/' + itemSetId);
+    delete(itemSetId: number): Promise<any> {
+        return this.http.delete('api/sets/v1/' + itemSetId).toPromise().then(r => r.json());
     }
 
-    update(id: number, itemSet: any, champions: any): ng.IHttpPromise<any> {
-        return this.$http.post('api/sets/v1/' + id, itemSet, {params: {champions: champions}});
+    update(id: number, itemSet: any, champions: any): Promise<Build> {
+        return this.http.post('api/sets/v1/' + id, itemSet, {params: {champions: champions}}).toPromise().then(r => r.json());
     }
 }

@@ -20,11 +20,11 @@ import {upgradeAdapter} from "./ng2app";
 export const ng1App = angular.module('ItemSetManager', ['ngCookies', 'ui.router', 'ui.bootstrap']);
 
 ng1App
-    .service('ChampionsService', ChampionsService)
-    .service('GameService', GameService)
-    .service('ItemsSetService', ItemsSetService)
-    .service('LoginService', LoginService)
-    .service('SummonerService', SummonerService)
+    .service('ChampionsService', upgradeAdapter.downgradeNg2Provider(ChampionsService))
+    .service('GameService', upgradeAdapter.downgradeNg2Provider(GameService))
+    .service('ItemsSetService', upgradeAdapter.downgradeNg2Provider(ItemsSetService))
+    .service('LoginService', upgradeAdapter.downgradeNg2Provider(LoginService))
+    .service('SummonerService', upgradeAdapter.downgradeNg2Provider(SummonerService))
     .controller('AddItemSetModalController', AddItemSetModalController)
     .controller('BuildEditController', BuildEditController)
     .controller('GameController', GameController)

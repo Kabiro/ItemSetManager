@@ -1,18 +1,21 @@
-export class LoginService {
-    static $inject = ['$cookies'];
+import {Injectable} from "@angular/core";
+import {CookieService} from "angular2-cookie";
 
-    constructor(private $cookies: ng.cookies.ICookiesService) {
+@Injectable()
+export class LoginService {
+    constructor(private cookiesService: CookieService) {
     }
 
     logIn(user: object): void {
-        this.$cookies.putObject('user', user);
+        this.cookiesService.put('user', JSON.stringify(user));
     }
 
     getUser(): object {
-        return this.$cookies.getObject('user');
+        const user = this.cookiesService.get('user');
+        return user ? JSON.parse(user) : null;
     }
 
     logout(): void {
-        this.$cookies.remove('user');
+        this.cookiesService.remove('user');
     }
 }

@@ -1,13 +1,13 @@
 import {LoginService} from "../srv/LoginService";
 import {SummonerService} from "../srv/SummonerService";
-import {IRootScopeService} from "angular";
+
 export class NavigationController {
     static $inject = ['$rootScope', '$state', 'LoginService', 'SummonerService'];
 
     userRegion: string = "EUW1";
     regions: string[] = [];
 
-    constructor(private $rootScope: IRootScopeService, private $state: angular.ui.IStateService, private loginService: LoginService, private summonerService: SummonerService) {
+    constructor(private $rootScope: any, private $state: angular.ui.IStateService, private loginService: LoginService, private summonerService: SummonerService) {
 
         const cookieUser = this.loginService.getUser();
         if (cookieUser) {
@@ -15,7 +15,7 @@ export class NavigationController {
         }
 
         this.summonerService.regions().then((result) => {
-            this.regions = result.data || [];
+            this.regions = result || [];
         });
     }
 
@@ -27,8 +27,8 @@ export class NavigationController {
 
     login(name: string, region: string) {
         this.summonerService.byName(name, region).then((result) => {
-            this.loginService.logIn(result.data);
-            this.$rootScope.user = result.data;
+            this.loginService.logIn(result);
+            this.$rootScope.user = result;
             if (this.$state.current.name === 'home' || this.$state.current.name === 'homeBis') {
                 this.$state.go('summoner', {summoner: name, region: region});
             }

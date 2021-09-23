@@ -12,7 +12,7 @@ export class SummonerController {
     recentGames: any[] = [];
     summoner: any = {};
 
-    constructor(private $rootScope: ng.IRootScopeService, private $state: ng.ui.IStateService, private $stateParams: ng.ui.IStateParamsService,
+    constructor(private $rootScope: any, private $state: ng.ui.IStateService, private $stateParams: ng.ui.IStateParamsService,
                 private $modal: ng.ui.bootstrap.IModalService, private itemsSetService: ItemsSetService, private gameService: GameService, private summonerService: SummonerService) {
 
         if (Utils.isEmpty($stateParams.summoner) || Utils.isEmpty($stateParams.region)) {
@@ -29,23 +29,23 @@ export class SummonerController {
         };
 
         this.summonerService.byName(this.summoner.name, this.summoner.region).then((result) => {
-            this.summoner = result.data;
+            this.summoner = result;
 
             this.itemsSetService.buildsByUser(this.summoner.name, this.summoner.region).then((result) => {
-                this.builds = result.data;
+                this.builds = result;
             });
 
             this.itemsSetService.followedBuildsByUser(this.summoner.name, this.summoner.region).then((result) => {
-                this.followedBuilds = result.data;
+                this.followedBuilds = result;
             });
 
             this.gameService.recentByUser(this.summoner.name, this.summoner.region).then((result) => {
-                this.recentGames = result.data;
+                this.recentGames = result;
             });
 
             if ($rootScope.user) {
                 this.itemsSetService.followedBuildsByUser($rootScope.user.name, $rootScope.user.region).then((result) => {
-                    this.userFollowedBuilds = (<any[]>result.data).map(build => build.id);
+                    this.userFollowedBuilds = (<any[]>result).map(build => build.id);
                 });
             }
         });
